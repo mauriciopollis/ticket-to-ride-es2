@@ -7,11 +7,19 @@ var rotas: Array[Rota] = []
 
 func _ready() -> void:
 	print("Tabuleiro rodando!")
-	configuraTabuleiro()
+	configurarTabuleiro()
 
 # push_error: reporta no terminal mas mantém rodando
 # assert: quando recebe falso: pode reportar no terminal mas sempre encerra a execução
-func configuraTabuleiro():
+func configurarTabuleiro():
+	cidades.clear()
+	rotas.clear()
+
+	configurarCidades()
+	configurarRotas()
+
+
+func configurarCidades():
 	var nomesCidades = [
 	"Atlanta", "Boston", "Calgary", "Charleston", "Chicago", "Dallas", "Denver",
 	"Duluth", "El Paso", "Helena", "Houston", "Kansas City", "Las Vegas", "Little Rock",
@@ -20,6 +28,14 @@ func configuraTabuleiro():
 	"Salt Lake City", "San Francisco", "Santa Fe", "Sault Ste. Marie", "Seattle",
 	"St. Louis", "Toronto", "Vancouver", "Washington", "Winnipeg"]
 
+	for nome in nomesCidades:
+		if not cidades.has(nome):
+			var cidade = Cidade.new(nome)
+			cidades[nome] = cidade
+		else:
+			push_warning("Cidade duplicada ignorada: %s" % nome)
+
+func configurarRotas():
 	var listaRotas = [
 	["Seattle", "Portland", 1, Color.GRAY],
 	["Seattle", "Helena", 6, Color.YELLOW],
@@ -87,16 +103,6 @@ func configuraTabuleiro():
 	["Nashville", "Pittsburgh", 4, Color.YELLOW],
 	["Pittsburgh", "New York", 2, Color.GREEN]]
 
-	cidades.clear()
-	rotas.clear()
-
-	for nome in nomesCidades:
-		if not cidades.has(nome):
-			var cidade = Cidade.new(nome)
-			cidades[nome] = cidade
-		else:
-			push_warning("Cidade duplicada ignorada: %s" % nome)
-
 	for rotaInfo in listaRotas:
 		var c1 = getCidade(rotaInfo[0])
 		var c2 = getCidade(rotaInfo[1])
@@ -104,14 +110,16 @@ func configuraTabuleiro():
 			var rota = Rota.new(c1, c2, rotaInfo[2], rotaInfo[3])
 			rotas.append(rota)
 		else:
-			push_error("Cidade não encontrada: %s ou %s" % [rotaInfo["cidade1"], rotaInfo["cidade2"]])
+			push_error("Cidade não encontrada: %s ou %s" % [rotaInfo[0], rotaInfo[1]])
 			assert(false)
+
 
 func getCidade(nome: String) -> Cidade:
 	assert(cidades.has(nome), "Cidade não encontrada: %s" % nome) # hard fail: para a execução
 	return cidades[nome] 
 
-func conquistaRota(rota: Rota, jogador: Jogador):
+
+func conquistarRota(rota: Rota, jogador: Jogador):
 	if rota.dono != null:
 		push_warning("Rota já reclamada por %s" % rota.dono.nome)
 		return
