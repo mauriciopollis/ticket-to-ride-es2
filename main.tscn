@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://djyg00k8nikgr"]
+
+[ext_resource type="Script" uid="uid://cfx88g2osynky" path="res://Scripts/Main.gd" id="1_lquwl"]
+[ext_resource type="Script" uid="uid://bopdt4qjttb8r" path="res://Scripts/Tabuleiro.gd" id="4_5vw27"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_lquwl")
+
+[node name="Tabuleiro" type="Node" parent="."]
+script = ExtResource("4_5vw27")
