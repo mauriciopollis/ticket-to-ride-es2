@@ -12,6 +12,8 @@ var descarteBilhetesDestino: Array[BilheteDestino] = []
 
 
 func _ready() -> void:
+	print('Baralho rodando!')
+
 	montarPilhaCartasTrem()
 	montarPilhaBilhetesDestino()
 
@@ -136,4 +138,4 @@ func darBilhetesDestinoJogador(jogador: Jogador, numBilhetesDestino: int):
 	for i in range(numBilhetesDestino):
 		var carta = comprarPilhaBilhetesDestino()
 		if carta:
-			jogador.inserirBilheteDestino(carta)	
+			jogador.inserirBilheteDestinoNaMao(carta)	

@@ -16,3 +16,6 @@ func _init(cidade1_: Cidade, cidade2_: Cidade, custo_: int, cor_: Color):
 	self.cidade2 = cidade2_
 	self.cor = cor_
 	self.custo = custo_
+
+func setDono(jogador: Jogador):
+	self.dono = jogador

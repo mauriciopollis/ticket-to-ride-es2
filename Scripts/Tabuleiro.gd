@@ -7,6 +7,7 @@ var rotas: Array[Rota] = []
 
 func _ready() -> void:
 	print("Tabuleiro rodando!")
+
 	configurarTabuleiro()
 
 # push_error: reporta no terminal mas mantém rodando
@@ -48,7 +49,7 @@ func configurarRotas():
 	["Los Angeles", "Phoenix", 3, Color.GRAY],
 	["Los Angeles", "El Paso", 6, Color.BLACK],
 	["Las Vegas", "Salt Lake City", 3, Color.ORANGE],
-	["Salt Lake City", "Helena", 3, Color.PURPLE],
+	["Salt Lake City", "Helena", 3, Color.PINK],
 	["Salt Lake City", "Denver", 3, Color.RED],
 	["Helena", "Calgary", 4, Color.GRAY],
 	["Helena", "Winnipeg", 4, Color.BLUE],
@@ -122,6 +123,9 @@ func getCidade(nome: String) -> Cidade:
 func conquistarRota(rota: Rota, jogador: Jogador):
 	if rota.dono != null:
 		push_warning("Rota já reclamada por %s" % rota.dono.nome)
-		return
-	rota.dono = jogador
-	jogador.insereRota(rota)
+		return false
+
+	#jogador.usarCartasTremIA(rota.cor, rota.custo) # tá no lugar errado
+	rota.setDono(jogador)
+	jogador.inserirRota(rota)
+	return true

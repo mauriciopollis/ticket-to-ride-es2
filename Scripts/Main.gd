@@ -10,16 +10,17 @@ var corJogadores: Array[Color] = [Color.BLUE, Color.GREEN, Color.RED] # mesma or
 
 func _ready() -> void:
 	print("Main rodando!!")
-	
+
 	iniciarJogo()
-	
+
 	printMaosJogadores()
+
 
 func iniciarJogo():
 	criarJogadores(nomeJogadores, corJogadores)
 	distribuirCartasEBilhetesIniciais()
-	
-	
+
+
 func distribuirCartasEBilhetesIniciais():
 	for jogador in jogadores:
 		baralho.darCartasTremJogador(jogador, 4)
@@ -42,18 +43,20 @@ func printRotas():
 			rota.cidade1.nome,
 			rota.cidade2.nome,
 			rota.custo,
-			rota.cor
+			Utils.nomeCor(rota.cor)
 		])
 func printJogadores():
 	print("Jogadores adicionados: ")
 	for jog in jogadores:
-		print("Nome: %s (cor: %s)" %[jog.nome, jog.cor])
+		print("Nome: %s" % jog.nome)
+		print("- Cor: %" % Utils.nomeCor(jog.cor))
+		print("- Vagões disponíveis: %d" % jog.vagoesDisponiveis)
 func printMaosJogadores():
 	for jogador in jogadores:
-		print("--- %s ---" % jogador.nome)
+		print("\n--- %s ---" % jogador.nome)
 		print("Cartas de trem: %d" % jogador.cartasTremNaMao.size())
 		for carta in jogador.cartasTremNaMao:
-			print("- Cor: %s" % str(carta.cor))
+			print("- Cor: %s" % Utils.nomeCor(carta.cor))
 		print("Bilhetes de destino: %d" % jogador.bilhetesDestinoNaMao.size())
 		for bilhete in jogador.bilhetesDestinoNaMao:
 			print("- De %s para %s (%d pontos)" % [bilhete.cidade1.nome, bilhete.cidade2.nome, bilhete.pontos])
