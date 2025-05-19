@@ -13,6 +13,7 @@ var grafo: Dictionary = {} # grafo[cidadeChave] -> [cidadeVizinha, rota]
 var cartasTremNaMao: Array[CartaTrem] = []
 var bilhetesDestinoNaMao: Array[BilheteDestino] = []
 var bilhetesDestinoCompletados: Array[BilheteDestino] = []
+var ordemDeJogada: int
 
 func _init(nome_: String, cor_: Color):
 	self.nome = nome_

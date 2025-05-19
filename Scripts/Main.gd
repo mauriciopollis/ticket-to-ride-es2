@@ -60,3 +60,12 @@ func printMaosJogadores():
 		print("Bilhetes de destino: %d" % jogador.bilhetesDestinoNaMao.size())
 		for bilhete in jogador.bilhetesDestinoNaMao:
 			print("- De %s para %s (%d pontos)" % [bilhete.cidade1.nome, bilhete.cidade2.nome, bilhete.pontos])
+
+func sortearOrdemInicial():
+	var ordens: Array = []
+	for i in range(jogadores.size()):
+		ordens.append(i)
+	ordens.shuffle()
+	
+	for i in range(jogadores.size()):
+		jogadores[i].ordemDeJogada = ordens[i]
