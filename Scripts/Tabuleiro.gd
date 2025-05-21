@@ -10,6 +10,21 @@ func _ready() -> void:
 
 	configurarTabuleiro()
 
+# prints de debug
+func printCidades():
+	print("Cidades carregadas: ")
+	for nome in cidades.keys():
+		print("- ", nome)
+func printRotas():
+	print("Rotas carregadas: ")
+	for rota in rotas:
+		print("%s -> %s (%d cartas, cor %s)" % [
+			rota.cidade1.nome,
+			rota.cidade2.nome,
+			rota.custo,
+			Utils.nomeCor(rota.cor)
+		])
+
 # push_error: reporta no terminal mas mantém rodando
 # assert: quando recebe falso: pode reportar no terminal mas sempre encerra a execução
 func configurarTabuleiro():

@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdwa84y3fx256"]
+
+[sub_resource type="GDScript" id="GDScript_vsb4k"]
+script/source = "extends Control
+
+
+func _on_botao_jogar_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://tabuleiro.tscn\")
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_vsb4k")
+
+[node name="BotaoJogar" type="Button" parent="."]
+layout_mode = 1
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Jogar"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.5
+offset_right = 22.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Menu"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="BotaoJogar" to="." method="_on_botao_jogar_pressed"]

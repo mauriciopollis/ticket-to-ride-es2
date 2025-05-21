@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc23fm2tvqpnu"]
+
+[ext_resource type="Script" uid="uid://bopdt4qjttb8r" path="res://Scripts/Tabuleiro.gd" id="1_qqlt4"]
+
+[node name="Tabuleiro" type="Node"]
+script = ExtResource("1_qqlt4")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -37.0
+offset_right = 37.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Tabuleiro"
+horizontal_alignment = 1

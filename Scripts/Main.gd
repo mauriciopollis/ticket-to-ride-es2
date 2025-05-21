@@ -1,6 +1,5 @@
 extends Node
 
-@onready var tabuleiro: Tabuleiro = $Tabuleiro
 @onready var jogadores: Array[Jogador] = []
 @onready var baralho = get_node("Baralho") as Baralho
 #var jogadores: Dictionary = {} # armazenará referências a objetos da classe Jogador
@@ -14,11 +13,13 @@ func _ready() -> void:
 	iniciarJogo()
 
 	printMaosJogadores()
+	get_tree().change_scene_to_file("res://tabuleiro.tscn")
 
 
 func iniciarJogo():
 	criarJogadores(nomeJogadores, corJogadores)
 	distribuirCartasEBilhetesIniciais()
+	sortearOrdemInicial()
 
 
 func distribuirCartasEBilhetesIniciais():
@@ -31,20 +32,6 @@ func criarJogadores(listaNomeJogadores: Array[String], listaCorJogadores: Array[
 		var jogador = Jogador.new(nome, listaCorJogadores.pop_front())
 		jogadores.append(jogador)
 
-# prints de debug
-func printCidades():
-	print("Cidades carregadas: ")
-	for nome in tabuleiro.cidades.keys():
-		print("- ", nome)
-func printRotas():
-	print("Rotas carregadas: ")
-	for rota in tabuleiro.rotas:
-		print("%s -> %s (%d cartas, cor %s)" % [
-			rota.cidade1.nome,
-			rota.cidade2.nome,
-			rota.custo,
-			Utils.nomeCor(rota.cor)
-		])
 func printJogadores():
 	print("Jogadores adicionados: ")
 	for jog in jogadores:
@@ -69,3 +56,6 @@ func sortearOrdemInicial():
 	
 	for i in range(jogadores.size()):
 		jogadores[i].ordemDeJogada = ordens[i]
+
+func _on_botao_jogar_pressed():
+	get_tree().change_scene_to_file("res://tabuleiro.tscn")

@@ -11,10 +11,13 @@ config_version=5
 [application]
 
 config/name="Ticket to ride ES2"
-run/main_scene="uid://djyg00k8nikgr"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Utils="*res://Scripts/utils.gd"
+
+[dotnet]
+
+project/assembly_name="Ticket to ride ES2"

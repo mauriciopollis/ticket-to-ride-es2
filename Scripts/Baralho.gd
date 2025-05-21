@@ -2,7 +2,7 @@ extends Node
 
 class_name Baralho
 
-@onready var tabuleiro = get_node("/root/Main/Tabuleiro") as Tabuleiro
+@onready var tabuleiro = get_parent() as Tabuleiro
 
 var pilhaCartasTrem: Array[CartaTrem] = []
 var pilhaBilhetesDestino: Array[BilheteDestino] = []
