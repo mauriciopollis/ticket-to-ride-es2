@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://h3vpr8e0wcqi"]
+[gd_scene load_steps=7 format=3 uid="uid://h3vpr8e0wcqi"]
 
 [ext_resource type="Texture2D" uid="uid://buis362xuljyg" path="res://Assets/selecionar_dificuldade.png" id="1_2lr4m"]
+[ext_resource type="Script" uid="uid://dohyebct45ojh" path="res://Scripts/menu_dificuldade.gd" id="1_bjvpm"]
 [ext_resource type="Texture2D" uid="uid://cwyq3ggcf3s4m" path="res://Assets/facil.png" id="2_bjvpm"]
 [ext_resource type="Texture2D" uid="uid://cl4cu83euit65" path="res://Assets/medio.png" id="3_f1sqo"]
 [ext_resource type="Texture2D" uid="uid://idccqqnl24d" path="res://Assets/dificil.png" id="4_ogpkr"]
@@ -15,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_bjvpm")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -52,3 +54,7 @@ icon = ExtResource("3_f1sqo")
 [node name="Dificil" type="Button" parent="Panel/HBoxContainer"]
 layout_mode = 2
 icon = ExtResource("4_ogpkr")
+
+[connection signal="pressed" from="Panel/HBoxContainer/Facil" to="." method="_on_facil_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/Medio" to="." method="_on_medio_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/Dificil" to="." method="_on_dificil_pressed"]
