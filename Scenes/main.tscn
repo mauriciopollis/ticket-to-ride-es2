@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://1353hqcksfk3"]
 
-[ext_resource type="Script" uid="uid://cfx88g2osynky" path="res://Scripts/Main.gd" id="1_lquwl"]
+[ext_resource type="Script" uid="uid://cfx88g2osynky" path="res://Scripts/Main.gd" id="1_jjgbg"]
 
 [node name="Main" type="Node"]
-script = ExtResource("1_lquwl")
+script = ExtResource("1_jjgbg")
 
 [node name="BotaoJogar" type="MenuButton" parent="."]
 offset_right = 8.0
