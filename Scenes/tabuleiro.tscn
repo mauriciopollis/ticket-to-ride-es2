@@ -1,9 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://bc23fm2tvqpnu"]
+[gd_scene load_steps=3 format=3 uid="uid://bc23fm2tvqpnu"]
 
 [ext_resource type="Script" uid="uid://bopdt4qjttb8r" path="res://Scripts/Tabuleiro.gd" id="1_qqlt4"]
+[ext_resource type="Texture2D" uid="uid://bjix0f811tcse" path="res://Assets/mapa.jpg" id="2_xuw6c"]
 
 [node name="Tabuleiro" type="Node"]
 script = ExtResource("1_qqlt4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_xuw6c")
+expand_mode = 1
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 5
