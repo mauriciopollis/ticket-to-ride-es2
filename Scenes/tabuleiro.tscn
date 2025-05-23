@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bc23fm2tvqpnu"]
 
 [ext_resource type="Script" uid="uid://bopdt4qjttb8r" path="res://Scripts/Tabuleiro.gd" id="1_qqlt4"]
-[ext_resource type="Texture2D" uid="uid://bjix0f811tcse" path="res://Assets/mapa.jpg" id="2_xuw6c"]
+[ext_resource type="Texture2D" uid="uid://bp62px0t7tey6" path="res://Assets/TabuleiroExpandido.png" id="2_xuw6c"]
 
 [node name="Tabuleiro" type="Node"]
 script = ExtResource("1_qqlt4")
