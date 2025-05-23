@@ -43,4 +43,5 @@ icon = ExtResource("2_gm0cl")
 layout_mode = 2
 icon = ExtResource("3_xe7cc")
 
+[connection signal="pressed" from="Panel/HBoxContainer/ModoPlayer" to="." method="_on_modo_player_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/ModoSolo" to="." method="_on_modo_solo_pressed"]
