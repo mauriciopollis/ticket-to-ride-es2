@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://h3vpr8e0wcqi"]
+
+[ext_resource type="Texture2D" uid="uid://buis362xuljyg" path="res://Assets/selecionar_dificuldade.png" id="1_2lr4m"]
+[ext_resource type="Script" path="res://Scripts/menu_dificuldade.gd" id="1_bjvpm"]
+[ext_resource type="Texture2D" uid="uid://cwyq3ggcf3s4m" path="res://Assets/facil.png" id="2_bjvpm"]
+[ext_resource type="Texture2D" uid="uid://cl4cu83euit65" path="res://Assets/medio.png" id="3_f1sqo"]
+[ext_resource type="Texture2D" uid="uid://idccqqnl24d" path="res://Assets/dificil.png" id="4_ogpkr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fkbc3"]
+texture = ExtResource("1_2lr4m")
+
+[node name="MenuDificuldade" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bjvpm")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_fkbc3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -362.0
+offset_top = -33.0
+offset_right = 3010.0
+offset_bottom = 399.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+theme_override_constants/separation = 300
+
+[node name="Facil" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("2_bjvpm")
+
+[node name="Medio" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("3_f1sqo")
+
+[node name="Dificil" type="Button" parent="Panel/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("4_ogpkr")
+
+[connection signal="pressed" from="Panel/HBoxContainer/Facil" to="." method="_on_facil_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/Medio" to="." method="_on_medio_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/Dificil" to="." method="_on_dificil_pressed"]
