@@ -25,3 +25,10 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "Tabuleiro"
 horizontal_alignment = 1
+
+[node name="Portland-SaltLakeCity" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Portland-SaltLakeCity"]
+polygon = PackedVector2Array(234, 153, 261, 158, 287, 169, 312, 185, 335, 203, 353, 224, 368, 249, 379, 244, 364, 218, 344, 195, 320, 176, 294, 159, 264, 147, 235, 141)
+
+[connection signal="input_event" from="Portland-SaltLakeCity" to="." method="_on_rota_input_event" binds= ["portland-saltlakecity"]]
