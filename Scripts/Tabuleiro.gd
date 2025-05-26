@@ -4,6 +4,7 @@ class_name Tabuleiro
 
 var cidades: Dictionary = {} # armazenará referncias a objetos da classe Cidade
 var rotas: Dictionary = {}
+var original_polygons: Dictionary = {}
 
 const TabuleiroData = preload("res://Scripts/TabuleiroData.gd")
 
@@ -12,20 +13,41 @@ func _ready() -> void:
 
 	configurar_tabuleiro()
 
-# func print_cidades():
-# 	print("Cidades carregadas: ")
-# 	for nome in cidades.keys():
-# 		print("- ", nome)
+	for rota in $RotasButtons.get_children():
+		if rota is Area2D:
+			var collision = rota.get_node("CollisionPolygon2D")
+			if collision.has_node("Polygon2D"):
+				var polygon2d = collision.get_node("Polygon2D")
+				polygon2d.color = Color(1, 1, 1, 0) # transparente
+			var points = []
+			for p in collision.polygon:
+				points.append(p)
+			original_polygons[rota.name] = points
 
-# func print_rotas():
-# 	print("Rotas carregadas: ")
-# 	for rota in rotas:
-# 		print("%s -> %s (%d cartas, cor %s)" % [
-# 			rota.cidade1.nome,
-# 			rota.cidade2.nome,
-# 			rota.custo,
-# 			Utils.nomeCor(rota.cor)
-# 		])
+	ajustar_todos_os_poligonos()
+	
+	get_tree().get_root().size_changed.connect(resize_window)
+
+func resize_window():
+	ajustar_todos_os_poligonos()
+
+func ajustar_todos_os_poligonos():
+	var texture_rect = $TextureRect
+	var original_size = Vector2(1152, 648) # tamanho original da imagem
+	var current_size = texture_rect.size
+	var scale = current_size / original_size
+
+	for rota in $RotasButtons.get_children():
+		if rota is Area2D and original_polygons.has(rota.name):
+			var collision = rota.get_node("CollisionPolygon2D")
+			var new_points = []
+			for p in original_polygons[rota.name]:
+				new_points.append(Vector2(p.x * scale.x, p.y * scale.y))
+			
+			collision.polygon = new_points
+			if collision.has_node("Polygon2D"):
+				var polygon2d = collision.get_node("Polygon2D")
+				polygon2d.polygon = new_points
 
 func configurar_tabuleiro():
 	cidades.clear()
@@ -42,25 +64,28 @@ func configurar_cidades():
 		else:
 			push_warning("Cidade duplicada ignorada: %s" % nome)
 
-func gerar_nome_rota(rota: Rota) -> String:
-	var c1 = rota.cidade1.nome.replace(" ", "").to_lower()
-	var c2 = rota.cidade2.nome.replace(" ", "").to_lower()
-	return "%s-%s-%s" % [c1, c2, rota.cor]
+func gerar_nome_rota(cidade1: Cidade, cidade2: Cidade) -> String:
+	var c1 = cidade1.nome.replace(" ", "").to_lower()
+	var c2 = cidade2.nome.replace(" ", "").to_lower()
+	var nome_rota = "%s-%s" % [c1, c2]
+	if rotas.has(nome_rota + "-1"):
+		nome_rota += "-2"
+	else:
+		nome_rota += "-1"
+	return nome_rota
 
 func configurar_rotas():
 	for rotaData in TabuleiroData.ROTAS:
 		var c1 = get_cidade(rotaData[0])
 		var c2 = get_cidade(rotaData[1])
-		var rota = Rota.new(c1, c2, rotaData[2], rotaData[3])
-		var nome_rota = gerar_nome_rota(rota)
+		var nome_rota = gerar_nome_rota(c1, c2)
+		var rota = Rota.new(nome_rota, c1, c2, rotaData[2], rotaData[3])
 		rotas[nome_rota] = rota
 	print(rotas)
-
 
 func get_cidade(nome: String) -> Cidade:
 	assert(cidades.has(nome), "Cidade não encontrada: %s" % nome) # hard fail: para a execução
 	return cidades[nome]
-
 
 func conquistar_rota(rota: Rota, jogador: Jogador):
 	if rota.dono != null:
@@ -74,4 +99,14 @@ func conquistar_rota(rota: Rota, jogador: Jogador):
 
 func _on_rota_input_event(_viewport, event, _shape_idx, nome_rota):
 	if event is InputEventMouseButton and event.pressed:
-		print("Nome da rota clicada: ", nome_rota)
+		var polygon2d = $RotasButtons.get_node(nome_rota).get_node("CollisionPolygon2D").get_node("Polygon2D")
+		var base_color = TabuleiroData.COR_DICT[rotas[nome_rota].cor]
+		polygon2d.color = Color(base_color.r, base_color.g, base_color.b, 0.5)
+
+func _on_mouse_entered() -> void:
+	print("Rota mouse entrou!")
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+
+func _on_mouse_exited() -> void:
+	print("Rota mouse saiu!")
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
