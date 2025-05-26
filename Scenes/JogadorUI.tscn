@@ -1,0 +1,133 @@
+[gd_scene load_steps=8 format=3 uid="uid://23u0ytyocelk"]
+
+[ext_resource type="Texture2D" uid="uid://0r8hk5ettqxb" path="res://Assets/tabletop_ticket.png" id="1_gjwyu"]
+[ext_resource type="Script" uid="uid://bwxbi8ilcv6vs" path="res://Scripts/jogador_ui.gd" id="1_x1f87"]
+[ext_resource type="Texture2D" uid="uid://dq7q04pjm1uae" path="res://Assets/train.png" id="2_x1f87"]
+[ext_resource type="Texture2D" uid="uid://crkfdriqkiiv2" path="res://Assets/point.png" id="3_wuthj"]
+[ext_resource type="FontFile" uid="uid://bqobasl3x6nek" path="res://Assets/Fonts/Caveat-Regular.ttf" id="4_6k8lk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhs62"]
+bg_color = Color(0.273089, 0.659261, 0.74701, 1)
+corner_radius_top_right = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vuv2q"]
+bg_color = Color(0.65098, 0.662745, 0.654902, 1)
+
+[node name="JogadorUI" type="Control"]
+custom_minimum_size = Vector2(330, 200)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1590.0
+offset_bottom = -880.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x1f87")
+
+[node name="Background" type="Panel" parent="."]
+custom_minimum_size = Vector2(330, 200)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mhs62")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.0
+offset_top = 20.0
+offset_right = 135.0
+offset_bottom = 124.0
+grow_horizontal = 2
+theme_override_constants/separation = 25
+
+[node name="Container_Ticket" type="HBoxContainer" parent="Background/HBoxContainer"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="qnt_ticket" type="Label" parent="Background/HBoxContainer/Container_Ticket"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "4x"
+
+[node name="TicketImage" type="TextureRect" parent="Background/HBoxContainer/Container_Ticket"]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 2
+texture = ExtResource("1_gjwyu")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TextureButton" type="TextureButton" parent="Background/HBoxContainer/Container_Ticket/TicketImage"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.023
+anchor_top = 0.144
+anchor_right = 0.023
+anchor_bottom = 0.144
+offset_left = -0.45
+offset_top = 0.0239992
+offset_right = 145.55
+offset_bottom = 75.024
+
+[node name="Container_Valores" type="VBoxContainer" parent="Background/HBoxContainer"]
+layout_mode = 2
+
+[node name="ContainerTrens" type="HBoxContainer" parent="Background/HBoxContainer/Container_Valores"]
+layout_mode = 2
+
+[node name="icone_trem" type="TextureRect" parent="Background/HBoxContainer/Container_Valores/ContainerTrens"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("2_x1f87")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="qnt_trens" type="Label" parent="Background/HBoxContainer/Container_Valores/ContainerTrens"]
+layout_mode = 2
+text = "10"
+
+[node name="ContainerPontos" type="HBoxContainer" parent="Background/HBoxContainer/Container_Valores"]
+layout_mode = 2
+
+[node name="icone_pontos" type="TextureRect" parent="Background/HBoxContainer/Container_Valores/ContainerPontos"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("3_wuthj")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="qnt_pontos" type="Label" parent="Background/HBoxContainer/Container_Valores/ContainerPontos"]
+layout_mode = 2
+text = "50"
+
+[node name="Panel" type="Panel" parent="Background"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+offset_right = 390.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vuv2q")
+
+[node name="Label" type="Label" parent="Background/Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -25.5
+offset_right = 207.0
+offset_bottom = 25.5
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_6k8lk")
+theme_override_font_sizes/font_size = 40
+text = "Jogador da Vez"
+
+[connection signal="pressed" from="Background/HBoxContainer/Container_Ticket/TicketImage/TextureButton" to="." method="_on_texture_button_pressed"]

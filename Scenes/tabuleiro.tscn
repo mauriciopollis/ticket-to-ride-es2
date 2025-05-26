@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bc23fm2tvqpnu"]
+[gd_scene load_steps=5 format=3 uid="uid://bc23fm2tvqpnu"]
 
 [ext_resource type="Script" uid="uid://bopdt4qjttb8r" path="res://Scripts/Tabuleiro.gd" id="1_qqlt4"]
 [ext_resource type="Texture2D" uid="uid://bp62px0t7tey6" path="res://Assets/TabuleiroExpandido.png" id="2_xuw6c"]
+[ext_resource type="PackedScene" uid="uid://dqp5clum311in" path="res://Scenes/OponenteUI.tscn" id="3_76as7"]
+[ext_resource type="PackedScene" uid="uid://23u0ytyocelk" path="res://Scenes/JogadorUI.tscn" id="4_2d7bo"]
 
 [node name="Tabuleiro" type="Node"]
 script = ExtResource("1_qqlt4")
@@ -25,3 +27,58 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "Tabuleiro"
 horizontal_alignment = 1
+
+[node name="LayerUI" type="CanvasLayer" parent="."]
+
+[node name="Oponentes" type="VBoxContainer" parent="LayerUI"]
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 1050.0
+theme_override_constants/separation = 25
+
+[node name="OponenteUI" parent="LayerUI/Oponentes" instance=ExtResource("3_76as7")]
+layout_mode = 2
+nome = "NomeJogador1"
+bg_color = Color(0.552962, 1.35969e-06, 4.81307e-07, 1)
+
+[node name="OponenteUI2" parent="LayerUI/Oponentes" instance=ExtResource("3_76as7")]
+layout_mode = 2
+nome = "NomeJogador2"
+num_tickets = 4
+qnt_cartas = 4
+num_trens = 4
+qnt_pontos = 4
+bg_color = Color(0.211127, 0.526358, 0.195082, 1)
+
+[node name="OponenteUI3" parent="LayerUI/Oponentes" instance=ExtResource("3_76as7")]
+layout_mode = 2
+nome = "NomeJogador3"
+num_tickets = 31
+qnt_cartas = 41
+num_trens = 59
+qnt_pontos = 26
+bg_color = Color(0.0631514, 0.484695, 0.687122, 1)
+
+[node name="OponenteUI4" parent="LayerUI/Oponentes" instance=ExtResource("3_76as7")]
+layout_mode = 2
+nome = "NomeJogador4"
+num_tickets = 99
+qnt_cartas = 99
+num_trens = 99
+qnt_pontos = 99
+bg_color = Color(0.696638, 0.593176, 0, 1)
+
+[node name="JogadorUI" parent="LayerUI" instance=ExtResource("4_2d7bo")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_top = -200.0
+offset_right = 330.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 0
+nome = "NomeJogador5"
+num_tickets = 3
+num_trens = 42
+qnt_pontos = 17
+bg_color = Color(0.847996, 0.627581, 1, 1)
