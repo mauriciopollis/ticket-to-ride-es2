@@ -85,7 +85,7 @@ polygon = PackedVector2Array(254, 67, 254, 96, 243, 96, 243, 67)
 [connection signal="input_event" from="RotasButtons/vancouver-seattle-2" to="." method="_on_rota_input_event" binds= ["vancouver-seattle-2"]]
 [connection signal="mouse_entered" from="RotasButtons/vancouver-seattle-2" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="RotasButtons/vancouver-seattle-2" to="." method="_on_mouse_exited"]
-=======
+
 [node name="LayerUI" type="CanvasLayer" parent="."]
 
 [node name="Oponentes" type="VBoxContainer" parent="LayerUI"]
