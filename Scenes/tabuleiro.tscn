@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bc23fm2tvqpnu"]
+[gd_scene load_steps=4 format=3 uid="uid://bc23fm2tvqpnu"]
 
 [ext_resource type="Script" uid="uid://bopdt4qjttb8r" path="res://Scripts/Tabuleiro.gd" id="1_qqlt4"]
 [ext_resource type="Texture2D" uid="uid://bp62px0t7tey6" path="res://Assets/TabuleiroExpandido.png" id="2_xuw6c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_76as7"]
 
 [node name="Tabuleiro" type="Node"]
 script = ExtResource("1_qqlt4")
@@ -15,6 +17,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("2_xuw6c")
 expand_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="TextureButton" type="TextureButton" parent="TextureRect"]
 layout_mode = 0
@@ -40,27 +43,43 @@ horizontal_alignment = 1
 [node name="helena-omaha-1" type="Area2D" parent="RotasButtons"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/helena-omaha-1"]
-polygon = PackedVector2Array(452, 169, 587, 224, 592, 215, 456, 159)
+polygon = PackedVector2Array(451, 168, 588, 224, 592, 214, 455, 158)
 
 [node name="Polygon2D" type="Polygon2D" parent="RotasButtons/helena-omaha-1/CollisionPolygon2D"]
 
-[node name="seattle-calcary-1" type="Area2D" parent="RotasButtons"]
+[node name="calgary-seattle-1" type="Area2D" parent="RotasButtons"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/seattle-calcary-1"]
-polygon = PackedVector2Array(253, 98, 282, 98, 311, 94, 333, 77, 346, 51, 355, 57, 342, 82, 317, 102, 313, 104, 283, 109, 253, 108)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/calgary-seattle-1"]
+polygon = PackedVector2Array(253, 98, 282, 98, 311, 94, 333, 77, 346, 51, 355, 57, 343, 82, 340, 85, 318, 102, 313, 104, 283, 109, 253, 108)
 
-[node name="seattle-vancouver-1" type="Area2D" parent="RotasButtons"]
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/calgary-seattle-1/CollisionPolygon2D"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/seattle-vancouver-1"]
+[node name="vancouver-seattle-1" type="Area2D" parent="RotasButtons"]
+collision_priority = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/vancouver-seattle-1"]
 polygon = PackedVector2Array(233, 96, 233, 67, 243, 67, 243, 96)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/vancouver-seattle-1/CollisionPolygon2D"]
+
+[node name="vancouver-seattle-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/vancouver-seattle-2"]
+material = SubResource("ShaderMaterial_76as7")
+polygon = PackedVector2Array(254, 67, 254, 96, 243, 96, 243, 67)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/vancouver-seattle-2/CollisionPolygon2D"]
 
 [connection signal="pressed" from="TextureRect/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="input_event" from="RotasButtons/helena-omaha-1" to="." method="_on_rota_input_event" binds= ["helena-omaha-1"]]
 [connection signal="mouse_entered" from="RotasButtons/helena-omaha-1" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="RotasButtons/helena-omaha-1" to="." method="_on_mouse_exited"]
-[connection signal="input_event" from="RotasButtons/seattle-calcary-1" to="." method="_on_rota_input_event" binds= ["seattle-calcary-gray"]]
-[connection signal="mouse_entered" from="RotasButtons/seattle-calcary-1" to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="RotasButtons/seattle-calcary-1" to="." method="_on_mouse_exited"]
-[connection signal="input_event" from="RotasButtons/seattle-vancouver-1" to="." method="_on_rota_input_event" binds= ["seattle-vancouver"]]
-[connection signal="mouse_entered" from="RotasButtons/seattle-vancouver-1" to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="RotasButtons/seattle-vancouver-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/calgary-seattle-1" to="." method="_on_rota_input_event" binds= ["calgary-seattle-1"]]
+[connection signal="mouse_entered" from="RotasButtons/calgary-seattle-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/calgary-seattle-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/vancouver-seattle-1" to="." method="_on_rota_input_event" binds= ["vancouver-seattle-1"]]
+[connection signal="mouse_entered" from="RotasButtons/vancouver-seattle-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/vancouver-seattle-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/vancouver-seattle-2" to="." method="_on_rota_input_event" binds= ["vancouver-seattle-2"]]
+[connection signal="mouse_entered" from="RotasButtons/vancouver-seattle-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/vancouver-seattle-2" to="." method="_on_mouse_exited"]
