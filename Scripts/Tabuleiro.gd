@@ -6,6 +6,7 @@ var cidades: Dictionary = {} # armazenará referncias a objetos da classe Cidade
 var rotas: Array[Rota] = []
 
 @onready var OponenteUI = preload("res://Scenes/OponenteUI.tscn")
+@onready var JogadorUI = preload("res://Scenes/JogadorUI.tscn")
 
 func _ready() -> void:
 	print("Tabuleiro rodando!")
@@ -150,6 +151,7 @@ func conquistarRota(rota: Rota, jogador: Jogador):
 	
 func inicializarHud():
 	var containerOponentes = $LayerUI/Oponentes
+	var layerUI = $LayerUI
 	
 	var jogador1 = Jogador.new("Mauricio", Color.DARK_GOLDENROD)
 	var oponenteUI1 = OponenteUI.instantiate()
@@ -173,6 +175,16 @@ func inicializarHud():
 	var oponenteUI4 = OponenteUI.instantiate()
 	containerOponentes.add_child(oponenteUI4)
 	oponenteUI4.setJogador(jogador4)
+	await get_tree().create_timer(0.5).timeout
+	
+	var jogador5 = Jogador.new("Andreas", Color.MEDIUM_SLATE_BLUE)
+	var jogadorUI = JogadorUI.instantiate()
+	layerUI.add_child(jogadorUI)
+	
+	#await get_tree().process_frame
+	jogadorUI.position = Vector2(0, get_viewport().size.y - jogadorUI.get_rect().size.y)
+	
+	jogadorUI.setJogador(jogador5)
 	await get_tree().create_timer(0.5).timeout
 	
 	containerOponentes.print_tree()
