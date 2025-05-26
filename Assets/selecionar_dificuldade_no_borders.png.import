@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3xrfukkasamr"
-path="res://.godot/imported/card.png-227bfe2201ac5b824c6a54accd7a49dd.ctex"
+uid="uid://ce8rgkwvem6v3"
+path="res://.godot/imported/selecionar_dificuldade_no_borders.png-f0aae95ec72e2a03ff59498fa2256820.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/card.png"
-dest_files=["res://.godot/imported/card.png-227bfe2201ac5b824c6a54accd7a49dd.ctex"]
+source_file="res://Assets/selecionar_dificuldade_no_borders.png"
+dest_files=["res://.godot/imported/selecionar_dificuldade_no_borders.png-f0aae95ec72e2a03ff59498fa2256820.ctex"]
 
 [params]
 

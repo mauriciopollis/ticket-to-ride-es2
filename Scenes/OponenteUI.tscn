@@ -1,0 +1,124 @@
+[gd_scene load_steps=9 format=3 uid="uid://dqp5clum311in"]
+
+[ext_resource type="Texture2D" uid="uid://c0erhrkpnn0up" path="res://Assets/ticket.png" id="1_ixfli"]
+[ext_resource type="Script" uid="uid://cshfnm84e0tgu" path="res://Scripts/oponente_ui.gd" id="1_ne3ai"]
+[ext_resource type="Texture2D" uid="uid://c3xrfukkasamr" path="res://Assets/card.png" id="2_ne3ai"]
+[ext_resource type="Texture2D" uid="uid://dq7q04pjm1uae" path="res://Assets/train.png" id="3_jfil0"]
+[ext_resource type="Texture2D" uid="uid://crkfdriqkiiv2" path="res://Assets/point.png" id="4_s3ea8"]
+[ext_resource type="FontFile" uid="uid://bqobasl3x6nek" path="res://Assets/Fonts/Caveat-Regular.ttf" id="5_8bdbj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4cfvy"]
+bg_color = Color(0.556217, 0.0944465, 0, 1)
+corner_radius_top_right = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svx3j"]
+bg_color = Color(0.649976, 0.66202, 0.655169, 1)
+
+[node name="OponenteUI" type="Control"]
+custom_minimum_size = Vector2(165, 145)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 165.0
+offset_bottom = 145.0
+script = ExtResource("1_ne3ai")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4cfvy")
+
+[node name="GridContainer" type="GridContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_right = 80.0
+offset_bottom = 84.0
+grow_horizontal = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="ContainerTicket" type="HBoxContainer" parent="Panel/GridContainer"]
+layout_mode = 2
+
+[node name="icone_tickets" type="TextureRect" parent="Panel/GridContainer/ContainerTicket"]
+layout_mode = 2
+texture = ExtResource("1_ixfli")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="num_tickets" type="Label" parent="Panel/GridContainer/ContainerTicket"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "10"
+
+[node name="ContainerCartas" type="HBoxContainer" parent="Panel/GridContainer"]
+layout_mode = 2
+
+[node name="icone_cartas" type="TextureRect" parent="Panel/GridContainer/ContainerCartas"]
+layout_mode = 2
+texture = ExtResource("2_ne3ai")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="qnt_cartas" type="Label" parent="Panel/GridContainer/ContainerCartas"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "10"
+
+[node name="ContainerTrens" type="HBoxContainer" parent="Panel/GridContainer"]
+layout_mode = 2
+
+[node name="icone_trens" type="TextureRect" parent="Panel/GridContainer/ContainerTrens"]
+layout_mode = 2
+texture = ExtResource("3_jfil0")
+expand_mode = 3
+
+[node name="num_trens" type="Label" parent="Panel/GridContainer/ContainerTrens"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "10"
+
+[node name="ContainerPontos" type="HBoxContainer" parent="Panel/GridContainer"]
+layout_mode = 2
+
+[node name="icone_pontos" type="TextureRect" parent="Panel/GridContainer/ContainerPontos"]
+layout_mode = 2
+texture = ExtResource("4_s3ea8")
+expand_mode = 3
+
+[node name="qnt_pontos" type="Label" parent="Panel/GridContainer/ContainerPontos"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "10"
+
+[node name="NameBar" type="Panel" parent="Panel"]
+custom_minimum_size = Vector2(220, 50)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_right = 190.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_svx3j")
+
+[node name="NameLabel" type="Label" parent="Panel/NameBar"]
+custom_minimum_size = Vector2(106, 31)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -19.0
+offset_right = 127.0
+offset_bottom = 19.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_8bdbj")
+theme_override_font_sizes/font_size = 35
+text = "Player Name"
