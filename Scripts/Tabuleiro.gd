@@ -5,10 +5,14 @@ class_name Tabuleiro
 var cidades: Dictionary = {} # armazenará referncias a objetos da classe Cidade
 var rotas: Array[Rota] = []
 
+@onready var OponenteUI = preload("res://Scenes/OponenteUI.tscn")
+
 func _ready() -> void:
 	print("Tabuleiro rodando!")
 
 	configurarTabuleiro()
+	
+	inicializarHud()
 
 # prints de debug
 func printCidades():
@@ -134,7 +138,6 @@ func getCidade(nome: String) -> Cidade:
 	assert(cidades.has(nome), "Cidade não encontrada: %s" % nome) # hard fail: para a execução
 	return cidades[nome] 
 
-
 func conquistarRota(rota: Rota, jogador: Jogador):
 	if rota.dono != null:
 		push_warning("Rota já reclamada por %s" % rota.dono.nome)
@@ -144,3 +147,33 @@ func conquistarRota(rota: Rota, jogador: Jogador):
 	rota.setDono(jogador)
 	jogador.inserirRota(rota)
 	return true
+	
+func inicializarHud():
+	var containerOponentes = $LayerUI/Oponentes
+	
+	var jogador1 = Jogador.new("Mauricio", Color.DARK_GOLDENROD)
+	var oponenteUI1 = OponenteUI.instantiate()
+	containerOponentes.add_child(oponenteUI1)
+	oponenteUI1.setJogador(jogador1)
+	await get_tree().create_timer(0.5).timeout
+	
+	var jogador2 = Jogador.new("Guilherme", Color.DARK_GREEN)
+	var oponenteUI2 = OponenteUI.instantiate()
+	containerOponentes.add_child(oponenteUI2)
+	oponenteUI2.setJogador(jogador2)
+	await get_tree().create_timer(0.5).timeout
+	
+	var jogador3 = Jogador.new("Bernardo", Color.DARK_MAGENTA)
+	var oponenteUI3 = OponenteUI.instantiate()
+	containerOponentes.add_child(oponenteUI3)
+	oponenteUI3.setJogador(jogador3)
+	await get_tree().create_timer(0.5).timeout
+	
+	var jogador4 = Jogador.new("Filipe", Color.DARK_RED)
+	var oponenteUI4 = OponenteUI.instantiate()
+	containerOponentes.add_child(oponenteUI4)
+	oponenteUI4.setJogador(jogador4)
+	await get_tree().create_timer(0.5).timeout
+	
+	containerOponentes.print_tree()
+	
