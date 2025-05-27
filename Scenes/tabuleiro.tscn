@@ -5,8 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://dqp5clum311in" path="res://Scenes/OponenteUI.tscn" id="3_76as7"]
 [ext_resource type="PackedScene" uid="uid://23u0ytyocelk" path="res://Scenes/JogadorUI.tscn" id="4_2d7bo"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_76as7"]
-
 [node name="Tabuleiro" type="Node"]
 script = ExtResource("1_qqlt4")
 
@@ -45,14 +43,378 @@ horizontal_alignment = 1
 [node name="helena-omaha-1" type="Area2D" parent="RotasButtons"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/helena-omaha-1"]
-polygon = PackedVector2Array(451, 168, 588, 224, 592, 214, 455, 158)
+polygon = PackedVector2Array(760, 265, 987, 358, 980, 373, 752, 281)
 
 [node name="Polygon2D" type="Polygon2D" parent="RotasButtons/helena-omaha-1/CollisionPolygon2D"]
+
+[node name="chicago-omaha-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/chicago-omaha-1"]
+polygon = PackedVector2Array(1205, 323, 1110, 310, 1099, 313, 1020, 368, 1030, 382, 1109, 327, 1203, 342)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/chicago-omaha-1/CollisionPolygon2D"]
+
+[node name="chicago-saintlouis-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/chicago-saintlouis-1"]
+polygon = PackedVector2Array(1141, 421, 1156, 431, 1209, 348, 1194, 339)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/chicago-saintlouis-1/CollisionPolygon2D"]
+
+[node name="chicago-saintlouis-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/chicago-saintlouis-2"]
+polygon = PackedVector2Array(1223, 357, 1209, 348, 1156, 431, 1170, 440)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/chicago-saintlouis-2/CollisionPolygon2D"]
+
+[node name="omaha-denver-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/omaha-denver-1"]
+polygon = PackedVector2Array(994, 371, 946, 380, 897, 395, 851, 417, 846, 419, 812, 448, 821, 463, 858, 433, 902, 412, 949, 398, 996, 389)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/omaha-denver-1/CollisionPolygon2D"]
+
+[node name="omaha-kansascity-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/omaha-kansascity-1"]
+polygon = PackedVector2Array(1001, 396, 1023, 439, 1039, 430, 1017, 388)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/omaha-kansascity-1/CollisionPolygon2D"]
+
+[node name="omaha-kansascity-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/omaha-kansascity-2"]
+polygon = PackedVector2Array(1053, 422, 1039, 430, 1017, 388, 1032, 380)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/omaha-kansascity-2/CollisionPolygon2D"]
+
+[node name="kansascity-saintlouis-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/kansascity-saintlouis-1"]
+polygon = PackedVector2Array(1049, 426, 1147, 424, 1147, 442, 1049, 443)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/kansascity-saintlouis-1/CollisionPolygon2D"]
+
+[node name="kansascity-saintlouis-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/kansascity-saintlouis-2"]
+polygon = PackedVector2Array(1049, 459, 1049, 443, 1147, 442, 1147, 458)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/kansascity-saintlouis-2/CollisionPolygon2D"]
+
+[node name="saintlouis-littlerock-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/saintlouis-littlerock-1"]
+polygon = PackedVector2Array(1149, 457, 1166, 460, 1143, 555, 1126, 551)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/saintlouis-littlerock-1/CollisionPolygon2D"]
+
+[node name="saintlouis-nashville-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/saintlouis-nashville-1"]
+polygon = PackedVector2Array(1171, 460, 1266, 490, 1260, 506, 1166, 477)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/saintlouis-nashville-1/CollisionPolygon2D"]
+
+[node name="nashville-littlerock-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/nashville-littlerock-1"]
+polygon = PackedVector2Array(1146, 558, 1193, 554, 1238, 534, 1273, 503, 1286, 516, 1251, 548, 1244, 551, 1203, 569, 1194, 572, 1147, 575)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/nashville-littlerock-1/CollisionPolygon2D"]
+
+[node name="littlerock-dallas-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/littlerock-dallas-1"]
+polygon = PackedVector2Array(1111, 574, 1126, 585, 1068, 664, 1054, 654)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/littlerock-dallas-1/CollisionPolygon2D"]
+
+[node name="littlerock-neworleans-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/littlerock-neworleans-1"]
+polygon = PackedVector2Array(1134, 583, 1203, 714, 1219, 706, 1150, 575)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/littlerock-neworleans-1/CollisionPolygon2D"]
+
+[node name="dallas-elpaso-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/dallas-elpaso-1"]
+polygon = PackedVector2Array(1021, 683, 827, 713, 829, 730, 1023, 702)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/dallas-elpaso-1/CollisionPolygon2D"]
+
+[node name="dallas-houston-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/dallas-houston-1"]
+polygon = PackedVector2Array(1062, 680, 1094, 716, 1082, 728, 1049, 691)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/dallas-houston-1/CollisionPolygon2D"]
+
+[node name="dallas-houston-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/dallas-houston-2"]
+polygon = PackedVector2Array(1036, 703, 1049, 691, 1082, 728, 1069, 740)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/dallas-houston-2/CollisionPolygon2D"]
+
+[node name="nashville-atlanta-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/nashville-atlanta-1"]
+polygon = PackedVector2Array(1302, 501, 1342, 528, 1332, 543, 1291, 514)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/nashville-atlanta-1/CollisionPolygon2D"]
+
+[node name="oklahomacity-santafe-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/oklahomacity-santafe-1"]
+polygon = PackedVector2Array(811, 585, 958, 568, 960, 586, 812, 603)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/oklahomacity-santafe-1/CollisionPolygon2D"]
+
+[node name="oklahomacity-elpaso-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/oklahomacity-elpaso-1"]
+polygon = PackedVector2Array(800, 701, 846, 687, 890, 665, 930, 639, 964, 605, 992, 565, 1007, 576, 978, 616, 942, 652, 940, 654, 899, 681, 855, 703, 805, 718)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/oklahomacity-elpaso-1/CollisionPolygon2D"]
+
+[node name="oklahomacity-dallas-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/oklahomacity-dallas-1"]
+polygon = PackedVector2Array(1025, 575, 1007, 577, 1018, 674, 1035, 672)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/oklahomacity-dallas-1/CollisionPolygon2D"]
+
+[node name="oklahomacity-dallas-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/oklahomacity-dallas-2"]
+polygon = PackedVector2Array(1041, 574, 1025, 575, 1035, 672, 1053, 670)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/oklahomacity-dallas-2/CollisionPolygon2D"]
+
+[node name="oklahomacity-littlerock-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/oklahomacity-littlerock-1"]
+polygon = PackedVector2Array(1124, 553, 1026, 556, 1026, 574, 1124, 571)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/oklahomacity-littlerock-1/CollisionPolygon2D"]
+
+[node name="montreal-saultstmarie-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/montreal-saultstmarie-1"]
+polygon = PackedVector2Array(1231, 139, 1269, 107, 1314, 83, 1362, 66, 1412, 54, 1464, 53, 1464, 71, 1415, 72, 1368, 82, 1322, 98, 1281, 121, 1243, 152)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/montreal-saultstmarie-1/CollisionPolygon2D"]
+
+[node name="montreal-toronto-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/montreal-toronto-1"]
+polygon = PackedVector2Array(1360, 167, 1384, 126, 1388, 121, 1424, 89, 1429, 86, 1472, 68, 1479, 84, 1435, 103, 1400, 135, 1375, 176)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/montreal-toronto-1/CollisionPolygon2D"]
+
+[node name="montreal-boston-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/montreal-boston-1"]
+polygon = PackedVector2Array(1513, 63, 1502, 77, 1576, 139, 1588, 125)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/montreal-boston-1/CollisionPolygon2D"]
+
+[node name="montreal-boston-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/montreal-boston-2"]
+polygon = PackedVector2Array(1502, 77, 1491, 90, 1565, 152, 1576, 139)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/montreal-boston-2/CollisionPolygon2D"]
+
+[node name="montreal-newyork-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/montreal-newyork-1"]
+polygon = PackedVector2Array(1473, 91, 1490, 89, 1513, 232, 1496, 234)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/montreal-newyork-1/CollisionPolygon2D"]
+
+[node name="boston-newyork-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/boston-newyork-1"]
+polygon = PackedVector2Array(1567, 154, 1515, 236, 1530, 246, 1582, 163)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/boston-newyork-1/CollisionPolygon2D"]
+
+[node name="boston-newyork-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/boston-newyork-2"]
+polygon = PackedVector2Array(1543, 254, 1530, 246, 1582, 163, 1590.3, 168.53, 1589, 179)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/boston-newyork-2/CollisionPolygon2D"]
+
+[node name="newyork-washington-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/newyork-washington-1"]
+polygon = PackedVector2Array(1505, 266, 1522, 265, 1526, 362, 1511, 362)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/newyork-washington-1/CollisionPolygon2D"]
+
+[node name="newyork-washington-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/newyork-washington-2"]
+polygon = PackedVector2Array(1526, 362, 1542, 361, 1539, 264, 1522, 265, 1523.52, 313.943)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/newyork-washington-2/CollisionPolygon2D"]
+
+[node name="newyork-pittsburgh-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/newyork-pittsburgh-1"]
+polygon = PackedVector2Array(1488, 236, 1404, 287, 1414, 302, 1497, 251)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/newyork-pittsburgh-1/CollisionPolygon2D"]
+
+[node name="newyork-pittsburgh-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/newyork-pittsburgh-2"]
+polygon = PackedVector2Array(1419, 311, 1414, 302, 1497, 251, 1505, 265, 1431, 311)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/newyork-pittsburgh-2/CollisionPolygon2D"]
+
+[node name="pittsburgh-chicago-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/pittsburgh-chicago-1"]
+polygon = PackedVector2Array(1376, 285, 1375, 304, 1330, 302, 1279, 310, 1231, 321, 1228, 304, 1273, 292, 1277, 291, 1324, 284)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/pittsburgh-chicago-1/CollisionPolygon2D"]
+
+[node name="pittsburgh-chicago-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/pittsburgh-chicago-2"]
+polygon = PackedVector2Array(1379, 304, 1330, 302, 1279, 310, 1233, 321, 1237, 338, 1283, 326, 1331, 319, 1379, 321)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/pittsburgh-chicago-2/CollisionPolygon2D"]
+
+[node name="pittsburgh-saintlouis-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/pittsburgh-saintlouis-1"]
+polygon = PackedVector2Array(1167, 443, 1380, 320, 1388, 336, 1176, 457)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/pittsburgh-saintlouis-1/CollisionPolygon2D"]
+
+[node name="pittsburgh-nashville-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/pittsburgh-nashville-1"]
+polygon = PackedVector2Array(1402, 345, 1388, 335, 1361, 372, 1320, 399, 1316, 403, 1287, 438, 1263, 484, 1277, 492, 1281, 489, 1300, 451, 1331, 413, 1370, 388, 1376, 383)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/pittsburgh-nashville-1/CollisionPolygon2D"]
+
+[node name="pittsburgh-raleigh-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/pittsburgh-raleigh-1"]
+polygon = PackedVector2Array(1403, 343, 1423, 438, 1441, 434, 1419, 339)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/pittsburgh-raleigh-1/CollisionPolygon2D"]
+
+[node name="pittsburgh-washington-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/pittsburgh-washington-1"]
+polygon = PackedVector2Array(1502, 378, 1510, 361, 1433, 322, 1420, 322, 1415, 333)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/pittsburgh-washington-1/CollisionPolygon2D"]
+
+[node name="washington-raleigh-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/washington-raleigh-1"]
+polygon = PackedVector2Array(1443, 449, 1505, 374, 1519, 385, 1456, 460)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/washington-raleigh-1/CollisionPolygon2D"]
+
+[node name="washington-raleigh-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/washington-raleigh-2"]
+polygon = PackedVector2Array(1532, 396, 1519, 385, 1456, 460, 1469, 471)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/washington-raleigh-2/CollisionPolygon2D"]
+
+[node name="raleigh-nashville-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/raleigh-nashville-1"]
+polygon = PackedVector2Array(1437, 445, 1387, 442, 1336, 453, 1330, 456, 1289, 482, 1299, 497, 1340, 472, 1387, 461, 1435, 463, 1437, 461)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/raleigh-nashville-1/CollisionPolygon2D"]
+
+[node name="raleigh-atlanta-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/raleigh-atlanta-1"]
+polygon = PackedVector2Array(1438, 476, 1364, 541, 1352, 527, 1426, 463)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/raleigh-atlanta-1/CollisionPolygon2D"]
+
+[node name="raleigh-atlanta-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/raleigh-atlanta-2"]
+polygon = PackedVector2Array(1449, 490, 1438, 476, 1364, 541, 1375, 552, 1379, 552, 1386, 545, 1388, 542, 1391, 541)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/raleigh-atlanta-2/CollisionPolygon2D"]
+
+[node name="raleigh-charleston-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/raleigh-charleston-1"]
+polygon = PackedVector2Array(1459, 469, 1500, 498, 1517, 507, 1495, 550, 1478, 542, 1493, 514, 1486, 510, 1448, 484)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/raleigh-charleston-1/CollisionPolygon2D"]
+
+[node name="atlanta-charleston-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/atlanta-charleston-1"]
+polygon = PackedVector2Array(1472, 557, 1471, 575, 1374, 571, 1374, 553)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/atlanta-charleston-1/CollisionPolygon2D"]
+
+[node name="atlanta-neworleans-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/atlanta-neworleans-1"]
+polygon = PackedVector2Array(1334, 543, 1346, 555, 1308, 591, 1279, 625, 1251, 667, 1233, 711, 1218, 704, 1235, 658, 1237, 654, 1265, 615, 1297, 576)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/atlanta-neworleans-1/CollisionPolygon2D"]
+
+[node name="atlanta-neworleans-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/atlanta-neworleans-2"]
+polygon = PackedVector2Array(1346, 555, 1308, 591, 1279, 625, 1251, 667, 1231, 716, 1246, 724, 1265, 678, 1292, 637, 1324, 601, 1360, 569)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/atlanta-neworleans-2/CollisionPolygon2D"]
+
+[node name="atlanta-miami-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/atlanta-miami-1"]
+polygon = PackedVector2Array(1369, 564, 1355, 576, 1508, 767, 1522, 756)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/atlanta-miami-1/CollisionPolygon2D"]
+
+[node name="charleston-miami-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/charleston-miami-1"]
+polygon = PackedVector2Array(1495, 569, 1496, 617, 1503, 665, 1517, 710, 1542, 753, 1527, 762, 1502, 721, 1500, 715, 1486, 671, 1485, 665, 1478, 619, 1477, 569)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/charleston-miami-1/CollisionPolygon2D"]
+
+[node name="neworleans-houston-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/neworleans-houston-1"]
+polygon = PackedVector2Array(1107, 728, 1110, 746, 1208, 730, 1204, 712)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/neworleans-houston-1/CollisionPolygon2D"]
+
+[node name="neworleans-miami-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/neworleans-miami-1"]
+polygon = PackedVector2Array(1257, 734, 1298, 709, 1344, 697, 1392, 698, 1433, 720, 1469, 751, 1500, 787, 1514, 777, 1483, 739, 1480, 736, 1446, 707, 1441, 703, 1400, 683, 1392, 679, 1343, 679, 1338, 680, 1294, 693, 1289, 696, 1248, 720)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/neworleans-miami-1/CollisionPolygon2D"]
 
 [node name="calgary-seattle-1" type="Area2D" parent="RotasButtons"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/calgary-seattle-1"]
-polygon = PackedVector2Array(253, 98, 282, 98, 311, 94, 333, 77, 346, 51, 355, 57, 343, 82, 340, 85, 318, 102, 313, 104, 283, 109, 253, 108)
+polygon = PackedVector2Array(422, 162, 470, 163, 518, 156, 555, 129, 578, 85, 593, 93, 572, 136, 567, 142, 528, 171, 521, 174, 473, 180, 471, 181, 421, 180)
 
 [node name="Polygon2D" type="Polygon2D" parent="RotasButtons/calgary-seattle-1/CollisionPolygon2D"]
 
@@ -60,31 +422,324 @@ polygon = PackedVector2Array(253, 98, 282, 98, 311, 94, 333, 77, 346, 51, 355, 5
 collision_priority = 0.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/vancouver-seattle-1"]
-polygon = PackedVector2Array(233, 96, 233, 67, 243, 67, 243, 96)
+polygon = PackedVector2Array(388, 112, 405, 112, 405, 160, 388, 160)
 
 [node name="Polygon2D" type="Polygon2D" parent="RotasButtons/vancouver-seattle-1/CollisionPolygon2D"]
 
 [node name="vancouver-seattle-2" type="Area2D" parent="RotasButtons"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/vancouver-seattle-2"]
-material = SubResource("ShaderMaterial_76as7")
-polygon = PackedVector2Array(254, 67, 254, 96, 243, 96, 243, 67)
+polygon = PackedVector2Array(423, 112, 405, 112, 405, 160, 423, 160)
 
 [node name="Polygon2D" type="Polygon2D" parent="RotasButtons/vancouver-seattle-2/CollisionPolygon2D"]
 
-[connection signal="pressed" from="TextureRect/TextureButton" to="." method="_on_texture_button_pressed"]
-[connection signal="input_event" from="RotasButtons/helena-omaha-1" to="." method="_on_rota_input_event" binds= ["helena-omaha-1"]]
-[connection signal="mouse_entered" from="RotasButtons/helena-omaha-1" to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="RotasButtons/helena-omaha-1" to="." method="_on_mouse_exited"]
-[connection signal="input_event" from="RotasButtons/calgary-seattle-1" to="." method="_on_rota_input_event" binds= ["calgary-seattle-1"]]
-[connection signal="mouse_entered" from="RotasButtons/calgary-seattle-1" to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="RotasButtons/calgary-seattle-1" to="." method="_on_mouse_exited"]
-[connection signal="input_event" from="RotasButtons/vancouver-seattle-1" to="." method="_on_rota_input_event" binds= ["vancouver-seattle-1"]]
-[connection signal="mouse_entered" from="RotasButtons/vancouver-seattle-1" to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="RotasButtons/vancouver-seattle-1" to="." method="_on_mouse_exited"]
-[connection signal="input_event" from="RotasButtons/vancouver-seattle-2" to="." method="_on_rota_input_event" binds= ["vancouver-seattle-2"]]
-[connection signal="mouse_entered" from="RotasButtons/vancouver-seattle-2" to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="RotasButtons/vancouver-seattle-2" to="." method="_on_mouse_exited"]
+[node name="kansascity-oklahomacity-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/kansascity-oklahomacity-1"]
+polygon = PackedVector2Array(1028, 454, 999, 547, 1016, 552, 1044, 459)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/kansascity-oklahomacity-1/CollisionPolygon2D"]
+
+[node name="kansascity-oklahomacity-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/kansascity-oklahomacity-2"]
+polygon = PackedVector2Array(1060, 464, 1044, 459, 1016, 552, 1032, 557)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/kansascity-oklahomacity-2/CollisionPolygon2D"]
+
+[node name="kansascity-denver-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/kansascity-denver-1"]
+polygon = PackedVector2Array(829, 459, 877, 463, 925, 459, 972, 450, 1017, 431, 1025, 447, 977, 467, 973, 469, 927, 477, 925, 478, 877, 481, 829, 478)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/kansascity-denver-1/CollisionPolygon2D"]
+
+[node name="kansascity-denver-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/kansascity-denver-2"]
+polygon = PackedVector2Array(829, 494, 829, 478, 877, 481, 925, 478, 927, 477, 973, 469, 977, 467, 1018, 450, 1025, 465, 981, 484, 976, 486, 931, 495, 924, 496, 880, 498, 876, 498)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/kansascity-denver-2/CollisionPolygon2D"]
+
+[node name="denver-oklahomacity-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/denver-oklahomacity-1"]
+polygon = PackedVector2Array(819, 485, 854, 520, 896, 540, 943, 547, 992, 550, 992, 567, 989, 568, 942, 564, 895, 558, 890, 555, 887, 555, 846, 536, 841, 533, 808, 501, 809, 495)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/denver-oklahomacity-1/CollisionPolygon2D"]
+
+[node name="denver-santafe-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/denver-santafe-1"]
+polygon = PackedVector2Array(791, 484, 809, 485, 804, 582, 786, 581)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/denver-santafe-1/CollisionPolygon2D"]
+
+[node name="denver-phoenix-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/denver-phoenix-1"]
+polygon = PackedVector2Array(784, 469, 739, 484, 734, 487, 697, 519, 695, 522, 668, 560, 666, 563, 643, 603, 624, 650, 640, 658, 658, 613, 682, 572, 709, 531, 746, 501, 791, 484)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/denver-phoenix-1/CollisionPolygon2D"]
+
+[node name="santafe-phoenix-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/santafe-phoenix-1"]
+polygon = PackedVector2Array(778, 588, 645, 648, 652, 664, 786, 604)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/santafe-phoenix-1/CollisionPolygon2D"]
+
+[node name="santafe-elpaso-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/santafe-elpaso-1"]
+polygon = PackedVector2Array(803, 606, 798, 704, 780, 703, 786, 605)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/santafe-elpaso-1/CollisionPolygon2D"]
+
+[node name="calgary-vancouver-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/calgary-vancouver-1"]
+polygon = PackedVector2Array(424, 83, 572, 66, 574, 85, 426, 102)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/calgary-vancouver-1/CollisionPolygon2D"]
+
+[node name="calgary-winnipeg-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/calgary-winnipeg-1"]
+polygon = PackedVector2Array(599, 64, 643, 44, 647, 43, 693, 33, 697, 32, 693, 32, 697, 32, 745, 30, 748, 30, 795, 33, 800, 35, 845, 48, 849, 49, 891, 69, 884, 85, 880, 85, 840, 65, 794, 52, 746, 49, 697, 51, 650, 60, 607, 80)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/calgary-winnipeg-1/CollisionPolygon2D"]
+
+[node name="calgary-helena-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/calgary-helena-1"]
+polygon = PackedVector2Array(592, 95, 606, 83, 732, 234, 718, 245)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/calgary-helena-1/CollisionPolygon2D"]
+
+[node name="winnipeg-helena-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/winnipeg-helena-1"]
+polygon = PackedVector2Array(875, 93, 736, 233, 748, 245, 887, 105)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/winnipeg-helena-1/CollisionPolygon2D"]
+
+[node name="winnipeg-duluth-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/winnipeg-duluth-1"]
+polygon = PackedVector2Array(898, 107, 911, 94, 1051, 230, 1039, 242)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/winnipeg-duluth-1/CollisionPolygon2D"]
+
+[node name="winnipeg-saultstmarie-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/winnipeg-saultstmarie-1"]
+polygon = PackedVector2Array(924, 78, 921, 96, 1209, 155, 1212, 138)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/winnipeg-saultstmarie-1/CollisionPolygon2D"]
+
+[node name="saultstmarie-toronto-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/saultstmarie-toronto-1"]
+polygon = PackedVector2Array(1249, 151, 1344, 171, 1341, 188, 1245, 169)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/saultstmarie-toronto-1/CollisionPolygon2D"]
+
+[node name="saultstmarie-duluth-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/saultstmarie-duluth-1"]
+polygon = PackedVector2Array(1072, 218, 1207, 160, 1214, 176, 1080, 234)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/saultstmarie-duluth-1/CollisionPolygon2D"]
+
+[node name="toronto-duluth-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/toronto-duluth-1"]
+polygon = PackedVector2Array(1063, 237, 1355, 188, 1357, 205, 1066, 254)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/toronto-duluth-1/CollisionPolygon2D"]
+
+[node name="toronto-chicago-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/toronto-chicago-1"]
+polygon = PackedVector2Array(1366, 195, 1378, 208, 1340, 238, 1334, 240, 1289, 254, 1250, 282, 1216, 317, 1203, 305, 1236, 269, 1239, 266, 1278, 240, 1284, 237, 1329, 224)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/toronto-chicago-1/CollisionPolygon2D"]
+
+[node name="toronto-pittsburgh-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/toronto-pittsburgh-1"]
+polygon = PackedVector2Array(1377, 198, 1395, 197, 1400, 296, 1382, 296)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/toronto-pittsburgh-1/CollisionPolygon2D"]
+
+[node name="seattle-portland-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/seattle-portland-1"]
+polygon = PackedVector2Array(382, 178, 363, 223, 379, 230, 398, 185)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/seattle-portland-1/CollisionPolygon2D"]
+
+[node name="seattle-portland-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/seattle-portland-2"]
+polygon = PackedVector2Array(379, 230, 394, 236, 414, 191, 398, 185)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/seattle-portland-2/CollisionPolygon2D"]
+
+[node name="seattle-helena-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/seattle-helena-1"]
+polygon = PackedVector2Array(421, 184, 417, 201, 705, 266, 709, 248)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/seattle-helena-1/CollisionPolygon2D"]
+
+[node name="portland-saltlakecity-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/portland-saltlakecity-1"]
+polygon = PackedVector2Array(392, 237, 389, 255, 436, 264, 480, 280, 522, 307, 559, 338, 591, 373, 614, 414, 630, 406, 606, 363, 572, 325, 569, 323, 533, 293, 490, 265, 442, 247)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/portland-saltlakecity-1/CollisionPolygon2D"]
+
+[node name="helena-saltlakecity-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/helena-saltlakecity-1"]
+polygon = PackedVector2Array(708, 268, 723, 276, 649, 402, 633, 393)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/helena-saltlakecity-1/CollisionPolygon2D"]
+
+[node name="helena-denver-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/helena-denver-1"]
+polygon = PackedVector2Array(724, 272, 741, 265, 814, 446, 798, 452)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/helena-denver-1/CollisionPolygon2D"]
+
+[node name="duluth-helena-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/duluth-helena-1"]
+polygon = PackedVector2Array(742, 246, 742, 264, 1038, 260, 1037, 242)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/duluth-helena-1/CollisionPolygon2D"]
+
+[node name="duluth-chicago-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/duluth-chicago-1"]
+polygon = PackedVector2Array(1065, 253, 1107, 276, 1153, 293, 1198, 305, 1195, 322, 1149, 310, 1146, 310, 1101, 293, 1096, 291, 1056, 268)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/duluth-chicago-1/CollisionPolygon2D"]
+
+[node name="duluth-omaha-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/duluth-omaha-1"]
+polygon = PackedVector2Array(1029, 260, 1046, 267, 1011, 358, 994, 351)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/duluth-omaha-1/CollisionPolygon2D"]
+
+[node name="duluth-omaha-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/duluth-omaha-2"]
+polygon = PackedVector2Array(1062, 273, 1046, 267, 1011, 358, 1027, 365)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/duluth-omaha-2/CollisionPolygon2D"]
+
+[node name="portland-sanfrancisco-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/portland-sanfrancisco-1"]
+polygon = PackedVector2Array(354, 252, 334, 295, 333, 302, 326, 331, 325, 347, 323, 358, 323, 405, 323, 419, 324, 439, 326, 449, 327, 457, 340, 498, 355, 494, 342, 448, 340, 399, 341, 351, 351, 302, 370, 258)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/portland-sanfrancisco-1/CollisionPolygon2D"]
+
+[node name="portland-sanfrancisco-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/portland-sanfrancisco-2"]
+polygon = PackedVector2Array(371, 255, 388, 261, 369, 305, 360, 351, 358, 399, 361, 448, 374, 496, 357, 500, 355, 494, 342, 448, 340, 398, 341, 351, 351, 302)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/portland-sanfrancisco-2/CollisionPolygon2D"]
+
+[node name="saltlakecity-sanfrancisco-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/saltlakecity-sanfrancisco-1"]
+polygon = PackedVector2Array(375, 490, 380, 506, 609, 430, 603, 413)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/saltlakecity-sanfrancisco-1/CollisionPolygon2D"]
+
+[node name="saltlakecity-sanfrancisco-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/saltlakecity-sanfrancisco-2"]
+polygon = PackedVector2Array(380, 506, 386, 523, 615, 446, 609, 430)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/saltlakecity-sanfrancisco-2/CollisionPolygon2D"]
+
+[node name="saltlakecity-denver-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/saltlakecity-denver-1"]
+polygon = PackedVector2Array(645, 410, 642, 427, 784, 454, 787, 437)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/saltlakecity-denver-1/CollisionPolygon2D"]
+
+[node name="saltlakecity-denver-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/saltlakecity-denver-2"]
+polygon = PackedVector2Array(639, 443, 642, 427, 784, 454, 781, 471)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/saltlakecity-denver-2/CollisionPolygon2D"]
+
+[node name="saltlakecity-lasvegas-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/saltlakecity-lasvegas-1"]
+polygon = PackedVector2Array(618, 442, 636, 444, 630, 492, 629, 497, 606, 546, 572, 579, 559, 567, 594, 533, 612, 491)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/saltlakecity-lasvegas-1/CollisionPolygon2D"]
+
+[node name="lasvegas-losangeles-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/lasvegas-losangeles-1"]
+polygon = PackedVector2Array(535, 569, 488, 579, 477, 589, 457, 632, 472, 639, 494, 596, 539, 586)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/lasvegas-losangeles-1/CollisionPolygon2D"]
+
+[node name="sanfrancisco-losangeles-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/sanfrancisco-losangeles-1"]
+polygon = PackedVector2Array(380, 519, 363, 526, 384, 574, 412, 614, 446, 650, 459, 638, 426, 603, 398, 564)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/sanfrancisco-losangeles-1/CollisionPolygon2D"]
+
+[node name="sanfrancisco-losangeles-2" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/sanfrancisco-losangeles-2"]
+polygon = PackedVector2Array(349, 536, 364, 528, 384, 574, 412, 614, 444, 648, 431, 659, 399, 626, 396, 622, 370, 584, 366, 578)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/sanfrancisco-losangeles-2/CollisionPolygon2D"]
+
+[node name="losangeles-phoenix-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/losangeles-phoenix-1"]
+polygon = PackedVector2Array(472, 640, 521, 633, 570, 634, 574, 634, 620, 646, 618, 659, 614, 663, 571, 652, 522, 651, 474, 657)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/losangeles-phoenix-1/CollisionPolygon2D"]
+
+[node name="losangeles-elpaso-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/losangeles-elpaso-1"]
+polygon = PackedVector2Array(483, 661, 521, 689, 566, 709, 611, 721, 660, 728, 708, 726, 754, 714, 759, 730, 714, 742, 709, 743, 662, 745, 658, 746, 609, 739, 560, 725, 556, 724, 515, 705, 509, 702, 472, 675)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/losangeles-elpaso-1/CollisionPolygon2D"]
+
+[node name="phoenix-elpaso-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/phoenix-elpaso-1"]
+polygon = PackedVector2Array(640, 662, 780, 704, 775, 721, 635, 680)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/phoenix-elpaso-1/CollisionPolygon2D"]
+
+[node name="elpaso-houston-1" type="Area2D" parent="RotasButtons"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotasButtons/elpaso-houston-1"]
+polygon = PackedVector2Array(803, 721, 844, 745, 888, 759, 937, 766, 986, 768, 1033, 760, 1078, 743, 1085, 760, 1040, 776, 990, 785, 986, 786, 937, 784, 887, 777, 838, 762, 793, 736)
+
+[node name="Polygon2D" type="Polygon2D" parent="RotasButtons/elpaso-houston-1/CollisionPolygon2D"]
 
 [node name="LayerUI" type="CanvasLayer" parent="."]
 
@@ -140,3 +795,305 @@ num_tickets = 3
 num_trens = 42
 qnt_pontos = 17
 bg_color = Color(0.847996, 0.627581, 1, 1)
+
+[connection signal="pressed" from="TextureRect/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="input_event" from="RotasButtons/helena-omaha-1" to="." method="_on_rota_input_event" binds= ["helena-omaha-1"]]
+[connection signal="mouse_entered" from="RotasButtons/helena-omaha-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/helena-omaha-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/chicago-omaha-1" to="." method="_on_rota_input_event" binds= ["chicago-omaha-1"]]
+[connection signal="mouse_entered" from="RotasButtons/chicago-omaha-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/chicago-omaha-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/chicago-saintlouis-1" to="." method="_on_rota_input_event" binds= ["chicago-saintlouis-1"]]
+[connection signal="mouse_entered" from="RotasButtons/chicago-saintlouis-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/chicago-saintlouis-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/chicago-saintlouis-2" to="." method="_on_rota_input_event" binds= ["chicago-saintlouis-2"]]
+[connection signal="mouse_entered" from="RotasButtons/chicago-saintlouis-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/chicago-saintlouis-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/omaha-denver-1" to="." method="_on_rota_input_event" binds= ["omaha-denver-1"]]
+[connection signal="mouse_entered" from="RotasButtons/omaha-denver-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/omaha-denver-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/omaha-kansascity-1" to="." method="_on_rota_input_event" binds= ["omaha-kansascity-1"]]
+[connection signal="mouse_entered" from="RotasButtons/omaha-kansascity-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/omaha-kansascity-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/omaha-kansascity-2" to="." method="_on_rota_input_event" binds= ["omaha-kansascity-2"]]
+[connection signal="mouse_entered" from="RotasButtons/omaha-kansascity-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/omaha-kansascity-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/kansascity-saintlouis-1" to="." method="_on_rota_input_event" binds= ["kansascity-saintlouis-1"]]
+[connection signal="mouse_entered" from="RotasButtons/kansascity-saintlouis-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/kansascity-saintlouis-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/kansascity-saintlouis-2" to="." method="_on_rota_input_event" binds= ["kansascity-saintlouis-2"]]
+[connection signal="mouse_entered" from="RotasButtons/kansascity-saintlouis-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/kansascity-saintlouis-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/saintlouis-littlerock-1" to="." method="_on_rota_input_event" binds= ["saintlouis-littlerock-1"]]
+[connection signal="mouse_entered" from="RotasButtons/saintlouis-littlerock-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/saintlouis-littlerock-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/saintlouis-nashville-1" to="." method="_on_rota_input_event" binds= ["saintlouis-nashville-1"]]
+[connection signal="mouse_entered" from="RotasButtons/saintlouis-nashville-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/saintlouis-nashville-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/nashville-littlerock-1" to="." method="_on_rota_input_event" binds= ["nashville-littlerock-1"]]
+[connection signal="mouse_entered" from="RotasButtons/nashville-littlerock-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/nashville-littlerock-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/littlerock-dallas-1" to="." method="_on_rota_input_event" binds= ["littlerock-dallas-1"]]
+[connection signal="mouse_entered" from="RotasButtons/littlerock-dallas-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/littlerock-dallas-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/littlerock-neworleans-1" to="." method="_on_rota_input_event" binds= ["littlerock-neworleans-1"]]
+[connection signal="mouse_entered" from="RotasButtons/littlerock-neworleans-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/littlerock-neworleans-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/dallas-elpaso-1" to="." method="_on_rota_input_event" binds= ["dallas-elpaso-1"]]
+[connection signal="mouse_entered" from="RotasButtons/dallas-elpaso-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/dallas-elpaso-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/dallas-houston-1" to="." method="_on_rota_input_event" binds= ["dallas-houston-1"]]
+[connection signal="mouse_entered" from="RotasButtons/dallas-houston-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/dallas-houston-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/dallas-houston-2" to="." method="_on_rota_input_event" binds= ["dallas-houston-2"]]
+[connection signal="mouse_entered" from="RotasButtons/dallas-houston-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/dallas-houston-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/nashville-atlanta-1" to="." method="_on_rota_input_event" binds= ["nashville-atlanta-1"]]
+[connection signal="mouse_entered" from="RotasButtons/nashville-atlanta-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/nashville-atlanta-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/oklahomacity-santafe-1" to="." method="_on_rota_input_event" binds= ["oklahomacity-santafe-1"]]
+[connection signal="mouse_entered" from="RotasButtons/oklahomacity-santafe-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/oklahomacity-santafe-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/oklahomacity-elpaso-1" to="." method="_on_rota_input_event" binds= ["oklahomacity-elpaso-1"]]
+[connection signal="mouse_entered" from="RotasButtons/oklahomacity-elpaso-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/oklahomacity-elpaso-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/oklahomacity-dallas-1" to="." method="_on_rota_input_event" binds= ["oklahomacity-dallas-1"]]
+[connection signal="mouse_entered" from="RotasButtons/oklahomacity-dallas-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/oklahomacity-dallas-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/oklahomacity-dallas-2" to="." method="_on_rota_input_event" binds= ["oklahomacity-dallas-2"]]
+[connection signal="mouse_entered" from="RotasButtons/oklahomacity-dallas-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/oklahomacity-dallas-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/oklahomacity-littlerock-1" to="." method="_on_rota_input_event" binds= ["oklahomacity-littlerock-1"]]
+[connection signal="mouse_entered" from="RotasButtons/oklahomacity-littlerock-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/oklahomacity-littlerock-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/montreal-saultstmarie-1" to="." method="_on_rota_input_event" binds= ["montreal-saultstmarie-1"]]
+[connection signal="mouse_entered" from="RotasButtons/montreal-saultstmarie-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/montreal-saultstmarie-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/montreal-toronto-1" to="." method="_on_rota_input_event" binds= ["montreal-toronto-1"]]
+[connection signal="mouse_entered" from="RotasButtons/montreal-toronto-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/montreal-toronto-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/montreal-boston-1" to="." method="_on_rota_input_event" binds= ["montreal-boston-1"]]
+[connection signal="mouse_entered" from="RotasButtons/montreal-boston-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/montreal-boston-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/montreal-boston-2" to="." method="_on_rota_input_event" binds= ["montreal-boston-2"]]
+[connection signal="mouse_entered" from="RotasButtons/montreal-boston-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/montreal-boston-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/montreal-newyork-1" to="." method="_on_rota_input_event" binds= ["montreal-newyork-1"]]
+[connection signal="mouse_entered" from="RotasButtons/montreal-newyork-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/montreal-newyork-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/boston-newyork-1" to="." method="_on_rota_input_event" binds= ["boston-newyork-1"]]
+[connection signal="mouse_entered" from="RotasButtons/boston-newyork-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/boston-newyork-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/boston-newyork-2" to="." method="_on_rota_input_event" binds= ["boston-newyork-2"]]
+[connection signal="mouse_entered" from="RotasButtons/boston-newyork-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/boston-newyork-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/newyork-washington-1" to="." method="_on_rota_input_event" binds= ["newyork-washington-1"]]
+[connection signal="mouse_entered" from="RotasButtons/newyork-washington-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/newyork-washington-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/newyork-washington-2" to="." method="_on_rota_input_event" binds= ["newyork-washington-2"]]
+[connection signal="mouse_entered" from="RotasButtons/newyork-washington-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/newyork-washington-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/newyork-pittsburgh-1" to="." method="_on_rota_input_event" binds= ["newyork-pittsburgh-1"]]
+[connection signal="mouse_entered" from="RotasButtons/newyork-pittsburgh-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/newyork-pittsburgh-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/newyork-pittsburgh-2" to="." method="_on_rota_input_event" binds= ["newyork-pittsburgh-2"]]
+[connection signal="mouse_entered" from="RotasButtons/newyork-pittsburgh-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/newyork-pittsburgh-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/pittsburgh-chicago-1" to="." method="_on_rota_input_event" binds= ["pittsburgh-chicago-1"]]
+[connection signal="mouse_entered" from="RotasButtons/pittsburgh-chicago-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/pittsburgh-chicago-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/pittsburgh-chicago-2" to="." method="_on_rota_input_event" binds= ["pittsburgh-chicago-2"]]
+[connection signal="mouse_entered" from="RotasButtons/pittsburgh-chicago-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/pittsburgh-chicago-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/pittsburgh-saintlouis-1" to="." method="_on_rota_input_event" binds= ["pittsburgh-saintlouis-1"]]
+[connection signal="mouse_entered" from="RotasButtons/pittsburgh-saintlouis-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/pittsburgh-saintlouis-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/pittsburgh-nashville-1" to="." method="_on_rota_input_event" binds= ["pittsburgh-nashville-1"]]
+[connection signal="mouse_entered" from="RotasButtons/pittsburgh-nashville-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/pittsburgh-nashville-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/pittsburgh-raleigh-1" to="." method="_on_rota_input_event" binds= ["pittsburgh-raleigh-1"]]
+[connection signal="mouse_entered" from="RotasButtons/pittsburgh-raleigh-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/pittsburgh-raleigh-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/pittsburgh-washington-1" to="." method="_on_rota_input_event" binds= ["pittsburgh-washington-1"]]
+[connection signal="mouse_entered" from="RotasButtons/pittsburgh-washington-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/pittsburgh-washington-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/washington-raleigh-1" to="." method="_on_rota_input_event" binds= ["washington-raleigh-1"]]
+[connection signal="mouse_entered" from="RotasButtons/washington-raleigh-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/washington-raleigh-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/washington-raleigh-2" to="." method="_on_rota_input_event" binds= ["washington-raleigh-2"]]
+[connection signal="mouse_entered" from="RotasButtons/washington-raleigh-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/washington-raleigh-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/raleigh-nashville-1" to="." method="_on_rota_input_event" binds= ["raleigh-nashville-1"]]
+[connection signal="mouse_entered" from="RotasButtons/raleigh-nashville-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/raleigh-nashville-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/raleigh-atlanta-1" to="." method="_on_rota_input_event" binds= ["raleigh-atlanta-1"]]
+[connection signal="mouse_entered" from="RotasButtons/raleigh-atlanta-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/raleigh-atlanta-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/raleigh-atlanta-2" to="." method="_on_rota_input_event" binds= ["raleigh-atlanta-2"]]
+[connection signal="mouse_entered" from="RotasButtons/raleigh-atlanta-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/raleigh-atlanta-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/raleigh-charleston-1" to="." method="_on_rota_input_event" binds= ["raleigh-charleston-1"]]
+[connection signal="mouse_entered" from="RotasButtons/raleigh-charleston-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/raleigh-charleston-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/atlanta-charleston-1" to="." method="_on_rota_input_event" binds= ["atlanta-charleston-1"]]
+[connection signal="mouse_entered" from="RotasButtons/atlanta-charleston-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/atlanta-charleston-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/atlanta-neworleans-1" to="." method="_on_rota_input_event" binds= ["atlanta-neworleans-1"]]
+[connection signal="mouse_entered" from="RotasButtons/atlanta-neworleans-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/atlanta-neworleans-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/atlanta-neworleans-2" to="." method="_on_rota_input_event" binds= ["atlanta-neworleans-2"]]
+[connection signal="mouse_entered" from="RotasButtons/atlanta-neworleans-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/atlanta-neworleans-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/atlanta-miami-1" to="." method="_on_rota_input_event" binds= ["atlanta-miami-1"]]
+[connection signal="mouse_entered" from="RotasButtons/atlanta-miami-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/atlanta-miami-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/charleston-miami-1" to="." method="_on_rota_input_event" binds= ["charleston-miami-1"]]
+[connection signal="mouse_entered" from="RotasButtons/charleston-miami-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/charleston-miami-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/neworleans-houston-1" to="." method="_on_rota_input_event" binds= ["neworleans-houston-1"]]
+[connection signal="mouse_entered" from="RotasButtons/neworleans-houston-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/neworleans-houston-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/neworleans-miami-1" to="." method="_on_rota_input_event" binds= ["neworleans-miami-1"]]
+[connection signal="mouse_entered" from="RotasButtons/neworleans-miami-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/neworleans-miami-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/calgary-seattle-1" to="." method="_on_rota_input_event" binds= ["calgary-seattle-1"]]
+[connection signal="mouse_entered" from="RotasButtons/calgary-seattle-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/calgary-seattle-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/vancouver-seattle-1" to="." method="_on_rota_input_event" binds= ["vancouver-seattle-1"]]
+[connection signal="mouse_entered" from="RotasButtons/vancouver-seattle-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/vancouver-seattle-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/vancouver-seattle-2" to="." method="_on_rota_input_event" binds= ["vancouver-seattle-2"]]
+[connection signal="mouse_entered" from="RotasButtons/vancouver-seattle-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/vancouver-seattle-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/kansascity-oklahomacity-1" to="." method="_on_rota_input_event" binds= ["kansascity-oklahomacity-1"]]
+[connection signal="mouse_entered" from="RotasButtons/kansascity-oklahomacity-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/kansascity-oklahomacity-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/kansascity-oklahomacity-2" to="." method="_on_rota_input_event" binds= ["kansascity-oklahomacity-2"]]
+[connection signal="mouse_entered" from="RotasButtons/kansascity-oklahomacity-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/kansascity-oklahomacity-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/kansascity-denver-1" to="." method="_on_rota_input_event" binds= ["kansascity-denver-1"]]
+[connection signal="mouse_entered" from="RotasButtons/kansascity-denver-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/kansascity-denver-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/kansascity-denver-2" to="." method="_on_rota_input_event" binds= ["kansascity-denver-2"]]
+[connection signal="mouse_entered" from="RotasButtons/kansascity-denver-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/kansascity-denver-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/denver-oklahomacity-1" to="." method="_on_rota_input_event" binds= ["denver-oklahomacity-1"]]
+[connection signal="mouse_entered" from="RotasButtons/denver-oklahomacity-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/denver-oklahomacity-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/denver-santafe-1" to="." method="_on_rota_input_event" binds= ["denver-santafe-1"]]
+[connection signal="mouse_entered" from="RotasButtons/denver-santafe-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/denver-santafe-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/denver-phoenix-1" to="." method="_on_rota_input_event" binds= ["denver-phoenix-1"]]
+[connection signal="mouse_entered" from="RotasButtons/denver-phoenix-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/denver-phoenix-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/santafe-phoenix-1" to="." method="_on_rota_input_event" binds= ["santafe-phoenix-1"]]
+[connection signal="mouse_entered" from="RotasButtons/santafe-phoenix-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/santafe-phoenix-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/santafe-elpaso-1" to="." method="_on_rota_input_event" binds= ["santafe-elpaso-1"]]
+[connection signal="mouse_entered" from="RotasButtons/santafe-elpaso-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/santafe-elpaso-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/calgary-vancouver-1" to="." method="_on_rota_input_event" binds= ["calgary-vancouver-1"]]
+[connection signal="mouse_entered" from="RotasButtons/calgary-vancouver-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/calgary-vancouver-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/calgary-winnipeg-1" to="." method="_on_rota_input_event" binds= ["calgary-winnipeg-1"]]
+[connection signal="mouse_entered" from="RotasButtons/calgary-winnipeg-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/calgary-winnipeg-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/calgary-helena-1" to="." method="_on_rota_input_event" binds= ["calgary-helena-1"]]
+[connection signal="mouse_entered" from="RotasButtons/calgary-helena-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/calgary-helena-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/winnipeg-helena-1" to="." method="_on_rota_input_event" binds= ["winnipeg-helena-1"]]
+[connection signal="mouse_entered" from="RotasButtons/winnipeg-helena-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/winnipeg-helena-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/winnipeg-duluth-1" to="." method="_on_rota_input_event" binds= ["winnipeg-duluth-1"]]
+[connection signal="mouse_entered" from="RotasButtons/winnipeg-duluth-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/winnipeg-duluth-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/winnipeg-saultstmarie-1" to="." method="_on_rota_input_event" binds= ["winnipeg-saultstmarie-1"]]
+[connection signal="mouse_entered" from="RotasButtons/winnipeg-saultstmarie-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/winnipeg-saultstmarie-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/saultstmarie-toronto-1" to="." method="_on_rota_input_event" binds= ["saultstmarie-toronto-1"]]
+[connection signal="mouse_entered" from="RotasButtons/saultstmarie-toronto-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/saultstmarie-toronto-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/saultstmarie-duluth-1" to="." method="_on_rota_input_event" binds= ["saultstmarie-duluth-1"]]
+[connection signal="mouse_entered" from="RotasButtons/saultstmarie-duluth-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/saultstmarie-duluth-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/toronto-duluth-1" to="." method="_on_rota_input_event" binds= ["toronto-duluth-1"]]
+[connection signal="mouse_entered" from="RotasButtons/toronto-duluth-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/toronto-duluth-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/toronto-chicago-1" to="." method="_on_rota_input_event" binds= ["toronto-chicago-1"]]
+[connection signal="mouse_entered" from="RotasButtons/toronto-chicago-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/toronto-chicago-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/toronto-pittsburgh-1" to="." method="_on_rota_input_event" binds= ["toronto-pittsburgh-1"]]
+[connection signal="mouse_entered" from="RotasButtons/toronto-pittsburgh-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/toronto-pittsburgh-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/seattle-portland-1" to="." method="_on_rota_input_event" binds= ["seattle-portland-1"]]
+[connection signal="mouse_entered" from="RotasButtons/seattle-portland-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/seattle-portland-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/seattle-portland-2" to="." method="_on_rota_input_event" binds= ["seattle-portland-2"]]
+[connection signal="mouse_entered" from="RotasButtons/seattle-portland-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/seattle-portland-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/seattle-helena-1" to="." method="_on_rota_input_event" binds= ["seattle-helena-1"]]
+[connection signal="mouse_entered" from="RotasButtons/seattle-helena-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/seattle-helena-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/portland-saltlakecity-1" to="." method="_on_rota_input_event" binds= ["portland-saltlakecity-1"]]
+[connection signal="mouse_entered" from="RotasButtons/portland-saltlakecity-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/portland-saltlakecity-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/helena-saltlakecity-1" to="." method="_on_rota_input_event" binds= ["helena-saltlakecity-1"]]
+[connection signal="mouse_entered" from="RotasButtons/helena-saltlakecity-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/helena-saltlakecity-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/helena-denver-1" to="." method="_on_rota_input_event" binds= ["helena-denver-1"]]
+[connection signal="mouse_entered" from="RotasButtons/helena-denver-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/helena-denver-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/duluth-helena-1" to="." method="_on_rota_input_event" binds= ["duluth-helena-1"]]
+[connection signal="mouse_entered" from="RotasButtons/duluth-helena-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/duluth-helena-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/duluth-chicago-1" to="." method="_on_rota_input_event" binds= ["duluth-chicago-1"]]
+[connection signal="mouse_entered" from="RotasButtons/duluth-chicago-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/duluth-chicago-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/duluth-omaha-1" to="." method="_on_rota_input_event" binds= ["duluth-omaha-1"]]
+[connection signal="mouse_entered" from="RotasButtons/duluth-omaha-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/duluth-omaha-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/duluth-omaha-2" to="." method="_on_rota_input_event" binds= ["duluth-omaha-2"]]
+[connection signal="mouse_entered" from="RotasButtons/duluth-omaha-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/duluth-omaha-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/portland-sanfrancisco-1" to="." method="_on_rota_input_event" binds= ["portland-sanfrancisco-1"]]
+[connection signal="mouse_entered" from="RotasButtons/portland-sanfrancisco-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/portland-sanfrancisco-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/portland-sanfrancisco-2" to="." method="_on_rota_input_event" binds= ["portland-sanfrancisco-2"]]
+[connection signal="mouse_entered" from="RotasButtons/portland-sanfrancisco-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/portland-sanfrancisco-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/saltlakecity-sanfrancisco-1" to="." method="_on_rota_input_event" binds= ["saltlakecity-sanfrancisco-1"]]
+[connection signal="mouse_entered" from="RotasButtons/saltlakecity-sanfrancisco-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/saltlakecity-sanfrancisco-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/saltlakecity-sanfrancisco-2" to="." method="_on_rota_input_event" binds= ["saltlakecity-sanfrancisco-2"]]
+[connection signal="mouse_entered" from="RotasButtons/saltlakecity-sanfrancisco-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/saltlakecity-sanfrancisco-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/saltlakecity-denver-1" to="." method="_on_rota_input_event" binds= ["saltlakecity-denver-1"]]
+[connection signal="mouse_entered" from="RotasButtons/saltlakecity-denver-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/saltlakecity-denver-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/saltlakecity-denver-2" to="." method="_on_rota_input_event" binds= ["saltlakecity-denver-2"]]
+[connection signal="mouse_entered" from="RotasButtons/saltlakecity-denver-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/saltlakecity-denver-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/saltlakecity-lasvegas-1" to="." method="_on_rota_input_event" binds= ["saltlakecity-lasvegas-1"]]
+[connection signal="mouse_entered" from="RotasButtons/saltlakecity-lasvegas-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/saltlakecity-lasvegas-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/lasvegas-losangeles-1" to="." method="_on_rota_input_event" binds= ["lasvegas-losangeles-1"]]
+[connection signal="mouse_entered" from="RotasButtons/lasvegas-losangeles-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/lasvegas-losangeles-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/sanfrancisco-losangeles-1" to="." method="_on_rota_input_event" binds= ["sanfrancisco-losangeles-1"]]
+[connection signal="mouse_entered" from="RotasButtons/sanfrancisco-losangeles-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/sanfrancisco-losangeles-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/sanfrancisco-losangeles-2" to="." method="_on_rota_input_event" binds= ["sanfrancisco-losangeles-2"]]
+[connection signal="mouse_entered" from="RotasButtons/sanfrancisco-losangeles-2" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/sanfrancisco-losangeles-2" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/losangeles-phoenix-1" to="." method="_on_rota_input_event" binds= ["losangeles-phoenix-1"]]
+[connection signal="mouse_entered" from="RotasButtons/losangeles-phoenix-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/losangeles-phoenix-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/losangeles-elpaso-1" to="." method="_on_rota_input_event" binds= ["losangeles-elpaso-1"]]
+[connection signal="mouse_entered" from="RotasButtons/losangeles-elpaso-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/losangeles-elpaso-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/phoenix-elpaso-1" to="." method="_on_rota_input_event" binds= ["phoenix-elpaso-1"]]
+[connection signal="mouse_entered" from="RotasButtons/phoenix-elpaso-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/phoenix-elpaso-1" to="." method="_on_mouse_exited"]
+[connection signal="input_event" from="RotasButtons/elpaso-houston-1" to="." method="_on_rota_input_event" binds= ["elpaso-houston-1"]]
+[connection signal="mouse_entered" from="RotasButtons/elpaso-houston-1" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RotasButtons/elpaso-houston-1" to="." method="_on_mouse_exited"]
