@@ -25,11 +25,6 @@ func _ready() -> void:
 			original_polygons[rota.name] = points
 
 	ajustar_todos_os_poligonos()
-	
-	get_tree().get_root().size_changed.connect(resize_window)
-
-func resize_window():
-	ajustar_todos_os_poligonos()
 
 func ajustar_todos_os_poligonos():
 	var texture_rect = $TextureRect
@@ -81,7 +76,7 @@ func configurar_rotas():
 		var nome_rota = gerar_nome_rota(c1, c2)
 		var rota = Rota.new(nome_rota, c1, c2, rotaData[2], rotaData[3])
 		rotas[nome_rota] = rota
-	print(rotas)
+	# print(rotas)
 
 func get_cidade(nome: String) -> Cidade:
 	assert(cidades.has(nome), "Cidade não encontrada: %s" % nome) # hard fail: para a execução
@@ -100,9 +95,9 @@ func conquistar_rota(rota: Rota, jogador: Jogador):
 func _on_rota_input_event(_viewport, event, _shape_idx, nome_rota):
 	if event is InputEventMouseButton and event.pressed:
 		var polygon2d = $RotasButtons.get_node(nome_rota).get_node("CollisionPolygon2D").get_node("Polygon2D")
-		# var base_color = TabuleiroData.COR_DICT[rotas[nome_rota].cor]
-		var base_color = Color.BLUE
-		polygon2d.color = Color(base_color.r, base_color.g, base_color.b, 0.7)
+		var base_color = TabuleiroData.COR_DICT[rotas[nome_rota].cor]
+		# var base_color = Color.BLUE
+		polygon2d.color = Color(base_color.r, base_color.g, base_color.b, 0.5)
 
 var mouse_over_count: int = 0
 

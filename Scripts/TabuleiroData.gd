@@ -9,6 +9,7 @@ const COR_DICT = {
 	"orange": Color.ORANGE,
 	"pink": Color.PINK,
 	"white": Color.WHITE,
+	"black": Color.BLACK,
 }
 
 const CIDADES = [
@@ -16,13 +17,13 @@ const CIDADES = [
 	"Duluth", "El Paso", "Helena", "Houston", "Kansas City", "Las Vegas", "Little Rock",
 	"Los Angeles", "Miami", "Montreal", "Nashville", "New Orleans", "New York",
 	"Oklahoma City", "Omaha", "Phoenix", "Pittsburgh", "Portland", "Raleigh",
-	"Salt Lake City", "San Francisco", "Santa Fe", "Sault Ste. Marie", "Seattle",
+	"Salt Lake City", "San Francisco", "Santa Fe", "Sault St Marie", "Seattle",
 	"Saint Louis", "Toronto", "Vancouver", "Washington", "Winnipeg"
 ]
 
 # Primeira cidade = mais acima, Segunda cidade = mais abaixo
 const ROTAS = [
-	["Montreal", "Sault Ste. Marie", "black", 5],
+	["Montreal", "Sault St Marie", "black", 5],
 	["Montreal", "Toronto", "gray", 3],
 	["Montreal", "Boston", "gray", 2],
 	["Montreal", "Boston", "gray", 2],
@@ -33,13 +34,13 @@ const ROTAS = [
 	["Calgary", "Winnipeg", "white", 6],
 	["Winnipeg", "Helena", "blue", 4],
 	["Winnipeg", "Duluth", "black", 4],
-	["Winnipeg", "Sault Ste. Marie", "gray", 6],
+	["Winnipeg", "Sault St Marie", "gray", 6],
 	["Vancouver", "Seattle", "gray", 1],
 	["Vancouver", "Seattle", "gray", 1],
 	["Boston", "New York", "yellow", 2],
 	["Boston", "New York", "red", 2],
-	["Sault Ste. Marie", "Toronto", "gray", 2],
-	["Sault Ste. Marie", "Duluth", "gray", 3],
+	["Sault St Marie", "Toronto", "gray", 2],
+	["Sault St Marie", "Duluth", "gray", 3],
 	["Seattle", "Portland", "gray", 1],
 	["Seattle", "Portland", "gray", 1],
 	["Seattle", "Helena", "yellow", 6],
