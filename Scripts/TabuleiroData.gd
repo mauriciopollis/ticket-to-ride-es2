@@ -94,7 +94,7 @@ const ROTAS = [
 	["Raleigh", "Charleston", "gray", 2],
 	["Denver", "Phoenix", "white", 5],
 	["Denver", "Santa Fe", "gray", 2],
-	["Raleigh", "Oklahoma City", "red", 4],
+	["Denver", "Oklahoma City", "red", 4],
 	["Nashville", "Little Rock", "white", 3],
 	["Nashville", "Atlanta", "gray", 1],
 	["San Francisco", "Los Angeles", "pink", 3],
