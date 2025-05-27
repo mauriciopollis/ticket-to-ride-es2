@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://2hpbcfxujh5r"]
+
+[ext_resource type="Texture2D" uid="uid://cg6krpsomgc66" path="res://icon.svg" id="1_grf5q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rv1no"]
+
+[node name="PilhaObjetivos" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(1820, 80)
+scale = Vector2(1.57813, 1.25)
+texture = ExtResource("1_grf5q")
+
+[node name="LabelQuantidade" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1593.0
+offset_top = 105.0
+offset_right = 1681.0
+offset_bottom = 157.0
+theme_override_font_sizes/font_size = 30
+text = "10"
+label_settings = SubResource("LabelSettings_rv1no")
+horizontal_alignment = 2
+vertical_alignment = 1
