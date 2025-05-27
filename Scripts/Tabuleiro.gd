@@ -150,8 +150,8 @@ func conquistarRota(rota: Rota, jogador: Jogador):
 	return true
 	
 func inicializarHud():
-	var containerOponentes = $LayerUI/Oponentes
-	var layerUI = $LayerUI
+	var containerOponentes = $TextureRect/LayerUI/Oponentes
+	var layerUI = $TextureRect/LayerUI
 	
 	var jogador1 = Jogador.new("Mauricio", Color.DARK_GOLDENROD)
 	var oponenteUI1 = OponenteUI.instantiate()

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bc23fm2tvqpnu"]
+[gd_scene load_steps=5 format=3 uid="uid://bc23fm2tvqpnu"]
 
 [ext_resource type="Script" uid="uid://bopdt4qjttb8r" path="res://Scripts/Tabuleiro.gd" id="1_qqlt4"]
 [ext_resource type="Texture2D" uid="uid://bp62px0t7tey6" path="res://Assets/TabuleiroExpandido.png" id="2_xuw6c"]
 [ext_resource type="PackedScene" uid="uid://23u0ytyocelk" path="res://Scenes/JogadorUI.tscn" id="4_2d7bo"]
+[ext_resource type="PackedScene" uid="uid://4gbsdjvego1v" path="res://Scenes/PilhaDeCartas.tscn" id="4_vkhup"]
 
 [node name="Tabuleiro" type="Node"]
 script = ExtResource("1_qqlt4")
@@ -16,26 +17,14 @@ grow_vertical = 2
 texture = ExtResource("2_xuw6c")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -37.0
-offset_right = 37.0
-offset_bottom = 23.0
-grow_horizontal = 2
-text = "Tabuleiro"
-horizontal_alignment = 1
+[node name="LayerUI" type="CanvasLayer" parent="TextureRect"]
 
-[node name="LayerUI" type="CanvasLayer" parent="."]
-
-[node name="Oponentes" type="VBoxContainer" parent="LayerUI"]
-offset_top = 20.0
-offset_right = 200.0
-offset_bottom = 1050.0
+[node name="Oponentes" type="VBoxContainer" parent="TextureRect/LayerUI"]
+offset_right = 199.6
+offset_bottom = 1030.0
 theme_override_constants/separation = 25
 
-[node name="JogadorUI" parent="LayerUI" instance=ExtResource("4_2d7bo")]
+[node name="JogadorUI" parent="TextureRect/LayerUI" instance=ExtResource("4_2d7bo")]
 visible = false
 anchors_preset = 2
 anchor_top = 1.0
@@ -50,3 +39,31 @@ num_tickets = 3
 num_trens = 42
 qnt_pontos = 17
 bg_color = Color(0.847996, 0.627581, 1, 1)
+
+[node name="CompraveisDaMesa" type="VBoxContainer" parent="TextureRect/LayerUI"]
+anchors_preset = -1
+anchor_left = 0.875
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_bottom = -1.0
+theme_override_constants/separation = 75
+
+[node name="PilhaObjetivos" parent="TextureRect/LayerUI/CompraveisDaMesa" instance=ExtResource("4_vkhup")]
+layout_mode = 2
+
+[node name="CartasDaMesa" type="VBoxContainer" parent="TextureRect/LayerUI/CompraveisDaMesa"]
+custom_minimum_size = Vector2(200, 800)
+layout_mode = 2
+
+[node name="PilhaVagoes" parent="TextureRect/LayerUI/CompraveisDaMesa" instance=ExtResource("4_vkhup")]
+layout_mode = 2
+
+[node name="MaoDoJogador" type="HBoxContainer" parent="TextureRect/LayerUI"]
+anchors_preset = -1
+anchor_left = 0.193
+anchor_top = 0.81
+anchor_right = 0.795
+anchor_bottom = 0.966
+offset_right = 40.0
+offset_bottom = 40.0
