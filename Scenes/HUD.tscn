@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbked5gj8n5fa"]
+[gd_scene load_steps=5 format=3 uid="uid://bbked5gj8n5fa"]
 
-[ext_resource type="Texture2D" uid="uid://bp62px0t7tey6" path="res://Assets/TabuleiroExpandido.png" id="1_sd512"]
 [ext_resource type="PackedScene" uid="uid://23u0ytyocelk" path="res://Scenes/JogadorUI.tscn" id="2_jo1ms"]
 [ext_resource type="PackedScene" uid="uid://dqp5clum311in" path="res://Scenes/OponenteUI.tscn" id="2_psnte"]
 [ext_resource type="PackedScene" uid="uid://cdvckf1npjy2u" path="res://Scenes/PilhaDeCartas.tscn" id="3_c3eba"]
@@ -14,7 +13,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_sd512")
 
 [node name="AdversariosContainer" type="VBoxContainer" parent="TextureRect"]
 layout_mode = 0
