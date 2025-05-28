@@ -5,13 +5,22 @@ class_name Tabuleiro
 var cidades: Dictionary = {} # armazenará referncias a objetos da classe Cidade
 var rotas: Array[Rota] = []
 
-@onready var OponenteUI = preload("res://Scenes/OponenteUI.tscn")
-@onready var JogadorUI = preload("res://Scenes/JogadorUI.tscn")
-
+@onready var hud = $TextureRect/Hud
+@onready var jogadoresMock: Array[Jogador] = [
+			Jogador.new("Mauricio", Color.AQUA),
+			Jogador.new("Guilherme", Color.BLUE_VIOLET),
+			Jogador.new("Felipe", Color.CHARTREUSE),
+			Jogador.new("Bernardo", Color.DARK_GOLDENROD),
+			#Jogador.new("Andreas", Color.DARK_ORANGE)
+		]
+		
 func _ready() -> void:
 	print("Tabuleiro rodando!")
 
 	configurarTabuleiro()
+	
+	hud.inicializar(jogadoresMock)
+	
 
 # prints de debug
 func printCidades():

@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbked5gj8n5fa"]
+[gd_scene load_steps=6 format=3 uid="uid://bbked5gj8n5fa"]
 
+[ext_resource type="Script" uid="uid://c2i3rreagf3j" path="res://Scripts/hud.gd" id="1_g8s2e"]
 [ext_resource type="PackedScene" uid="uid://23u0ytyocelk" path="res://Scenes/JogadorUI.tscn" id="2_jo1ms"]
 [ext_resource type="PackedScene" uid="uid://dqp5clum311in" path="res://Scenes/OponenteUI.tscn" id="2_psnte"]
 [ext_resource type="PackedScene" uid="uid://cdvckf1npjy2u" path="res://Scenes/PilhaDeCartas.tscn" id="3_c3eba"]
 [ext_resource type="PackedScene" uid="uid://cwqfqkeu8im7n" path="res://Scenes/CartaDaMesa.tscn" id="4_g8s2e"]
 
 [node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_g8s2e")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
