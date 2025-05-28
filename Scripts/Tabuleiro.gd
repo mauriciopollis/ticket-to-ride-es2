@@ -187,5 +187,6 @@ func inicializarHud():
 	jogadorUI.setJogador(jogador5)
 	await get_tree().create_timer(0.5).timeout
 	
-	containerOponentes.print_tree()
+	var cartasDaMesaContainer = $TextureRect/LayerUI/CompraveisDaMesa/CartasDaMesa
+	
 	

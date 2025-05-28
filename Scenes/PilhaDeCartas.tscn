@@ -1,26 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://4gbsdjvego1v"]
+[gd_scene load_steps=2 format=3 uid="uid://cdvckf1npjy2u"]
 
-[ext_resource type="Texture2D" uid="uid://cg6krpsomgc66" path="res://icon.svg" id="1_17kf4"]
+[ext_resource type="Texture2D" uid="uid://cr6uyvd6dk8rf" path="res://Assets/cartas/vagao_verso.png" id="1_wtm8b"]
 
-[node name="PIlhaObjetivos" type="Control"]
+[node name="PilhaDeCartas" type="Control"]
 layout_mode = 3
-anchors_preset = 15
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -242.0
+offset_bottom = 137.0
+grow_horizontal = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(250, 150)
-layout_mode = 0
-offset_right = 19.0
-offset_bottom = 23.0
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1000.0
+offset_top = 40.0
+offset_bottom = 460.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+theme_override_constants/separation = 50
+metadata/_edit_use_anchors_ = true
 
-[node name="Imagem" type="Sprite2D" parent="HBoxContainer"]
-position = Vector2(163, 65)
-texture = ExtResource("1_17kf4")
-
-[node name="QuantidadeLabel" type="Label" parent="HBoxContainer"]
+[node name="qtd_cartas" type="Label" parent="HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 200
 text = "10"
-horizontal_alignment = 2
+
+[node name="imagem" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_wtm8b")
