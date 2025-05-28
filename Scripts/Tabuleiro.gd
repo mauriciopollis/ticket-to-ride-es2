@@ -11,9 +11,9 @@ var rotas: Array[Rota] = []
 			Jogador.new("Guilherme", Color.BLUE_VIOLET),
 			Jogador.new("Felipe", Color.CHARTREUSE),
 			Jogador.new("Bernardo", Color.DARK_GOLDENROD),
-			#Jogador.new("Andreas", Color.DARK_ORANGE)
+			Jogador.new("Andreas", Color.DARK_ORANGE)
 		]
-		
+
 func _ready() -> void:
 	print("Tabuleiro rodando!")
 
