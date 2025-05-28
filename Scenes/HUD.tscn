@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbked5gj8n5fa"]
+[gd_scene load_steps=6 format=3 uid="uid://bbked5gj8n5fa"]
 
 [ext_resource type="Texture2D" uid="uid://bp62px0t7tey6" path="res://Assets/TabuleiroExpandido.png" id="1_sd512"]
 [ext_resource type="PackedScene" uid="uid://23u0ytyocelk" path="res://Scenes/JogadorUI.tscn" id="2_jo1ms"]
 [ext_resource type="PackedScene" uid="uid://dqp5clum311in" path="res://Scenes/OponenteUI.tscn" id="2_psnte"]
-[ext_resource type="PackedScene" uid="uid://cdvckf1npjy2u" path="res://Scenes/PilhaDeObjetivos.tscn" id="3_c3eba"]
+[ext_resource type="PackedScene" uid="uid://cdvckf1npjy2u" path="res://Scenes/PilhaDeCartas.tscn" id="3_c3eba"]
 [ext_resource type="PackedScene" uid="uid://cwqfqkeu8im7n" path="res://Scenes/CartaDaMesa.tscn" id="4_g8s2e"]
-[ext_resource type="PackedScene" uid="uid://ddn0pan02hblm" path="res://Scenes/PilhaDeVagoes.tscn" id="5_g8s2e"]
 
 [node name="Hud" type="CanvasLayer"]
 
@@ -35,44 +34,48 @@ layout_mode = 2
 [node name="OponenteUI4" parent="TextureRect/AdversariosContainer" instance=ExtResource("2_psnte")]
 layout_mode = 2
 
-[node name="CompraveisDaMesa" type="VBoxContainer" parent="TextureRect"]
+[node name="PilhaDeDestinos" parent="TextureRect" instance=ExtResource("3_c3eba")]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.87
-anchor_right = 1.0
+
+[node name="PilhaDeCartas" parent="TextureRect" instance=ExtResource("3_c3eba")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.998
+anchor_top = 1.0
+anchor_right = 0.998
 anchor_bottom = 1.0
-offset_left = -0.400146
-theme_override_constants/separation = 100
+offset_left = -242.16
+offset_top = -144.0
+offset_right = -0.160034
+offset_bottom = -7.0
 
-[node name="PilhaDeObjetivos" parent="TextureRect/CompraveisDaMesa" instance=ExtResource("3_c3eba")]
-layout_mode = 2
-
-[node name="Espaçador" type="Control" parent="TextureRect/CompraveisDaMesa"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/CompraveisDaMesa"]
-layout_mode = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -320.5
+offset_bottom = 320.5
+grow_horizontal = 0
+grow_vertical = 2
 size_flags_stretch_ratio = 4.68
 
-[node name="CartaDaMesa1" parent="TextureRect/CompraveisDaMesa/VBoxContainer" instance=ExtResource("4_g8s2e")]
+[node name="CartaDaMesa1" parent="TextureRect/VBoxContainer" instance=ExtResource("4_g8s2e")]
 layout_mode = 2
 
-[node name="CartaDaMesa2" parent="TextureRect/CompraveisDaMesa/VBoxContainer" instance=ExtResource("4_g8s2e")]
+[node name="CartaDaMesa2" parent="TextureRect/VBoxContainer" instance=ExtResource("4_g8s2e")]
 layout_mode = 2
 
-[node name="CartaDaMesa3" parent="TextureRect/CompraveisDaMesa/VBoxContainer" instance=ExtResource("4_g8s2e")]
+[node name="CartaDaMesa3" parent="TextureRect/VBoxContainer" instance=ExtResource("4_g8s2e")]
 layout_mode = 2
 
-[node name="CartaDaMesa4" parent="TextureRect/CompraveisDaMesa/VBoxContainer" instance=ExtResource("4_g8s2e")]
+[node name="CartaDaMesa4" parent="TextureRect/VBoxContainer" instance=ExtResource("4_g8s2e")]
 layout_mode = 2
 
-[node name="CartaDaMesa5" parent="TextureRect/CompraveisDaMesa/VBoxContainer" instance=ExtResource("4_g8s2e")]
-layout_mode = 2
-
-[node name="Espaçador2" type="Control" parent="TextureRect/CompraveisDaMesa"]
-layout_mode = 2
-
-[node name="PilhaDeCartas" parent="TextureRect/CompraveisDaMesa" instance=ExtResource("5_g8s2e")]
+[node name="CartaDaMesa5" parent="TextureRect/VBoxContainer" instance=ExtResource("4_g8s2e")]
 layout_mode = 2
 
 [node name="MaoJogador" type="HBoxContainer" parent="TextureRect"]

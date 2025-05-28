@@ -12,8 +12,6 @@ func _ready() -> void:
 	print("Tabuleiro rodando!")
 
 	configurarTabuleiro()
-	
-	inicializarHud()
 
 # prints de debug
 func printCidades():
@@ -148,45 +146,3 @@ func conquistarRota(rota: Rota, jogador: Jogador):
 	rota.setDono(jogador)
 	jogador.inserirRota(rota)
 	return true
-	
-func inicializarHud():
-	var containerOponentes = $TextureRect/LayerUI/Oponentes
-	var layerUI = $TextureRect/LayerUI
-	
-	var jogador1 = Jogador.new("Mauricio", Color.DARK_GOLDENROD)
-	var oponenteUI1 = OponenteUI.instantiate()
-	containerOponentes.add_child(oponenteUI1)
-	oponenteUI1.setJogador(jogador1)
-	await get_tree().create_timer(0.5).timeout
-	
-	var jogador2 = Jogador.new("Guilherme", Color.DARK_GREEN)
-	var oponenteUI2 = OponenteUI.instantiate()
-	containerOponentes.add_child(oponenteUI2)
-	oponenteUI2.setJogador(jogador2)
-	await get_tree().create_timer(0.5).timeout
-	
-	var jogador3 = Jogador.new("Bernardo", Color.DARK_MAGENTA)
-	var oponenteUI3 = OponenteUI.instantiate()
-	containerOponentes.add_child(oponenteUI3)
-	oponenteUI3.setJogador(jogador3)
-	await get_tree().create_timer(0.5).timeout
-	
-	var jogador4 = Jogador.new("Filipe", Color.DARK_RED)
-	var oponenteUI4 = OponenteUI.instantiate()
-	containerOponentes.add_child(oponenteUI4)
-	oponenteUI4.setJogador(jogador4)
-	await get_tree().create_timer(0.5).timeout
-	
-	var jogador5 = Jogador.new("Andreas", Color.MEDIUM_SLATE_BLUE)
-	var jogadorUI = JogadorUI.instantiate()
-	layerUI.add_child(jogadorUI)
-	
-	#await get_tree().process_frame
-	jogadorUI.position = Vector2(0, get_viewport().size.y - jogadorUI.get_rect().size.y)
-	
-	jogadorUI.setJogador(jogador5)
-	await get_tree().create_timer(0.5).timeout
-	
-	var cartasDaMesaContainer = $TextureRect/LayerUI/CompraveisDaMesa/CartasDaMesa
-	
-	

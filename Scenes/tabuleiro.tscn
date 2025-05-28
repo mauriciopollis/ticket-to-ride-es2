@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bc23fm2tvqpnu"]
+[gd_scene load_steps=4 format=3 uid="uid://bc23fm2tvqpnu"]
 
 [ext_resource type="Script" uid="uid://bopdt4qjttb8r" path="res://Scripts/Tabuleiro.gd" id="1_qqlt4"]
 [ext_resource type="Texture2D" uid="uid://bp62px0t7tey6" path="res://Assets/TabuleiroExpandido.png" id="2_xuw6c"]
-[ext_resource type="PackedScene" uid="uid://23u0ytyocelk" path="res://Scenes/JogadorUI.tscn" id="4_2d7bo"]
-[ext_resource type="PackedScene" uid="uid://4gbsdjvego1v" path="res://Scenes/PilhaDeCartas.tscn" id="4_vkhup"]
-[ext_resource type="PackedScene" uid="uid://b1a4k3yh1ji58" path="res://Scenes/CartaDaMesa.tscn" id="5_vkhup"]
+[ext_resource type="PackedScene" uid="uid://bbked5gj8n5fa" path="res://Scenes/HUD.tscn" id="3_76as7"]
 
 [node name="Tabuleiro" type="Node"]
 script = ExtResource("1_qqlt4")
@@ -18,67 +16,4 @@ grow_vertical = 2
 texture = ExtResource("2_xuw6c")
 expand_mode = 1
 
-[node name="LayerUI" type="CanvasLayer" parent="TextureRect"]
-
-[node name="Oponentes" type="VBoxContainer" parent="TextureRect/LayerUI"]
-offset_right = 200.0
-offset_bottom = 882.0
-theme_override_constants/separation = 25
-
-[node name="JogadorUI" parent="TextureRect/LayerUI" instance=ExtResource("4_2d7bo")]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_right = 0.0
-offset_top = -200.0
-offset_right = 330.0
-offset_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 0
-nome = "NomeJogador5"
-num_tickets = 3
-num_trens = 42
-qnt_pontos = 17
-bg_color = Color(0.847996, 0.627581, 1, 1)
-
-[node name="MaoDoJogador" type="HBoxContainer" parent="TextureRect/LayerUI"]
-anchors_preset = -1
-anchor_left = 0.193
-anchor_top = 0.81
-anchor_right = 0.816
-anchor_bottom = 1.0
-offset_top = -6.10352e-05
-offset_right = -0.320068
-offset_bottom = 3.28003
-
-[node name="CompraveisDaMesa" type="VBoxContainer" parent="TextureRect/LayerUI"]
-anchors_preset = -1
-anchor_left = 0.87
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -0.400146
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="Root" parent="TextureRect/LayerUI/CompraveisDaMesa" instance=ExtResource("4_vkhup")]
-layout_mode = 2
-
-[node name="CartasDaMesa" type="VBoxContainer" parent="TextureRect/LayerUI/CompraveisDaMesa"]
-layout_mode = 2
-
-[node name="Control" parent="TextureRect/LayerUI/CompraveisDaMesa/CartasDaMesa" instance=ExtResource("5_vkhup")]
-layout_mode = 2
-
-[node name="Control2" parent="TextureRect/LayerUI/CompraveisDaMesa/CartasDaMesa" instance=ExtResource("5_vkhup")]
-layout_mode = 2
-
-[node name="Control3" parent="TextureRect/LayerUI/CompraveisDaMesa/CartasDaMesa" instance=ExtResource("5_vkhup")]
-layout_mode = 2
-
-[node name="Control4" parent="TextureRect/LayerUI/CompraveisDaMesa/CartasDaMesa" instance=ExtResource("5_vkhup")]
-layout_mode = 2
-
-[node name="Control5" parent="TextureRect/LayerUI/CompraveisDaMesa/CartasDaMesa" instance=ExtResource("5_vkhup")]
-layout_mode = 2
-
-[node name="Root2" parent="TextureRect/LayerUI/CompraveisDaMesa" instance=ExtResource("4_vkhup")]
-layout_mode = 2
+[node name="Hud" parent="TextureRect" instance=ExtResource("3_76as7")]
