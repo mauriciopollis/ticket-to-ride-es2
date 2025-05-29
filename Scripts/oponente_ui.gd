@@ -20,3 +20,14 @@ func _ready():
 	var new_stylebox := original_stylebox.duplicate()
 	new_stylebox.bg_color = bg_color
 	$Panel.add_theme_stylebox_override("panel", new_stylebox)
+	
+func setJogador(jogador: Jogador):
+	$Panel/GridContainer/ContainerTicket/num_tickets.text = str(jogador.bilhetesDestinoNaMao.size())
+	$Panel/GridContainer/ContainerCartas/qnt_cartas.text = str(jogador.cartasTremNaMao.size())
+	$Panel/GridContainer/ContainerTrens/num_trens.text = str(jogador.cartasTremNaMao.size())
+	$Panel/GridContainer/ContainerPontos/qnt_pontos.text = str(jogador.pontos)
+	$Panel/NameBar/NameLabel.text = jogador.nome
+	var original_stylebox := $Panel.get_theme_stylebox("panel") as StyleBoxFlat
+	var new_stylebox := original_stylebox.duplicate()
+	new_stylebox.bg_color = jogador.cor
+	$Panel.add_theme_stylebox_override("panel", new_stylebox)

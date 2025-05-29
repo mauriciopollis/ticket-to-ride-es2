@@ -8,9 +8,19 @@ var original_polygons: Dictionary = {}
 
 const TabuleiroData = preload("res://Scripts/TabuleiroData.gd")
 
+@onready var hud = $TextureRect/Hud
+@onready var jogadoresMock: Array[Jogador] = [
+			Jogador.new("Mauricio", Color.MAROON),
+			Jogador.new("Guilherme", Color.BLUE_VIOLET),
+			Jogador.new("Felipe", Color.DARK_GREEN),
+			Jogador.new("Bernardo", Color.DARK_GOLDENROD),
+			Jogador.new("Andreas", Color.DARK_ORANGE)
+		]
+
 func _ready() -> void:
 	print("Tabuleiro rodando!")
-
+	hud.inicializar(jogadoresMock)
+	
 	configurar_tabuleiro()
 
 	for rota in $RotasButtons.get_children():
