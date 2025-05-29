@@ -723,7 +723,6 @@ polygon = PackedVector2Array(803, 721, 844, 745, 888, 759, 937, 766, 986, 768, 1
 
 [node name="Polygon2D" type="Polygon2D" parent="RotasButtons/elpaso-houston-1/CollisionPolygon2D"]
 
-[connection signal="pressed" from="TextureRect/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="input_event" from="RotasButtons/helena-omaha-1" to="." method="_on_rota_input_event" binds= ["helena-omaha-1"]]
 [connection signal="mouse_entered" from="RotasButtons/helena-omaha-1" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="RotasButtons/helena-omaha-1" to="." method="_on_mouse_exited"]

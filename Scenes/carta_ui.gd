@@ -18,3 +18,8 @@ func _ready():
 func init(uma_cor: String, qnt: int):
 	cor_da_carta = uma_cor
 	quantia = qnt
+
+
+func _on_texture_button_pressed() -> void:
+	pass
+	#print("Vc clicou na carta " + cor_da_carta + "e vc possue " + str(quantia) + " copias dela.")
