@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://owgbeg0m5qwh"]
+
+[ext_resource type="Script" uid="uid://dqjk2btud8kwm" path="res://Scenes/carta_ui.gd" id="1_hlk2s"]
+[ext_resource type="Texture2D" uid="uid://c1jy064sjf0m1" path="res://Assets/cartas/vagao_preto.png" id="2_drmv7"]
+
+[node name="CartaUi" type="Control"]
+custom_minimum_size = Vector2(61, 98)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 614.0
+offset_bottom = 981.0
+script = ExtResource("1_hlk2s")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_drmv7")
+expand_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="TextureRect"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 1
+offset_right = 30.0
+offset_bottom = 30.0
+
+[node name="display_quantidade" type="Label" parent="TextureRect/ColorRect"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.904212, 0.847068, 3.85046e-07, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "54"
+horizontal_alignment = 1
+vertical_alignment = 1

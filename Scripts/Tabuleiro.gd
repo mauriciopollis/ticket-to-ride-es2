@@ -7,9 +7,9 @@ var rotas: Array[Rota] = []
 
 @onready var hud = $TextureRect/Hud
 @onready var jogadoresMock: Array[Jogador] = [
-			Jogador.new("Mauricio", Color.AQUA),
+			Jogador.new("Mauricio", Color.MAROON),
 			Jogador.new("Guilherme", Color.BLUE_VIOLET),
-			Jogador.new("Felipe", Color.CHARTREUSE),
+			Jogador.new("Felipe", Color.DARK_GREEN),
 			Jogador.new("Bernardo", Color.DARK_GOLDENROD),
 			Jogador.new("Andreas", Color.DARK_ORANGE)
 		]

@@ -42,3 +42,27 @@ func inicializar(jogadores: Array[Jogador]):
 	for i in range(cartasDaMesa.size()):
 		var textura = load(imagensCartasDaMesa.pick_random())
 		cartasDaMesa[i].get_node("imagem").texture = textura
+	
+	# Carrega a cena.
+	var carta
+	var cena_carta = preload("res://Scenes/CartaUI.tscn")
+	# Pegar quantia de cartas do jogador (atualmente sem método para tal)
+	#var qnt_cartas_em_mao = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+	var qnt_cartas_em_mao = {
+	"amarelo": 1,
+	"azul": 2,
+	"branco": 3,
+	"laranja": 4,
+	"locomotiva": 0,
+	"preto": 6,
+	"rosa": 7,
+	"verde": 8,
+	"vermelho": 9
+	}
+	
+	# Adiciona cartas presentes em mão a UI.
+	for cor in qnt_cartas_em_mao:
+		if qnt_cartas_em_mao[cor] != 0:
+			carta = cena_carta.instantiate()
+			carta.init(cor, qnt_cartas_em_mao[cor])
+			$TextureRect/MaoJogador.add_child(carta)
