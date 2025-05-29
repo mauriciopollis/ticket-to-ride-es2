@@ -103,7 +103,7 @@ func conquistar_rota(rota: Rota, jogador: Jogador):
 	return true
 
 func _on_rota_input_event(_viewport, event, _shape_idx, nome_rota):
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
 		var polygon2d = $RotasButtons.get_node(nome_rota).get_node("CollisionPolygon2D").get_node("Polygon2D")
 		var base_color = TabuleiroData.COR_DICT[rotas[nome_rota].cor]
 		# var base_color = Color.BLUE
