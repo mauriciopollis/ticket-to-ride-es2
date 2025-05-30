@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://byga0huprqeon"]
+[gd_scene load_steps=7 format=3 uid="uid://byga0huprqeon"]
 
 [ext_resource type="Texture2D" uid="uid://dqg31go1coius" path="res://Assets/selecionar_modo_jogo.png" id="1_7t4dy"]
 [ext_resource type="Script" uid="uid://bhec5wy64a12m" path="res://Scripts/menu_modo_de_jogo.gd" id="1_gm0cl"]
 [ext_resource type="Texture2D" uid="uid://cee418gtvm1aq" path="res://Assets/modo_player.png" id="2_gm0cl"]
 [ext_resource type="Texture2D" uid="uid://c5orv1bcfwwko" path="res://Assets/modo_solo.png" id="3_xe7cc"]
+[ext_resource type="PackedScene" uid="uid://cm1thh1tsp68s" path="res://Scenes/botao_voltar.tscn" id="5_xe7cc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_imkya"]
 texture = ExtResource("1_7t4dy")
@@ -51,5 +52,13 @@ icon = ExtResource("2_gm0cl")
 layout_mode = 2
 icon = ExtResource("3_xe7cc")
 
+[node name="BotaoVoltar" parent="Panel" instance=ExtResource("5_xe7cc")]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 952.0
+offset_right = 138.0
+offset_bottom = 1060.0
+
 [connection signal="pressed" from="Panel/HBoxContainer/ModoPlayer" to="." method="_on_modo_player_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/ModoSolo" to="." method="_on_modo_solo_pressed"]
+[connection signal="pressed" from="Panel/BotaoVoltar" to="." method="_on_botao_voltar_pressed"]

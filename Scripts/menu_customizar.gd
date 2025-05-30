@@ -43,3 +43,7 @@ func _on_aumentar_qtd_ia_pressed() -> void:
 		qtd_ia += 1
 	$Panel/HBoxContainer/ia/qtd_ia.text = str(qtd_ia)
 	$Panel/HBoxContainer/player/qtd_player.text = str(qtd_players)
+
+
+func _on_botao_voltar_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/menu_modo_de_jogo.tscn")
