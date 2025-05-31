@@ -10,13 +10,9 @@ func _ready():
 	$Panel/HBoxContainer/ia/qtd_ia.text = str(qtd_ia)
 
 func _on_play_pressed() -> void:
-	var rng = RandomNumberGenerator.new()
-	var tabuleiro_scene = preload("res://Scenes/tabuleiro.tscn").instantiate()
-	for i in range(qtd_ia):
-		tabuleiro_scene.jogadoresIA.append(Jogador.new("IA " + str(i + 1), Color(rng.randf(), rng.randf(), rng.randf())))
-	for i in range(qtd_players):
-		tabuleiro_scene.jogadoresReais.append(Jogador.new("Jogador " + str(i + 1), Color(rng.randf(), rng.randf(), rng.randf())))
-	get_tree().root.add_child(tabuleiro_scene)
+	var setup_jogadores_scene = preload("res://Scenes/menu_setup_jogadores.tscn").instantiate()
+	setup_jogadores_scene.inicializar(qtd_players, qtd_ia)
+	get_tree().root.add_child(setup_jogadores_scene)
 
 func _on_diminuir_qtd_player_pressed() -> void:
 	if(qtd_players > 0):
