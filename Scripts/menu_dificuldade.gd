@@ -20,4 +20,5 @@ func _on_botao_voltar_pressed() -> void:
 	
 func setup_Jogadores() -> void:
 	setup_jogadores_scene = preload("res://Scenes/menu_setup_jogadores.tscn").instantiate()
+	setup_jogadores_scene.isModoSolo = true
 	setup_jogadores_scene.inicializar(1, 4)

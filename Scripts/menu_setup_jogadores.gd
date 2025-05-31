@@ -1,6 +1,7 @@
 extends Control
 
 var tabuleiro_scene
+var isModoSolo: bool = false
 
 func _init() -> void:
 	tabuleiro_scene = preload("res://Scenes/tabuleiro.tscn").instantiate()
@@ -42,4 +43,7 @@ func _on_botao_jogar_modo_setup_jogadores_pressed() -> void:
 
 
 func _on_botao_voltar_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/menu_customizar.tscn")
+	if isModoSolo:
+		get_tree().change_scene_to_file("res://Scenes/menu_dificuldade.tscn")
+	else:
+		get_tree().change_scene_to_file("res://Scenes/menu_customizar.tscn")
