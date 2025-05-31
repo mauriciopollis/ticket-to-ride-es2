@@ -39,3 +39,7 @@ func setup_jogadores() -> void:
 func _on_botao_jogar_modo_setup_jogadores_pressed() -> void:
 	setup_jogadores()
 	get_tree().root.add_child(tabuleiro_scene)
+
+
+func _on_botao_voltar_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/menu_customizar.tscn")
