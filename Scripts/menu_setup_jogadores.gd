@@ -18,7 +18,7 @@ func inicializar(qtdJogadores: int, qtdIAs: int) -> void:
 		var lineEdit = LineEdit.new()
 		lineEdit.custom_minimum_size = Vector2(0, 75)
 		lineEdit.placeholder_text = "IA " + str(i + 1)
-		$Panel/HBoxContainer/NomesIAs.add_child(LineEdit.new())
+		$Panel/HBoxContainer/NomesIAs.add_child(lineEdit)
 	
 	setup_jogadores()
 	
