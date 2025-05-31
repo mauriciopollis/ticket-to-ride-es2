@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm1thh1tsp68s"]
+
+[ext_resource type="Texture2D" uid="uid://d1rl7cdi4vsri" path="res://Assets/voltar.png" id="1_p6kqw"]
+
+[node name="BotaoVoltar" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+icon = ExtResource("1_p6kqw")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://gjgyl5h8mnlj"]
+[gd_scene load_steps=10 format=3 uid="uid://gjgyl5h8mnlj"]
 
 [ext_resource type="Texture2D" uid="uid://dxdbn8nkfwo11" path="res://Assets/customizar.png" id="1_0xcgs"]
 [ext_resource type="Script" uid="uid://dg4qur3pubja5" path="res://Scripts/menu_customizar.gd" id="1_lvuwv"]
 [ext_resource type="Texture2D" uid="uid://cj55mdhrm8rfj" path="res://Assets/player.png" id="2_lvuwv"]
 [ext_resource type="Texture2D" uid="uid://hk6napvpsxm7" path="res://Assets/ia.png" id="3_djyug"]
 [ext_resource type="Texture2D" uid="uid://kyprd8jxn0in" path="res://Assets/play.png" id="4_7ox4o"]
+[ext_resource type="PackedScene" uid="uid://cm1thh1tsp68s" path="res://Scenes/botao_voltar.tscn" id="6_djyug"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i506o"]
 texture = ExtResource("1_0xcgs")
@@ -153,8 +154,17 @@ grow_vertical = 0
 scale = Vector2(0.4, 0.4)
 icon = ExtResource("4_7ox4o")
 
+[node name="BotaoVoltar" parent="Panel" instance=ExtResource("6_djyug")]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 952.0
+offset_right = 138.0
+offset_bottom = 1060.0
+
 [connection signal="pressed" from="Panel/HBoxContainer/player/aumentar_qtd_player" to="." method="_on_aumentar_qtd_player_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/player/diminuir_qtd_player" to="." method="_on_diminuir_qtd_player_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/ia/aumentar_qtd_ia" to="." method="_on_aumentar_qtd_ia_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/ia/diminuir_qtd_ia" to="." method="_on_diminuir_qtd_ia_pressed"]
 [connection signal="pressed" from="Panel/Button" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Panel/BotaoVoltar" to="." method="_on_botao_voltar_pressed"]
