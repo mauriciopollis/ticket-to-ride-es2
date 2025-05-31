@@ -48,60 +48,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 script = SubResource("GDScript_y0d8r")
 
-[node name="LineEdit" type="LineEdit" parent="Panel/HBoxContainer/NomesJogadores"]
-visible = false
-custom_minimum_size = Vector2(0, 75)
-layout_mode = 2
-
-[node name="LineEdit2" type="LineEdit" parent="Panel/HBoxContainer/NomesJogadores"]
-visible = false
-custom_minimum_size = Vector2(0, 75)
-layout_mode = 2
-
-[node name="LineEdit3" type="LineEdit" parent="Panel/HBoxContainer/NomesJogadores"]
-visible = false
-custom_minimum_size = Vector2(0, 75)
-layout_mode = 2
-
-[node name="LineEdit4" type="LineEdit" parent="Panel/HBoxContainer/NomesJogadores"]
-visible = false
-custom_minimum_size = Vector2(0, 75)
-layout_mode = 2
-
-[node name="LineEdit5" type="LineEdit" parent="Panel/HBoxContainer/NomesJogadores"]
-visible = false
-custom_minimum_size = Vector2(0, 75)
-layout_mode = 2
-
 [node name="NomesIAs" type="VBoxContainer" parent="Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-
-[node name="LineEdit" type="LineEdit" parent="Panel/HBoxContainer/NomesIAs"]
-visible = false
-custom_minimum_size = Vector2(0, 75)
-layout_mode = 2
-
-[node name="LineEdit2" type="LineEdit" parent="Panel/HBoxContainer/NomesIAs"]
-visible = false
-custom_minimum_size = Vector2(0, 75)
-layout_mode = 2
-
-[node name="LineEdit3" type="LineEdit" parent="Panel/HBoxContainer/NomesIAs"]
-visible = false
-custom_minimum_size = Vector2(0, 75)
-layout_mode = 2
-
-[node name="LineEdit4" type="LineEdit" parent="Panel/HBoxContainer/NomesIAs"]
-visible = false
-custom_minimum_size = Vector2(0, 75)
-layout_mode = 2
-
-[node name="LineEdit5" type="LineEdit" parent="Panel/HBoxContainer/NomesIAs"]
-visible = false
-custom_minimum_size = Vector2(0, 75)
-layout_mode = 2
 
 [node name="BotaoJogarModoSetupJogadores" type="Button" parent="Panel"]
 layout_mode = 1
@@ -118,3 +68,5 @@ grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.4, 0.4)
 icon = ExtResource("3_xwbh0")
+
+[connection signal="pressed" from="Panel/BotaoJogarModoSetupJogadores" to="." method="_on_botao_jogar_modo_setup_jogadores_pressed"]
