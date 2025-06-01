@@ -13,16 +13,16 @@ func inicializar(qtdJogadores: int, qtdIAs: int) -> void:
 	for i in range(qtdJogadores):
 		var lineEdit = LineEdit.new()
 		lineEdit.custom_minimum_size = Vector2(0, 75)
-		lineEdit.placeholder_text = "Jogador" + str(i + 1)
+		lineEdit.add_theme_font_size_override("font_size", 30)
+		lineEdit.placeholder_text = "Jogador " + str(i + 1)
 		$Panel/HBoxContainer/NomesJogadores.add_child(lineEdit)
 		
 	for i in range(qtdIAs):
 		var lineEdit = LineEdit.new()
 		lineEdit.custom_minimum_size = Vector2(0, 75)
+		lineEdit.add_theme_font_size_override("font_size", 30)
 		lineEdit.placeholder_text = "IA " + str(i + 1)
 		$Panel/HBoxContainer/NomesIAs.add_child(lineEdit)
-	
-	#setup_jogadores()
 	
 func setup_jogadores() -> void:
 	var rng = RandomNumberGenerator.new()
