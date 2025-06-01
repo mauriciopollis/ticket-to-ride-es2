@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmqsilk6u0eix"]
+
+[ext_resource type="Texture2D" uid="uid://dxdbn8nkfwo11" path="res://Assets/customizar.png" id="1_ulys1"]
+[ext_resource type="Script" uid="uid://njgu2ee3x4gx" path="res://Scripts/menu_setup_jogadores.gd" id="1_xwbh0"]
+[ext_resource type="Texture2D" uid="uid://kyprd8jxn0in" path="res://Assets/play.png" id="3_xwbh0"]
+[ext_resource type="Texture2D" uid="uid://d1rl7cdi4vsri" path="res://Assets/voltar.png" id="4_mhvw4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y0d8r"]
+texture = ExtResource("1_ulys1")
+
+[sub_resource type="GDScript" id="GDScript_y0d8r"]
+script/source = "extends VBoxContainer
+"
+
+[node name="MenuSetupJogadores" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xwbh0")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_y0d8r")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -609.0
+offset_top = -288.0
+offset_right = 627.0
+offset_bottom = 418.0
+alignment = 1
+
+[node name="NomesJogadores" type="VBoxContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+script = SubResource("GDScript_y0d8r")
+
+[node name="NomesIAs" type="VBoxContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="BotaoJogarModoSetupJogadores" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -128.0
+offset_right = 242.0
+offset_bottom = 90.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
+icon = ExtResource("3_xwbh0")
+
+[node name="BotaoVoltar" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 936.0
+offset_right = 149.0
+offset_bottom = 1044.0
+icon = ExtResource("4_mhvw4")
+
+[connection signal="pressed" from="Panel/BotaoJogarModoSetupJogadores" to="." method="_on_botao_jogar_modo_setup_jogadores_pressed"]
+[connection signal="pressed" from="Panel/BotaoVoltar" to="." method="_on_botao_voltar_pressed"]
