@@ -32,6 +32,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="Ticket to ride ES2"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
