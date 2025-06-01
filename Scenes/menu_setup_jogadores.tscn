@@ -72,10 +72,10 @@ icon = ExtResource("3_xwbh0")
 
 [node name="BotaoVoltar" type="Button" parent="Panel"]
 layout_mode = 0
-offset_left = 41.0
-offset_top = 936.0
-offset_right = 149.0
-offset_bottom = 1044.0
+offset_left = 30.0
+offset_top = 952.0
+offset_right = 138.0
+offset_bottom = 1060.0
 icon = ExtResource("4_mhvw4")
 
 [connection signal="pressed" from="Panel/BotaoJogarModoSetupJogadores" to="." method="_on_botao_jogar_modo_setup_jogadores_pressed"]
