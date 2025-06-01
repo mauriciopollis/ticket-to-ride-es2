@@ -15,6 +15,7 @@ func inicializar(qtdJogadores: int, qtdIAs: int) -> void:
 		lineEdit.custom_minimum_size = Vector2(0, 75)
 		lineEdit.placeholder_text = "Jogador" + str(i + 1)
 		$Panel/HBoxContainer/NomesJogadores.add_child(lineEdit)
+		
 	for i in range(qtdIAs):
 		var lineEdit = LineEdit.new()
 		lineEdit.custom_minimum_size = Vector2(0, 75)
@@ -44,6 +45,8 @@ func _on_botao_jogar_modo_setup_jogadores_pressed() -> void:
 
 func _on_botao_voltar_pressed() -> void:
 	if isModoSolo:
+		queue_free()
 		get_tree().change_scene_to_file("res://Scenes/menu_dificuldade.tscn")
 	else:
+		queue_free()
 		get_tree().change_scene_to_file("res://Scenes/menu_customizar.tscn")
