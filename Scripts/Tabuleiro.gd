@@ -13,6 +13,8 @@ func _ready() -> void:
 
 	configurar_tabuleiro()
 
+	Gamestate.inicializar_jogadores()
+
 	for rota in $RotasButtons.get_children():
 		if rota is Area2D:
 			var collision = rota.get_node("CollisionPolygon2D")
@@ -95,9 +97,10 @@ func conquistar_rota(rota: Rota, jogador: Jogador):
 func _on_rota_input_event(_viewport, event, _shape_idx, nome_rota):
 	if event is InputEventMouseButton and event.pressed:
 		var polygon2d = $RotasButtons.get_node(nome_rota).get_node("CollisionPolygon2D").get_node("Polygon2D")
-		var base_color = TabuleiroData.COR_DICT[rotas[nome_rota].cor]
-		# var base_color = Color.BLUE
+		var base_color = Gamestate.jogador_atual().cor
 		polygon2d.color = Color(base_color.r, base_color.g, base_color.b, 0.5)
+		Gamestate.proximo_turno()
+
 
 var mouse_over_count: int = 0
 
