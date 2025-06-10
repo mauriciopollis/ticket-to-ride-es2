@@ -1,9 +1,9 @@
 extends Node
 
-var qtd_players: int = 4
+signal turno_trocado
+
 var jogadores: Array[Jogador] = []
 var jogador_atual_idx: int = 0
-var qtd_ia: int = 0
 
 func jogador_atual():
 	if jogadores.size() > 0:
@@ -15,16 +15,14 @@ func proximo_turno():
 		return
 	jogador_atual_idx = (jogador_atual_idx + 1) % jogadores.size()
 	print("Agora é o turno do: ", jogador_atual().nome)
+	emit_signal("turno_trocado")
 
-func inicializar_jogadores():
+func inicializar_jogadores(nomes_jogadores: Array, nomes_ias: Array) -> void:
 	jogadores.clear()
-	var cores = [Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW]
-	for i in range(qtd_players):
-		var nome = "Jogador %d" % (i + 1)
-		var jogador = Jogador.new(nome, cores[i % cores.size()])
-		jogadores.append(jogador)
-	for i in range(qtd_ia):
-		var nome = "IA %d" % (i + 1)
-		var jogador = Jogador.new(nome, cores[(i + qtd_players) % cores.size()])
-		jogadores.append(jogador)
-	jogador_atual_idx = 0
+	var cores = [Color.RED, Color.BLUE, Color.GREEN, Color.ORANGE, Color.PINK]
+	cores.shuffle()
+	var rng = RandomNumberGenerator.new()
+	var todos_nomes = nomes_jogadores + nomes_ias
+	for i in range(todos_nomes.size()):
+		jogadores.append(Jogador.new(todos_nomes[i], cores[i]))
+	jogador_atual_idx = rng.randi_range(0, jogadores.size() - 1)

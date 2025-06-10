@@ -25,18 +25,19 @@ func inicializar(qtdJogadores: int, qtdIAs: int) -> void:
 		$Panel/HBoxContainer/NomesIAs.add_child(lineEdit)
 	
 func setup_jogadores() -> void:
-	var rng = RandomNumberGenerator.new()
+	var nomes_jogadores = []
+	var nomes_ias = []
 	for lineEdit in $Panel/HBoxContainer/NomesJogadores.get_children():
 		var nome: String = lineEdit.text
 		if nome == "":
 			nome = lineEdit.placeholder_text
-		tabuleiro_scene.jogadoresReais.append(Jogador.new(nome, Color(rng.randf(), rng.randf(), rng.randf())))
-		
+		nomes_jogadores.append(nome)
 	for lineEdit in $Panel/HBoxContainer/NomesIAs.get_children():
 		var nome: String = lineEdit.text
 		if nome == "":
 			nome = lineEdit.placeholder_text
-		tabuleiro_scene.jogadoresIA.append(Jogador.new(nome, Color(rng.randf(), rng.randf(), rng.randf())))
+		nomes_ias.append(nome)
+	Gamestate.inicializar_jogadores(nomes_jogadores, nomes_ias)
 
 func _on_botao_jogar_modo_setup_jogadores_pressed() -> void:
 	setup_jogadores()

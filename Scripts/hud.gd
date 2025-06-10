@@ -4,8 +4,8 @@ extends CanvasLayer
 @onready var oponenteUI2 = $TextureRect/AdversariosContainer/OponenteUI2
 @onready var oponenteUI3 = $TextureRect/AdversariosContainer/OponenteUI3
 @onready var oponenteUI4 = $TextureRect/AdversariosContainer/OponenteUI4
-@onready var oponenteUIs = [oponenteUI1,oponenteUI2, oponenteUI3, oponenteUI4]
-@onready var jogadorDaVezUI =  $TextureRect/JogadorUI
+@onready var oponenteUIs = [oponenteUI1, oponenteUI2, oponenteUI3, oponenteUI4]
+@onready var jogadorDaVezUI = $TextureRect/JogadorUI
 @onready var imagensCartasDaMesa = [
 	"res://Assets/cartas/vagao_amarelo.png",
 	"res://Assets/cartas/vagao_azul.png",
@@ -31,13 +31,18 @@ func _ready() -> void:
 	oponenteUI2.visible = false
 	oponenteUI3.visible = false
 	oponenteUI4.visible = false
+	Gamestate.connect("turno_trocado", Callable(self, "atualizar_jogador_da_vez"))
 
-func inicializar(jogadores: Array[Jogador]):
-	jogadorDaVezUI.setJogador(jogadores[0])
-	
-	for i in range(1, jogadores.size()):
-		oponenteUIs[i - 1].setJogador(jogadores[i])
-		oponenteUIs[i - 1].visible = true
+func inicializar():
+	jogadorDaVezUI.setJogador(Gamestate.jogador_atual())
+
+	var idx = 0
+	for i in range(Gamestate.jogadores.size()):
+		if i == Gamestate.jogador_atual_idx:
+			continue
+		oponenteUIs[idx].setJogador(Gamestate.jogadores[i])
+		oponenteUIs[idx].visible = true
+		idx += 1
 	
 	for i in range(cartasDaMesa.size()):
 		var textura = load(imagensCartasDaMesa.pick_random())
@@ -66,3 +71,6 @@ func inicializar(jogadores: Array[Jogador]):
 			carta = cena_carta.instantiate()
 			carta.init(cor, qnt_cartas_em_mao[cor])
 			$TextureRect/MaoJogador.add_child(carta)
+
+func atualizar_jogador_da_vez():
+	jogadorDaVezUI.setJogador(Gamestate.jogador_atual())

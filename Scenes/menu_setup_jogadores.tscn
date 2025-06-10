@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bmqsilk6u0eix"]
 
 [ext_resource type="Texture2D" uid="uid://dxdbn8nkfwo11" path="res://Assets/customizar.png" id="1_ulys1"]
-[ext_resource type="Script" uid="uid://njgu2ee3x4gx" path="res://Scripts/menu_setup_jogadores.gd" id="1_xwbh0"]
+[ext_resource type="Script" uid="uid://njgu2ee3x4gx" path="res://Scripts/Menus/menu_setup_jogadores.gd" id="1_xwbh0"]
 [ext_resource type="Texture2D" uid="uid://kyprd8jxn0in" path="res://Assets/play.png" id="3_xwbh0"]
 [ext_resource type="Texture2D" uid="uid://d1rl7cdi4vsri" path="res://Assets/voltar.png" id="4_mhvw4"]
 

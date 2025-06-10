@@ -2,28 +2,21 @@ extends Node
 
 class_name Tabuleiro
 
-var cidades: Dictionary = {} # armazenará referncias a objetos da classe Cidade
+var cidades: Dictionary = {}
 var rotas: Dictionary = {}
 var original_polygons: Dictionary = {}
 
 const TabuleiroData = preload("res://Scripts/TabuleiroData.gd")
 
 @onready var hud = $TextureRect/Hud
-@onready var jogadoresIA: Array[Jogador]
-@onready var jogadoresReais: Array[Jogador]
-@onready var jogadores: Array[Jogador]
 
 func _ready() -> void:
 	print("Tabuleiro rodando!")
 	
-	jogadores.append_array(jogadoresIA)
-	jogadores.append_array(jogadoresReais)
-	
-	hud.inicializar(jogadores)
-	
 	configurar_tabuleiro()
 
-	Gamestate.inicializar_jogadores()
+	hud.inicializar()
+	
 
 	for rota in $RotasButtons.get_children():
 		if rota is Area2D:
@@ -108,9 +101,8 @@ func _on_rota_input_event(_viewport, event, _shape_idx, nome_rota):
 	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
 		var polygon2d = $RotasButtons.get_node(nome_rota).get_node("CollisionPolygon2D").get_node("Polygon2D")
 		var base_color = Gamestate.jogador_atual().cor
-		polygon2d.color = Color(base_color.r, base_color.g, base_color.b, 0.5)
+		polygon2d.color = Color(base_color.r, base_color.g, base_color.b, 0.75)
 		Gamestate.proximo_turno()
-
 
 var mouse_over_count: int = 0
 

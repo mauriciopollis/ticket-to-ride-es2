@@ -10,7 +10,7 @@ func _ready():
 	$Panel/HBoxContainer/ia/qtd_ia.text = str(qtd_ia)
 
 func _on_play_pressed() -> void:
-	var setup_jogadores_scene = preload("res://Scenes/Menus/menu_setup_jogadores.tscn").instantiate()
+	var setup_jogadores_scene = preload("res://Scenes/menu_setup_jogadores.tscn").instantiate()
 	setup_jogadores_scene.inicializar(qtd_players, qtd_ia)
 	get_tree().root.add_child(setup_jogadores_scene)
 
