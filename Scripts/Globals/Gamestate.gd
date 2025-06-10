@@ -16,7 +16,6 @@ func proximo_turno():
 	jogador_atual_idx = (jogador_atual_idx + 1) % jogadores.size()
 	print("Agora é o turno do: ", jogador_atual().nome)
 
-
 func inicializar_jogadores():
 	jogadores.clear()
 	var cores = [Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW]

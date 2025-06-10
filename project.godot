@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Utils="*res://Scripts/utils.gd"
-Gamestate="*res://Scripts/Gamestate.gd"
+Utils="*res://Scripts/Globals/Utils.gd"
+Gamestate="*res://Scripts/Globals/Gamestate.gd"
 
 [display]
 
