@@ -1,9 +1,5 @@
 extends Node
 
-# Usado para coisas usadas em vários lugares mas que
-# não estão atreladas a nada em específico
-# Script acessível globalmente
-
 var ROSA = Color.PINK
 var BRANCO = Color.WHITE
 var AZUL = Color.BLUE
@@ -14,7 +10,6 @@ var VERMELHO = Color.RED
 var VERDE = Color.GREEN
 var CINZA = Color.GRAY
 var CURINGA = Color.TRANSPARENT
-
 
 func nomeCor(cor: Color) -> String:
 	if cor == Color.RED:

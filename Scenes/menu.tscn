@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bdwa84y3fx256"]
 
-[ext_resource type="Script" uid="uid://btuur50bmjq2i" path="res://Scripts/Menu.gd" id="1_cayip"]
+[ext_resource type="Script" uid="uid://btuur50bmjq2i" path="res://Scripts/Menus/Menu.gd" id="1_cayip"]
 [ext_resource type="Texture2D" uid="uid://cn4fqp47v73vi" path="res://Assets/tela_inicial.png" id="1_xhh6f"]
 [ext_resource type="Texture2D" uid="uid://kyprd8jxn0in" path="res://Assets/play.png" id="2_cayip"]
 

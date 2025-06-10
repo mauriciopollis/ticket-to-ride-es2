@@ -8,7 +8,7 @@ var nome: String
 var cor: Color
 var pontos: int = 0
 var vagoesDisponiveis: int = 45
-var rotas: Array[Rota] = [] 
+var rotas: Array[Rota] = []
 var grafo: Dictionary = {} # grafo[cidadeChave] -> [cidadeVizinha, rota]
 var cartasTremNaMao: Array[CartaTrem] = []
 var bilhetesDestinoNaMao: Array[BilheteDestino] = []
@@ -32,7 +32,7 @@ func inserirRota(rota: Rota):
 	grafo[cidade1].append([cidade2, rota])
 	grafo[cidade2].append([cidade1, rota])
 
-func resetarMao(): #não deveria ser resetar jogador?
+func resetarMao(): # não deveria ser resetar jogador?
 	vagoesDisponiveis = 45
 	cartasTremNaMao.clear()
 	bilhetesDestinoNaMao.clear()
@@ -42,7 +42,7 @@ func resetarMao(): #não deveria ser resetar jogador?
 func inserirCartaTrem(carta: CartaTrem):
 	cartasTremNaMao.append(carta)
 
-func inserirBilheteDestinoNaMao(bilhete: BilheteDestino): 
+func inserirBilheteDestinoNaMao(bilhete: BilheteDestino):
 	bilhetesDestinoNaMao.append(bilhete)
 # não existe inserirBilheteDestinoCompletado porque só acontece quando remove da da mãos
 
@@ -72,7 +72,7 @@ func getCartasSuficientesIA(corRota: Color, custo: int) -> Array[CartaTrem]:
 	
 	for cor_ in coresNormais: # tenta consumir cartas coloridas
 		var cartasDessaCor = cartasNormais.filter(func(carta): return carta.cor == cor_)
-		var totalDisponivel = cartasDessaCor.size() + cartasCuringa.size()	
+		var totalDisponivel = cartasDessaCor.size() + cartasCuringa.size()
 		
 		if totalDisponivel >= custo:
 			var cartasParaUsar = cartasDessaCor.slice(0, min(custo, cartasDessaCor.size()))

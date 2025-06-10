@@ -15,32 +15,32 @@ func _on_play_pressed() -> void:
 	get_tree().root.add_child(setup_jogadores_scene)
 
 func _on_diminuir_qtd_player_pressed() -> void:
-	if(qtd_players > 0):
-		if(qtd_players + qtd_ia <= minimo_jogadores):
+	if (qtd_players > 0):
+		if (qtd_players + qtd_ia <= minimo_jogadores):
 			qtd_ia += 1
 		qtd_players -= 1
 	$Panel/HBoxContainer/player/qtd_player.text = str(qtd_players)
 	$Panel/HBoxContainer/ia/qtd_ia.text = str(qtd_ia)
 
 func _on_aumentar_qtd_player_pressed() -> void:
-	if(qtd_players < maximo_jogadores):
-		if(qtd_players + qtd_ia == maximo_jogadores):
+	if (qtd_players < maximo_jogadores):
+		if (qtd_players + qtd_ia == maximo_jogadores):
 			qtd_ia -= 1
 		qtd_players += 1
 	$Panel/HBoxContainer/player/qtd_player.text = str(qtd_players)
 	$Panel/HBoxContainer/ia/qtd_ia.text = str(qtd_ia)
 
 func _on_diminuir_qtd_ia_pressed() -> void:
-	if(qtd_ia > 0):
-		if(qtd_players + qtd_ia <= minimo_jogadores):
+	if (qtd_ia > 0):
+		if (qtd_players + qtd_ia <= minimo_jogadores):
 			qtd_players += 1
 		qtd_ia -= 1
 	$Panel/HBoxContainer/ia/qtd_ia.text = str(qtd_ia)
 	$Panel/HBoxContainer/player/qtd_player.text = str(qtd_players)
 
 func _on_aumentar_qtd_ia_pressed() -> void:
-	if(qtd_ia < maximo_jogadores):
-		if(qtd_players + qtd_ia == maximo_jogadores):
+	if (qtd_ia < maximo_jogadores):
+		if (qtd_players + qtd_ia == maximo_jogadores):
 			qtd_players -= 1
 		qtd_ia += 1
 	$Panel/HBoxContainer/ia/qtd_ia.text = str(qtd_ia)

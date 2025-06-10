@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://byga0huprqeon"]
 
 [ext_resource type="Texture2D" uid="uid://dqg31go1coius" path="res://Assets/selecionar_modo_jogo.png" id="1_7t4dy"]
-[ext_resource type="Script" uid="uid://bhec5wy64a12m" path="res://Scripts/menu_modo_de_jogo.gd" id="1_gm0cl"]
+[ext_resource type="Script" uid="uid://bhec5wy64a12m" path="res://Scripts/Menus/menu_modo_de_jogo.gd" id="1_gm0cl"]
 [ext_resource type="Texture2D" uid="uid://cee418gtvm1aq" path="res://Assets/modo_player.png" id="2_gm0cl"]
 [ext_resource type="Texture2D" uid="uid://c5orv1bcfwwko" path="res://Assets/modo_solo.png" id="3_xe7cc"]
 [ext_resource type="PackedScene" uid="uid://cm1thh1tsp68s" path="res://Scenes/botao_voltar.tscn" id="5_xe7cc"]
