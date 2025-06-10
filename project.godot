@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Utils="*res://Scripts/Globals/Utils.gd"
 Gamestate="*res://Scripts/Globals/Gamestate.gd"
+GlobalAudioStreamPlayer="*res://Scenes/audio_stream_player.tscn"
 
 [display]
 
@@ -31,6 +32,10 @@ window/stretch/mode="viewport"
 [dotnet]
 
 project/assembly_name="Ticket to ride ES2"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 
 [rendering]
 

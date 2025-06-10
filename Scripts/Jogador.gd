@@ -65,7 +65,10 @@ func getCartasSuficientesIA(corRota: Color, custo: int) -> Array[CartaTrem]:
 			coresNormais.append(carta.cor)
 	
 	if not corCompativel: # limita se a rota não for cinza
-		coresNormais = [corRota] if corRota in coresNormais else []
+		if corRota in coresNormais:
+			coresNormais = [corRota] as Array[Color]
+		else:
+			coresNormais = [] as Array[Color]
 	
 	for cor_ in coresNormais: # tenta consumir cartas coloridas
 		var cartasDessaCor = cartasNormais.filter(func(carta): return carta.cor == cor_)

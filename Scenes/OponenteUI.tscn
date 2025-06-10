@@ -20,6 +20,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 165.0
 offset_bottom = 145.0
+size_flags_horizontal = 0
 script = ExtResource("1_ne3ai")
 
 [node name="Panel" type="Panel" parent="."]
