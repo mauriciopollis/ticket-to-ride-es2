@@ -12,6 +12,17 @@ var cor: String
 var custo: int
 var dono: Jogador = null
 
+# chave: tamanho da rota
+# valor: pontuação da rota
+const PONTUACAO_ROTAS = {
+	1: 1,
+	2: 2,
+	3: 4,
+	4: 7,
+	5: 10,
+	6: 15
+}
+
 func _init(nome_: String, cidade1_: Cidade, cidade2_: Cidade, cor_: String, custo_: int):
 	self.nome = nome_
 	self.cidade1 = cidade1_
@@ -21,3 +32,6 @@ func _init(nome_: String, cidade1_: Cidade, cidade2_: Cidade, cor_: String, cust
 
 func setDono(jogador: Jogador):
 	self.dono = jogador
+
+static func getPontuacao(custo: int):
+	return PONTUACAO_ROTAS.get(custo)
