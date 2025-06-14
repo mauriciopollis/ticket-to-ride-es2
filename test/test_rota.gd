@@ -3,7 +3,6 @@ extends GutTest
 var Jogador = preload("res://Scripts/Jogador.gd")
 var Cidade = preload("res://Scripts/Cidade.gd")
 var Rota = preload("res://Scripts/Rota.gd")
-var Utils = preload("res://Scripts/utils.gd")
 
 func test_criacao_rota():
 	var cidade_a = Cidade.new("Cidade A")
