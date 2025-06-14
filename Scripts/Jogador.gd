@@ -32,7 +32,7 @@ func inserirRota(rota: Rota):
 	grafo[cidade1].append([cidade2, rota])
 	grafo[cidade2].append([cidade1, rota])
 	
-	pontos += Rota.PONTUACAO_ROTAS.get(rota.custo)
+	pontos += Rota.getPontuacao(rota.custo)
 	
 
 func resetarMao(): # não deveria ser resetar jogador?

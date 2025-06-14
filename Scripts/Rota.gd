@@ -32,3 +32,6 @@ func _init(nome_: String, cidade1_: Cidade, cidade2_: Cidade, cor_: String, cust
 
 func setDono(jogador: Jogador):
 	self.dono = jogador
+
+static func getPontuacao(custo: int):
+	return PONTUACAO_ROTAS.get(custo)
