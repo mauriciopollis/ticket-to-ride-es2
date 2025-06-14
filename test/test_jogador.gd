@@ -9,14 +9,14 @@ var Utils = preload("res://Scripts/utils.gd")
 
 func test_inicializacao():
 	var jogador = Jogador.new("jogadorTeste", Color.RED)
-	assert(jogador.nome == "jogadorTeste")
-	assert(jogador.cor == Color.RED)
-	assert(jogador.pontos == 0)
-	assert(jogador.vagoesDisponiveis == 45)
-	assert(jogador.rotas.size() == 0)
-	assert(jogador.cartasTremNaMao.size() == 0)
-	assert(jogador.bilhetesDestinoNaMao.size() == 0)
-	assert(jogador.bilhetesDestinoCompletados.size() == 0)
+	assert_eq(jogador.nome, "jogadorTeste")
+	assert_eq(jogador.cor, Color.RED)
+	assert_eq(jogador.pontos, 0)
+	assert_eq(jogador.vagoesDisponiveis, 45)
+	assert_eq(jogador.rotas.size(), 0)
+	assert_eq(jogador.cartasTremNaMao.size(), 0)
+	assert_eq(jogador.bilhetesDestinoNaMao.size(), 0)
+	assert_eq(jogador.bilhetesDestinoCompletados.size(), 0)
 
 func test_inserir_e_remover_cartas():
 	var jogador = Jogador.new("jogadorTeste", Color.RED)
@@ -24,10 +24,10 @@ func test_inserir_e_remover_cartas():
 	var carta2 = CartaTrem.new(Color.BLUE)
 	jogador.inserirCartaTrem(carta1)
 	jogador.inserirCartaTrem(carta2)
-	assert(jogador.cartasTremNaMao.size() == 2)
+	assert_eq(jogador.cartasTremNaMao.size(), 2)
 	jogador.removerCartaTrem(carta1)
-	assert(jogador.cartasTremNaMao.size() == 1)
-	assert(jogador.cartasTremNaMao[0].cor == carta2.cor)
+	assert_eq(jogador.cartasTremNaMao.size(), 1)
+	assert_eq(jogador.cartasTremNaMao[0].cor, carta2.cor)
 
 func test_inserir_e_completar_bilhetes():
 	var jogador = Jogador.new("jogadorTeste", Color.RED)
@@ -35,10 +35,10 @@ func test_inserir_e_completar_bilhetes():
 	var cidade2 = Cidade.new("B")
 	var bilhete = BilheteDestino.new(cidade1, cidade2, 5)
 	jogador.inserirBilheteDestinoNaMao(bilhete)
-	assert(jogador.bilhetesDestinoNaMao.size() == 1)
+	assert_eq(jogador.bilhetesDestinoNaMao.size(), 1)
 	jogador.completarBilheteDestino(bilhete)
-	assert(jogador.bilhetesDestinoNaMao.size() == 0)
-	assert(jogador.bilhetesDestinoCompletados.size() == 1)
+	assert_eq(jogador.bilhetesDestinoNaMao.size(), 0)
+	assert_eq(jogador.bilhetesDestinoCompletados.size(), 1)
 
 func test_buscar_caminho():
 	var jogador = Jogador.new("jogadorTeste", Color.RED)
@@ -49,8 +49,8 @@ func test_buscar_caminho():
 	var rota2 = Rota.new("Rota 2", cidade2, cidade3, "BLUE", 2)
 	jogador.inserirRota(rota1)
 	jogador.inserirRota(rota2)
-	assert(jogador.buscarCaminho(cidade1, cidade3) == true)
-	assert(jogador.buscarCaminho(cidade1, Cidade.new("X")) == false)
+	assert_true(jogador.buscarCaminho(cidade1, cidade3))
+	assert_false(jogador.buscarCaminho(cidade1, Cidade.new("X")))
 
 func test_resetar_mao():
 	var jogador = Jogador.new("jogadorTeste", Color.RED)
@@ -62,10 +62,10 @@ func test_resetar_mao():
 	jogador.inserirBilheteDestinoNaMao(bilhete)
 	jogador.completarBilheteDestino(bilhete)
 	jogador.resetarMao()
-	assert(jogador.vagoesDisponiveis == 45)
-	assert(jogador.cartasTremNaMao.is_empty())
-	assert(jogador.bilhetesDestinoNaMao.is_empty())
-	assert(jogador.bilhetesDestinoCompletados.is_empty())
+	assert_eq(jogador.vagoesDisponiveis, 45)
+	assert_true(jogador.cartasTremNaMao.is_empty())
+	assert_true(jogador.bilhetesDestinoNaMao.is_empty())
+	assert_true(jogador.bilhetesDestinoCompletados.is_empty())
 
 func test_validar_bilhete_destino_na_mao():
 	var jogador = Jogador.new("jogadorTeste", Color.RED)
@@ -76,9 +76,9 @@ func test_validar_bilhete_destino_na_mao():
 	var rota = Rota.new("Rota", cidade1, cidade2, "RED", 3)
 	jogador.inserirRota(rota)
 	jogador.validarBilheteDestinoNaMao(false)
-	assert(jogador.pontos == 10)
-	assert(jogador.bilhetesDestinoNaMao.is_empty())
-	assert(jogador.bilhetesDestinoCompletados.size() == 1)
+	assert_eq(jogador.pontos, 10)
+	assert_true(jogador.bilhetesDestinoNaMao.is_empty())
+	assert_eq(jogador.bilhetesDestinoCompletados.size(), 1)
 
 func test_get_maior_caminho():
 	var jogador = Jogador.new("jogadorTeste", Color.RED)
@@ -90,6 +90,6 @@ func test_get_maior_caminho():
 	jogador.inserirRota(rota1)
 	jogador.inserirRota(rota2)
 	var maior_caminho = jogador.getMaiorCaminho()
-	assert(maior_caminho.size() == 2)
-	assert(maior_caminho.has(rota1))
-	assert(maior_caminho.has(rota2))
+	assert_eq(maior_caminho.size(), 2)
+	assert_true(maior_caminho.has(rota1))
+	assert_true(maior_caminho.has(rota2))

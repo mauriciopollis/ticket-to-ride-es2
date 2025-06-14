@@ -6,7 +6,7 @@ var cidades: Dictionary = {}
 var rotas: Dictionary = {}
 var original_polygons: Dictionary = {}
 
-const TabuleiroData = preload("res://Scripts/TabuleiroData.gd")
+var TabuleiroData = preload("res://Scripts/TabuleiroData.gd")
 
 @onready var hud = $TextureRect/Hud
 
