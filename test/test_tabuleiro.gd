@@ -48,7 +48,7 @@ func test_gerar_nome_rota_com_duplicata():
 	assert_eq(nome, "lisboa-porto-2")
 
 func test_conquistar_rota_funciona():
-	var jogador = Jogador.new("Fulano", Color.RED)
+	var jogador = Jogador.new("A", Color.RED)
 	var cidade1 = Cidade.new("Lisboa")
 	var cidade2 = Cidade.new("Porto")
 	var rota = Rota.new("lisboa-porto-1", cidade1, cidade2, "azul", 4)
@@ -59,8 +59,8 @@ func test_conquistar_rota_funciona():
 	assert_true(jogador.rotas.has(rota))
 
 func test_conquistar_rota_ja_possuida():
-	var jogador1 = Jogador.new("Fulano", Color.RED)
-	var jogador2 = Jogador.new("Ciclano", Color.BLUE)
+	var jogador1 = Jogador.new("A", Color.RED)
+	var jogador2 = Jogador.new("B", Color.BLUE)
 	var cidade1 = Cidade.new("Lisboa")
 	var cidade2 = Cidade.new("Porto")
 	var rota = Rota.new("lisboa-porto-1", cidade1, cidade2, "azul", 4)
