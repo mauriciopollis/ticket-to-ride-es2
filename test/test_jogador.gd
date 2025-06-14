@@ -5,7 +5,6 @@ var CartaTrem = preload("res://Scripts/CartaTrem.gd")
 var BilheteDestino = preload("res://Scripts/BilheteDestino.gd")
 var Cidade = preload("res://Scripts/Cidade.gd")
 var Rota = preload("res://Scripts/Rota.gd")
-var Utils = preload("res://Scripts/utils.gd")
 
 func test_inicializacao():
 	var jogador = Jogador.new("jogadorTeste", Color.RED)
