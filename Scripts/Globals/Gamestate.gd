@@ -4,10 +4,16 @@ signal turno_trocado
 
 var jogadores: Array[Jogador] = []
 var jogador_atual_idx: int = 0
+var primeiras_rodadas = false
 
 func jogador_atual():
 	if jogadores.size() > 0:
 		return jogadores[jogador_atual_idx]
+	return null
+
+func jogadores_restantes():
+	if jogadores.size() > 1:
+		return jogadores.slice(0, jogador_atual_idx) + jogadores.slice(jogador_atual_idx+1, jogadores.size())
 	return null
 
 func proximo_turno():
@@ -26,3 +32,8 @@ func inicializar_jogadores(nomes_jogadores: Array, nomes_ias: Array) -> void:
 	for i in range(todos_nomes.size()):
 		jogadores.append(Jogador.new(todos_nomes[i], cores[i]))
 	jogador_atual_idx = rng.randi_range(0, jogadores.size() - 1)
+	
+func distribuir_cartas(baralho):
+	for i in range(4):
+		for jogador in jogadores:
+			jogador.inserirCartaTrem(baralho.comprarPilhaCartasTrem())

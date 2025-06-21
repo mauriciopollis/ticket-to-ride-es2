@@ -33,14 +33,13 @@ func inserirRota(rota: Rota):
 	grafo[cidade2].append([cidade1, rota])
 	
 	pontos += Rota.getPontuacao(rota.custo)
-	
+	rota.dono = self
 
-func resetarMao(): # não deveria ser resetar jogador?
+func resetarJogador():
 	vagoesDisponiveis = 45
 	cartasTremNaMao.clear()
 	bilhetesDestinoNaMao.clear()
 	bilhetesDestinoCompletados.clear()
-
 
 func inserirCartaTrem(carta: CartaTrem):
 	cartasTremNaMao.append(carta)
@@ -49,13 +48,41 @@ func inserirBilheteDestinoNaMao(bilhete: BilheteDestino):
 	bilhetesDestinoNaMao.append(bilhete)
 # não existe inserirBilheteDestinoCompletado porque só acontece quando remove da da mãos
 
+func removeNCores(quantidade, cor, baralho):
+	var numeroCorSelecionada = 0
+	var numeroLocomotivas = 0
+	for carta in cartasTremNaMao:
+		if carta.cor == cor:
+			numeroCorSelecionada += 1
+		if carta.cor == Color.TRANSPARENT:
+			numeroLocomotivas += 1
+	if quantidade > numeroCorSelecionada + numeroLocomotivas:
+		print("Alerta: Tentando remover mais cartas do que Jogador possue!")
+		return false
+	if numeroCorSelecionada >= quantidade:
+		for i in range(quantidade):
+			removeCartaPorCor(cor, baralho)
+	else:
+		for i in range(numeroCorSelecionada):
+			removeCartaPorCor(cor, baralho)
+		for i in range(quantidade - numeroCorSelecionada):
+			removeCartaPorCor(Color.TRANSPARENT, baralho)
+	return true
+
+func removeCartaPorCor(cor: Color, baralho: Baralho):
+	for carta in cartasTremNaMao:
+		if carta.cor == cor:
+			baralho.descartarCartaTrem(carta)
+			cartasTremNaMao.erase(carta)
+			return true
+	return false
+
 func removerCartaTrem(carta: CartaTrem):
 	cartasTremNaMao.erase(carta)
 
 func completarBilheteDestino(bilhete: BilheteDestino): # bilhetes só são removidos quando completados
 	bilhetesDestinoCompletados.append(bilhete)
 	bilhetesDestinoNaMao.erase(bilhete)
-
 
 func getCartasSuficientesIA(corRota: Color, custo: int) -> Array[CartaTrem]:
 	var corCompativel: bool = corRota == Color.GRAY # se corRota == Color.Gray: corCompativel = True
@@ -98,7 +125,6 @@ func usarCartasTremIA(corRota: Color, custo: int) -> bool:
 	for carta in cartas:
 		removerCartaTrem(carta)
 	return true
-
 
 func buscarCaminho(cidade1: Cidade, cidade2: Cidade) -> bool:
 	if not (grafo.has(cidade1) and grafo.has(cidade2)): # ao menos uma das cidades não existe no sobgrafo
@@ -159,3 +185,75 @@ func getMaiorCaminho() -> Array[Rota]:
 			maiorCaminho = resultado
 
 	return maiorCaminho
+
+func getVagoesDisponiveis() -> int:
+	return self.vagoesDisponiveis
+
+func adicionarVagoesDisponiveis(qtd: int):
+	if (-qtd > self.vagoesDisponiveis):
+		print("Jogador possuí " + str(self.vagoesDisponiveis) + " e tentou capturar rota de custo " + str(-qtd))
+	else:
+		self.vagoesDisponiveis += qtd
+
+func get_qtd_cartas(cor_rota: Color) -> int:
+	var dist = {
+		str(Color.BLACK): 0,
+		str(Color.BLUE): 0,
+		str(Color.GREEN): 0,
+		str(Color.ORANGE): 0,
+		str(Color.PINK): 0,
+		str(Color.RED): 0,
+		str(Color.TRANSPARENT): 0,
+		str(Color.WHITE): 0,
+		str(Color.YELLOW): 0,
+		str(Color.GRAY): -1,
+	}
+	var key_to_highest = str(Color.GRAY)
+	for carta in cartasTremNaMao:
+		dist[str(carta.cor)] += 1
+		if dist[str(carta.cor)] > dist[key_to_highest] and str(carta.cor) != str(Color.TRANSPARENT):
+			key_to_highest = str(carta.cor)
+			
+	if cor_rota == Color.GRAY:
+		return dist[key_to_highest] + dist[str(Color.TRANSPARENT)]
+	else:
+		return dist[str(cor_rota)] + dist[str(Color.TRANSPARENT)]
+
+func get_options(n_cartas: int):
+	var escolhas = []
+	var dist = {
+		str(Color.BLACK): 0,
+		str(Color.BLUE): 0,
+		str(Color.GREEN): 0,
+		str(Color.ORANGE): 0,
+		str(Color.PINK): 0,
+		str(Color.RED): 0,
+		str(Color.TRANSPARENT): 0,
+		str(Color.WHITE): 0,
+		str(Color.YELLOW): 0,
+	}
+	for carta in cartasTremNaMao:
+		dist[str(carta.cor)] += 1
+
+	for key in dist:
+		if key != str(Color.TRANSPARENT) and dist[key] > 0:
+			if dist[key] + dist[str(Color.TRANSPARENT)] >= n_cartas:
+				if key == str(Color.BLACK):
+					escolhas.append("preto")
+				elif key == str(Color.BLUE):
+					escolhas.append("azul")
+				elif key == str(Color.GREEN):
+					escolhas.append("verde")
+				elif key == str(Color.ORANGE):
+					escolhas.append("laranja")
+				elif key == str(Color.PINK):
+					escolhas.append("rosa")
+				elif key == str(Color.RED):
+					escolhas.append("vermelho")
+				elif key == str(Color.WHITE):
+					escolhas.append("branco")
+				elif key == str(Color.YELLOW):
+					escolhas.append("amarelo")
+				else:
+					print("Erro ao gerar escolhas para conquista de cinza!")
+	return escolhas
