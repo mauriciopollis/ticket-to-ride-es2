@@ -17,6 +17,9 @@ var ordemDeJogada: int
 var cartasCompradasNesteTurno: int = 0
 var comprouLocomotivaVisivel: bool = false
 
+# Vai ser true ao: Selecionar rota, comprar bilhete destino, comprar carta vagão 
+var fezAcaoPrincipal: bool = false
+
 func _init(nome_: String, cor_: Color):
 	self.nome = nome_
 	self.cor = cor_
@@ -167,5 +170,10 @@ func validarCompraCartaVagao(carta: CartaTrem, visivel: bool) -> bool:
 		return false
 	
 	if carta.eh_locomotiva() and visivel and cartasCompradasNesteTurno > 0:
+		return false
+	return true
+
+func validarCompraCartaDestino() -> bool:
+	if fezAcaoPrincipal:
 		return false
 	return true
