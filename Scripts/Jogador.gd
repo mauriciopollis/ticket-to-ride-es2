@@ -33,8 +33,9 @@ func inserirRota(rota: Rota):
 	grafo[cidade2].append([cidade1, rota])
 	
 	pontos += Rota.getPontuacao(rota.custo)
+	rota.dono = self
 
-func resetarMao(): # não deveria ser resetar jogador?
+func resetarJogador():
 	vagoesDisponiveis = 45
 	cartasTremNaMao.clear()
 	bilhetesDestinoNaMao.clear()
@@ -158,3 +159,34 @@ func getMaiorCaminho() -> Array[Rota]:
 
 func getVagoesDisponiveis() -> int:
 	return self.vagoesDisponiveis
+
+func adicionarVagoesDisponiveis(qtd: int):
+	if (-qtd > self.vagoesDisponiveis):
+		print("Jogador possuí " + str(self.vagoesDisponiveis) + " e tentou capturar rota de custo " + str(-qtd))
+	else:
+		self.vagoesDisponiveis += qtd
+
+func get_qtd_cartas(cor_rota: Color) -> int:
+	var dist = {
+		str(Color.BLACK): 0,
+		str(Color.BLUE): 0,
+		str(Color.GREEN): 0,
+		str(Color.ORANGE): 0,
+		str(Color.PINK): 0,
+		str(Color.RED): 0,
+		str(Color.TRANSPARENT): 0,
+		str(Color.WHITE): 0,
+		str(Color.YELLOW): 0,
+		str(Color.GRAY): -1,
+	}
+	var count : int = 0
+	var key_to_highest = str(Color.GRAY)
+	for carta in cartasTremNaMao:
+		dist[str(carta.cor)] += 1
+		if dist[str(carta.cor)] > dist[key_to_highest] and str(carta.cor) != str(Color.TRANSPARENT):
+			key_to_highest = str(carta.cor)
+			
+	if cor_rota == Color.GRAY:
+		return dist[key_to_highest] + dist[str(Color.TRANSPARENT)]
+	else:
+		return dist[str(cor_rota)] + dist[str(Color.TRANSPARENT)]

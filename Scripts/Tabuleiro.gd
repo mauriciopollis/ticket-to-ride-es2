@@ -83,7 +83,8 @@ func configurar_rotas():
 		var c1 = get_cidade(rotaData[0])
 		var c2 = get_cidade(rotaData[1])
 		var nome_rota = gerar_nome_rota(c1, c2)
-		var rota = Rota.new(nome_rota, c1, c2, rotaData[2], rotaData[3])
+		#var rota = Rota.new(nome_rota, c1, c2, rotaData[2], rotaData[3])
+		var rota = Rota.new(nome_rota, c1, c2, TabuleiroData.COR_DICT[rotaData[2]], rotaData[3])
 		rotas[nome_rota] = rota
 	# print(rotas)
 
@@ -102,14 +103,17 @@ func conquistar_rota(rota: Rota, jogador: Jogador):
 	return true
 
 func _on_rota_input_event(_viewport, event, _shape_idx, nome_rota):
-	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
-		var polygon2d = $RotasButtons.get_node(nome_rota).get_node("CollisionPolygon2D").get_node("Polygon2D")
-		var base_color = Gamestate.jogador_atual().cor
-		polygon2d.color = Color(base_color.r, base_color.g, base_color.b, 0.75)
-		#Gamestate.jogador_atual().pontos += 1
-		#print(Gamestate.jogador_atual().nome + " está com " + str(Gamestate.jogador_atual().pontos) + " pontos!")
-		Gamestate.proximo_turno()
-
+	var jogador_atual = Gamestate.jogador_atual()
+	var rota_alvo = rotas[nome_rota]
+	var cor_alvo = rota_alvo.cor
+	if jogador_atual.get_qtd_cartas(cor_alvo)  >= rota_alvo.custo:
+		if rota_alvo.dono == null and event is InputEventMouseButton and event.button_index == 1 and event.pressed:
+			var polygon2d = $RotasButtons.get_node(nome_rota).get_node("CollisionPolygon2D").get_node("Polygon2D")
+			var base_color = jogador_atual.cor
+			polygon2d.color = Color(base_color.r, base_color.g, base_color.b, 0.75)
+			conquistar_rota(rota_alvo, jogador_atual)
+			jogador_atual.adicionarVagoesDisponiveis(-rota_alvo.custo)
+			Gamestate.proximo_turno()
 var mouse_over_count: int = 0
 
 func _on_mouse_entered() -> void:
