@@ -25,6 +25,10 @@ extends CanvasLayer
 	$TextureRect/VBoxContainer/CartaDaMesa4,
 	$TextureRect/VBoxContainer/CartaDaMesa5
 ]
+@onready var quantiaPilhaDestino = $TextureRect/PilhaDeDestinos/HBoxContainer/qtd_cartas.text
+@onready var quantiaPilhaCartas = $TextureRect/PilhaDeCartas/HBoxContainer/qtd_cartas.text
+@onready var maoJogadorAtual = $TextureRect/MaoJogador
+
 
 func _ready() -> void:
 	oponenteUI1.visible = false
@@ -32,6 +36,7 @@ func _ready() -> void:
 	oponenteUI3.visible = false
 	oponenteUI4.visible = false
 	Gamestate.connect("turno_trocado", Callable(self, "atualizar_jogador_da_vez"))
+
 
 func inicializar():
 	jogadorDaVezUI.setJogador(Gamestate.jogador_atual())
@@ -47,30 +52,52 @@ func inicializar():
 	for i in range(cartasDaMesa.size()):
 		var textura = load(imagensCartasDaMesa.pick_random())
 		cartasDaMesa[i].get_node("imagem").texture = textura
-	
-	# Carrega a cena.
-	var carta
-	var cena_carta = preload("res://Scenes/CartaUI.tscn")
-	# Pegar quantia de cartas do jogador (atualmente sem método para tal)
-	#var qnt_cartas_em_mao = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+	var mao_jogador_atual = Gamestate.jogador_atual().cartasTremNaMao
 	var qnt_cartas_em_mao = {
-	"amarelo": 1,
-	"azul": 2,
-	"branco": 3,
-	"laranja": 4,
+	"amarelo": 0,
+	"azul": 0,
+	"branco": 0,
+	"laranja": 0,
 	"locomotiva": 0,
-	"preto": 6,
-	"rosa": 7,
-	"verde": 8,
-	"vermelho": 9
+	"preto": 0,
+	"rosa": 0,
+	"verde": 0,
+	"vermelho": 0
 	}
 	
+	for carta in mao_jogador_atual:
+		match carta.cor:
+			Color.BLACK:
+				qnt_cartas_em_mao["preto"] += 1
+			Color.BLUE:
+				qnt_cartas_em_mao["azul"] += 1
+			Color.GREEN:
+				qnt_cartas_em_mao["verde"] += 1
+			Color.ORANGE:
+				qnt_cartas_em_mao["laranja"] += 1
+			Color.PINK:
+				qnt_cartas_em_mao["rosa"] += 1
+			Color.RED:
+				qnt_cartas_em_mao["vermelho"] += 1
+			Color.TRANSPARENT:
+				qnt_cartas_em_mao["locomotiva"] += 1
+			Color.WHITE:
+				qnt_cartas_em_mao["branco"] += 1
+			Color.YELLOW:
+				qnt_cartas_em_mao["amarelo"] += 1
+	
+	# Carrega a cena.
+	var carta_ui
+	var cena_carta = preload("res://Scenes/CartaUI.tscn")
+
 	# Adiciona cartas presentes em mão a UI.
 	for cor in qnt_cartas_em_mao:
 		if qnt_cartas_em_mao[cor] != 0:
-			carta = cena_carta.instantiate()
-			carta.init(cor, qnt_cartas_em_mao[cor])
-			$TextureRect/MaoJogador.add_child(carta)
+			carta_ui = cena_carta.instantiate()
+			carta_ui.init(cor, qnt_cartas_em_mao[cor])
+			$TextureRect/MaoJogador.add_child(carta_ui)
 
 func atualizar_jogador_da_vez():
 	jogadorDaVezUI.setJogador(Gamestate.jogador_atual())
@@ -80,4 +107,61 @@ func atualizar_jogador_da_vez():
 		oponenteUIs[idx].setJogador(oponente)
 		oponenteUIs[idx].visible = true
 		idx += 1
+
+	atualiza_mao_atual()
 	
+	
+func atualiza_pilha_destino(n):
+	$TextureRect/PilhaDeDestinos/HBoxContainer/qtd_cartas.text = str(n)
+
+func atualiza_pilha_cartas_trem(n):
+	$TextureRect/PilhaDeCartas/HBoxContainer/qtd_cartas.text = str(n)
+
+func atualiza_mao_atual():
+	for child in $TextureRect/MaoJogador.get_children():
+		child.queue_free()
+	
+	var mao_jogador_atual = Gamestate.jogador_atual().cartasTremNaMao
+	var qnt_cartas_em_mao = {
+	"amarelo": 0,
+	"azul": 0,
+	"branco": 0,
+	"laranja": 0,
+	"locomotiva": 0,
+	"preto": 0,
+	"rosa": 0,
+	"verde": 0,
+	"vermelho": 0
+	}
+	
+	for carta in mao_jogador_atual:
+		match carta.cor:
+			Color.BLACK:
+				qnt_cartas_em_mao["preto"] += 1
+			Color.BLUE:
+				qnt_cartas_em_mao["azul"] += 1
+			Color.GREEN:
+				qnt_cartas_em_mao["verde"] += 1
+			Color.ORANGE:
+				qnt_cartas_em_mao["laranja"] += 1
+			Color.PINK:
+				qnt_cartas_em_mao["rosa"] += 1
+			Color.RED:
+				qnt_cartas_em_mao["vermelho"] += 1
+			Color.TRANSPARENT:
+				qnt_cartas_em_mao["locomotiva"] += 1
+			Color.WHITE:
+				qnt_cartas_em_mao["branco"] += 1
+			Color.YELLOW:
+				qnt_cartas_em_mao["amarelo"] += 1
+	
+	# Carrega a cena.
+	var carta_ui
+	var cena_carta = preload("res://Scenes/CartaUI.tscn")
+
+	# Adiciona cartas presentes em mão a UI.
+	for cor in qnt_cartas_em_mao:
+		if qnt_cartas_em_mao[cor] != 0:
+			carta_ui = cena_carta.instantiate()
+			carta_ui.init(cor, qnt_cartas_em_mao[cor])
+			$TextureRect/MaoJogador.add_child(carta_ui)

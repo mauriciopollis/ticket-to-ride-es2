@@ -33,14 +33,12 @@ func inserirRota(rota: Rota):
 	grafo[cidade2].append([cidade1, rota])
 	
 	pontos += Rota.getPontuacao(rota.custo)
-	
 
 func resetarMao(): # não deveria ser resetar jogador?
 	vagoesDisponiveis = 45
 	cartasTremNaMao.clear()
 	bilhetesDestinoNaMao.clear()
 	bilhetesDestinoCompletados.clear()
-
 
 func inserirCartaTrem(carta: CartaTrem):
 	cartasTremNaMao.append(carta)
@@ -55,7 +53,6 @@ func removerCartaTrem(carta: CartaTrem):
 func completarBilheteDestino(bilhete: BilheteDestino): # bilhetes só são removidos quando completados
 	bilhetesDestinoCompletados.append(bilhete)
 	bilhetesDestinoNaMao.erase(bilhete)
-
 
 func getCartasSuficientesIA(corRota: Color, custo: int) -> Array[CartaTrem]:
 	var corCompativel: bool = corRota == Color.GRAY # se corRota == Color.Gray: corCompativel = True
@@ -98,7 +95,6 @@ func usarCartasTremIA(corRota: Color, custo: int) -> bool:
 	for carta in cartas:
 		removerCartaTrem(carta)
 	return true
-
 
 func buscarCaminho(cidade1: Cidade, cidade2: Cidade) -> bool:
 	if not (grafo.has(cidade1) and grafo.has(cidade2)): # ao menos uma das cidades não existe no sobgrafo

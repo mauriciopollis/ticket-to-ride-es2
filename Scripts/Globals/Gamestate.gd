@@ -32,3 +32,8 @@ func inicializar_jogadores(nomes_jogadores: Array, nomes_ias: Array) -> void:
 	for i in range(todos_nomes.size()):
 		jogadores.append(Jogador.new(todos_nomes[i], cores[i]))
 	jogador_atual_idx = rng.randi_range(0, jogadores.size() - 1)
+	
+func distribuir_cartas(baralho):
+	for i in range(4):
+		for jogador in jogadores:
+			jogador.inserirCartaTrem(baralho.comprarPilhaCartasTrem())

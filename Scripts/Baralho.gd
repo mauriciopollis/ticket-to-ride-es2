@@ -20,7 +20,6 @@ func _ready() -> void:
 	montarPilhaBilhetesDestino()
 	embaralharPilhaBilhetesDestino()
 
-
 func resetarBaralho():
 	pilhaCartasTrem.clear()
 	pilhaBilhetesDestino.clear()
@@ -28,7 +27,6 @@ func resetarBaralho():
 	descarteCartasTrem.clear()
 	descarteBilhetesDestino.clear()
 	_ready()
-
 
 func montarPilhaCartasTrem():
 	var cores = [Color.PINK, Color.WHITE, Color.BLUE, Color.YELLOW, Color.ORANGE, Color.BLACK, Color.RED, Color.GREEN, Color.TRANSPARENT]
@@ -85,13 +83,11 @@ func montarPilhaBilhetesDestino():
 			push_error("Cidade não encontrada: %s ou %s" % [info[0], info[1]])
 			assert(false)
 
-
 func embaralharPilhaCartasTrem():
 	pilhaCartasTrem.shuffle()
 
 func embaralharPilhaBilhetesDestino():
 	pilhaBilhetesDestino.shuffle()
-
 
 func comprarPilhaCartasTrem() -> CartaTrem:
 	if pilhaCartasTrem.is_empty():
@@ -109,7 +105,6 @@ func comprarPilhaBilhetesDestino() -> BilheteDestino:
 		return null
 	return pilhaBilhetesDestino.pop_back()
 
-
 func remontarPilhaCartasTrem():
 	descarteCartasTrem.shuffle()
 	pilhaCartasTrem = descarteCartasTrem
@@ -120,13 +115,11 @@ func remontarPilhaBilhetesDestino():
 	pilhaBilhetesDestino = descarteBilhetesDestino
 	descarteBilhetesDestino = []
 
-
 func descartarCartaTrem(carta: CartaTrem):
 	descarteCartasTrem.append(carta)
 
 func descartarBilheteDestino(bilhete: BilheteDestino):
 	descarteBilhetesDestino.append(bilhete)
-
 
 func darCartasTremJogador(jogador: Jogador, numCartasTrem: int):
 	for i in range(numCartasTrem):

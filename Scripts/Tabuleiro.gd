@@ -15,6 +15,7 @@ func _ready() -> void:
 	configurar_tabuleiro()
 	var baralho = Baralho.new()
 	add_child(baralho)
+	Gamestate.distribuir_cartas(baralho)
 	hud.inicializar()
 	
 	for rota in $RotasButtons.get_children():
@@ -29,6 +30,9 @@ func _ready() -> void:
 			original_polygons[rota.name] = points
 	ajustar_todos_os_poligonos()
 	
+	hud.atualiza_pilha_destino(baralho.pilhaBilhetesDestino.size())
+	hud.atualiza_pilha_cartas_trem(baralho.pilhaCartasTrem.size())
+
 	print("Tabuleiro rodando!")
 
 func ajustar_todos_os_poligonos():
