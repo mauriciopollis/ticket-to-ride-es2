@@ -1,4 +1,4 @@
-extends Object
+extends Node
 
 class_name CartaTrem
 
@@ -10,3 +10,6 @@ func _init(cor_:Color) -> void:
 
 func eh_locomotiva() -> bool:
 	return self.cor == COR_LOCOMOTIVA
+
+func get_color() -> Color:
+	return self.cor

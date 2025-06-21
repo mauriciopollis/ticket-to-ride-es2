@@ -24,7 +24,7 @@ func _ready():
 func setJogador(jogador: Jogador):
 	$Panel/GridContainer/ContainerTicket/num_tickets.text = str(jogador.bilhetesDestinoNaMao.size())
 	$Panel/GridContainer/ContainerCartas/qnt_cartas.text = str(jogador.cartasTremNaMao.size())
-	$Panel/GridContainer/ContainerTrens/num_trens.text = str(jogador.cartasTremNaMao.size())
+	$Panel/GridContainer/ContainerTrens/num_trens.text = str(jogador.getVagoesDisponiveis())
 	$Panel/GridContainer/ContainerPontos/qnt_pontos.text = str(jogador.pontos)
 	$Panel/NameBar/NameLabel.text = jogador.nome
 	var original_stylebox := $Panel.get_theme_stylebox("panel") as StyleBoxFlat

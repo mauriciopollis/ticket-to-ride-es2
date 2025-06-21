@@ -15,11 +15,10 @@ func _ready() -> void:
 	print('Baralho rodando!')
 
 	montarPilhaCartasTrem()
-	montarPilhaBilhetesDestino()
-
 	embaralharPilhaCartasTrem()
+	
+	montarPilhaBilhetesDestino()
 	embaralharPilhaBilhetesDestino()
-
 
 func resetarBaralho():
 	pilhaCartasTrem.clear()
@@ -28,7 +27,6 @@ func resetarBaralho():
 	descarteCartasTrem.clear()
 	descarteBilhetesDestino.clear()
 	_ready()
-
 
 func montarPilhaCartasTrem():
 	var cores = [Color.PINK, Color.WHITE, Color.BLUE, Color.YELLOW, Color.ORANGE, Color.BLACK, Color.RED, Color.GREEN, Color.TRANSPARENT]
@@ -45,7 +43,7 @@ func montarPilhaBilhetesDestino():
 	var bilhetesInfo = [
 		["Los Angeles", "New York", 21],
 		["Duluth", "Houston", 8],
-		["Sault Ste. Marie", "Nashville", 8],
+		["Sault St Marie", "Nashville", 8],
 		["New York", "Atlanta", 6],
 		["Portland", "Nashville", 17],
 		["Vancouver", "Montreal", 20],
@@ -76,8 +74,8 @@ func montarPilhaBilhetesDestino():
 	]
 
 	for info in bilhetesInfo:
-		var c1 = tabuleiro.getCidade(info[0])
-		var c2 = tabuleiro.getCidade(info[1])
+		var c1 = tabuleiro.get_cidade(info[0])
+		var c2 = tabuleiro.get_cidade(info[1])
 		if c1 != null and c2 != null:
 			var bilhete = BilheteDestino.new(c1, c2, info[2])
 			pilhaBilhetesDestino.append(bilhete)
@@ -85,13 +83,11 @@ func montarPilhaBilhetesDestino():
 			push_error("Cidade não encontrada: %s ou %s" % [info[0], info[1]])
 			assert(false)
 
-
 func embaralharPilhaCartasTrem():
 	pilhaCartasTrem.shuffle()
 
 func embaralharPilhaBilhetesDestino():
 	pilhaBilhetesDestino.shuffle()
-
 
 func comprarPilhaCartasTrem() -> CartaTrem:
 	if pilhaCartasTrem.is_empty():
@@ -109,7 +105,6 @@ func comprarPilhaBilhetesDestino() -> BilheteDestino:
 		return null
 	return pilhaBilhetesDestino.pop_back()
 
-
 func remontarPilhaCartasTrem():
 	descarteCartasTrem.shuffle()
 	pilhaCartasTrem = descarteCartasTrem
@@ -120,13 +115,11 @@ func remontarPilhaBilhetesDestino():
 	pilhaBilhetesDestino = descarteBilhetesDestino
 	descarteBilhetesDestino = []
 
-
 func descartarCartaTrem(carta: CartaTrem):
 	descarteCartasTrem.append(carta)
 
 func descartarBilheteDestino(bilhete: BilheteDestino):
 	descarteBilhetesDestino.append(bilhete)
-
 
 func darCartasTremJogador(jogador: Jogador, numCartasTrem: int):
 	for i in range(numCartasTrem):
