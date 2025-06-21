@@ -14,11 +14,12 @@ func _ready():
 	
 	# atribui quantia
 	$TextureRect/ColorRect/display_quantidade.text = str(quantia)
-
+ 
 func init(uma_cor: String, qnt: int):
 	cor_da_carta = uma_cor
 	quantia = qnt
 
-func _on_texture_button_pressed() -> void:
-	pass
-	#print("Vc clicou na carta " + cor_da_carta + "e vc possue " + str(quantia) + " copias dela.")
+#func _on_texture_button_pressed() -> void:
+	##pass
+	#print("Vc clicou na carta " + cor_da_carta + " e vc possue " + str(quantia) + " copias dela.")
+	#emit_signal("carta_selecionada", cor_da_carta) 

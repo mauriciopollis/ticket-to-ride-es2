@@ -9,11 +9,13 @@ var original_polygons: Dictionary = {}
 var TabuleiroData = preload("res://Scripts/TabuleiroData.gd")
 
 @onready var hud = $TextureRect/Hud
-
+var baralho
+var decisao = preload("res://Scenes/decisao.tscn")
+var opcao = preload("res://Scenes/CartaUI.tscn")
 
 func _ready() -> void:
 	configurar_tabuleiro()
-	var baralho = Baralho.new()
+	baralho = Baralho.new()
 	add_child(baralho)
 	Gamestate.distribuir_cartas(baralho)
 	hud.inicializar()
@@ -106,14 +108,31 @@ func _on_rota_input_event(_viewport, event, _shape_idx, nome_rota):
 	var jogador_atual = Gamestate.jogador_atual()
 	var rota_alvo = rotas[nome_rota]
 	var cor_alvo = rota_alvo.cor
-	if jogador_atual.get_qtd_cartas(cor_alvo)  >= rota_alvo.custo:
-		if rota_alvo.dono == null and event is InputEventMouseButton and event.button_index == 1 and event.pressed:
+	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
+		if rota_alvo.dono == null and jogador_atual.get_qtd_cartas(cor_alvo)  >= rota_alvo.custo:
 			var polygon2d = $RotasButtons.get_node(nome_rota).get_node("CollisionPolygon2D").get_node("Polygon2D")
 			var base_color = jogador_atual.cor
 			polygon2d.color = Color(base_color.r, base_color.g, base_color.b, 0.75)
 			conquistar_rota(rota_alvo, jogador_atual)
 			jogador_atual.adicionarVagoesDisponiveis(-rota_alvo.custo)
-			Gamestate.proximo_turno()
+			if cor_alvo != Color.GRAY:
+				jogador_atual.removeNCores(rota_alvo.custo, cor_alvo, baralho)
+				Gamestate.proximo_turno()
+			else:
+				var escolhas = jogador_atual.get_options(rota_alvo.custo)
+				var grayout = decisao.instantiate()
+				hud.add_child(grayout)
+				var display = grayout.get_node("mascara/displaybox")
+				var escolhas_de_carta = []
+				for each in escolhas:
+					var opt = opcao.instantiate()
+					opt.cor_da_carta = each
+					var optbutton = opt.get_node("TextureRect/TextureButton")
+					optbutton.connect("pressed", Callable(self, "_on_carta_selecionada").bind(opt, grayout, rota_alvo.custo, baralho))
+					display.add_child(opt)
+					#hud.remove_child(grayout)
+		else:
+			print("Cartas insuficientes ou rota já capturada.")
 var mouse_over_count: int = 0
 
 func _on_mouse_entered() -> void:
@@ -125,3 +144,29 @@ func _on_mouse_exited() -> void:
 	if mouse_over_count <= 0:
 		mouse_over_count = 0
 		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+
+func _on_carta_selecionada(opt, blackout, cost, deck):
+	var jogador_atual = Gamestate.jogador_atual()
+	hud.remove_child(blackout)
+	var color_choice
+	if opt.cor_da_carta == "preto":
+		color_choice = Color.BLACK
+	elif opt.cor_da_carta == "azul":
+		color_choice = Color.BLUE
+	elif opt.cor_da_carta == "verde":
+		color_choice = Color.GREEN
+	elif opt.cor_da_carta == "laranja":
+		color_choice = Color.ORANGE
+	elif opt.cor_da_carta == "rosa":
+		color_choice = Color.PINK
+	elif opt.cor_da_carta == "vermelho":
+		color_choice = Color.RED
+	elif opt.cor_da_carta == "branco":
+		color_choice = Color.WHITE
+	elif opt.cor_da_carta == "amarelo":
+		color_choice = Color.YELLOW
+	else:
+		print("Seleção não prevista para captura de trilha cinza!")
+		
+	jogador_atual.removeNCores(cost, color_choice, deck)
+	Gamestate.proximo_turno()
