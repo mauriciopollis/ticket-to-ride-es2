@@ -10,14 +10,13 @@ var TabuleiroData = preload("res://Scripts/TabuleiroData.gd")
 
 @onready var hud = $TextureRect/Hud
 
-func _ready() -> void:
-	print("Tabuleiro rodando!")
-	
-	configurar_tabuleiro()
 
+func _ready() -> void:
+	configurar_tabuleiro()
+	var baralho = Baralho.new()
+	add_child(baralho)
 	hud.inicializar()
 	
-
 	for rota in $RotasButtons.get_children():
 		if rota is Area2D:
 			var collision = rota.get_node("CollisionPolygon2D")
@@ -28,8 +27,9 @@ func _ready() -> void:
 			for p in collision.polygon:
 				points.append(p)
 			original_polygons[rota.name] = points
-
 	ajustar_todos_os_poligonos()
+	
+	print("Tabuleiro rodando!")
 
 func ajustar_todos_os_poligonos():
 	var texture_rect = $TextureRect
@@ -102,6 +102,8 @@ func _on_rota_input_event(_viewport, event, _shape_idx, nome_rota):
 		var polygon2d = $RotasButtons.get_node(nome_rota).get_node("CollisionPolygon2D").get_node("Polygon2D")
 		var base_color = Gamestate.jogador_atual().cor
 		polygon2d.color = Color(base_color.r, base_color.g, base_color.b, 0.75)
+		#Gamestate.jogador_atual().pontos += 1
+		#print(Gamestate.jogador_atual().nome + " está com " + str(Gamestate.jogador_atual().pontos) + " pontos!")
 		Gamestate.proximo_turno()
 
 var mouse_over_count: int = 0

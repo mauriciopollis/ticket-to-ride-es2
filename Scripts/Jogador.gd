@@ -159,3 +159,6 @@ func getMaiorCaminho() -> Array[Rota]:
 			maiorCaminho = resultado
 
 	return maiorCaminho
+
+func getVagoesDisponiveis() -> int:
+	return self.vagoesDisponiveis

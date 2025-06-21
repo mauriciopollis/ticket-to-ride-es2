@@ -15,9 +15,9 @@ func _ready() -> void:
 	print('Baralho rodando!')
 
 	montarPilhaCartasTrem()
-	montarPilhaBilhetesDestino()
-
 	embaralharPilhaCartasTrem()
+	
+	montarPilhaBilhetesDestino()
 	embaralharPilhaBilhetesDestino()
 
 
@@ -45,7 +45,7 @@ func montarPilhaBilhetesDestino():
 	var bilhetesInfo = [
 		["Los Angeles", "New York", 21],
 		["Duluth", "Houston", 8],
-		["Sault Ste. Marie", "Nashville", 8],
+		["Sault St Marie", "Nashville", 8],
 		["New York", "Atlanta", 6],
 		["Portland", "Nashville", 17],
 		["Vancouver", "Montreal", 20],
@@ -76,8 +76,8 @@ func montarPilhaBilhetesDestino():
 	]
 
 	for info in bilhetesInfo:
-		var c1 = tabuleiro.getCidade(info[0])
-		var c2 = tabuleiro.getCidade(info[1])
+		var c1 = tabuleiro.get_cidade(info[0])
+		var c2 = tabuleiro.get_cidade(info[1])
 		if c1 != null and c2 != null:
 			var bilhete = BilheteDestino.new(c1, c2, info[2])
 			pilhaBilhetesDestino.append(bilhete)

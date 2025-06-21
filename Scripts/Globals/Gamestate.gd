@@ -4,10 +4,16 @@ signal turno_trocado
 
 var jogadores: Array[Jogador] = []
 var jogador_atual_idx: int = 0
+var primeiras_rodadas = false
 
 func jogador_atual():
 	if jogadores.size() > 0:
 		return jogadores[jogador_atual_idx]
+	return null
+
+func jogadores_restantes():
+	if jogadores.size() > 1:
+		return jogadores.slice(0, jogador_atual_idx) + jogadores.slice(jogador_atual_idx+1, jogadores.size())
 	return null
 
 func proximo_turno():

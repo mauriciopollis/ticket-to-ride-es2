@@ -74,3 +74,10 @@ func inicializar():
 
 func atualizar_jogador_da_vez():
 	jogadorDaVezUI.setJogador(Gamestate.jogador_atual())
+	
+	var idx = 0
+	for oponente in Gamestate.jogadores_restantes():
+		oponenteUIs[idx].setJogador(oponente)
+		oponenteUIs[idx].visible = true
+		idx += 1
+	

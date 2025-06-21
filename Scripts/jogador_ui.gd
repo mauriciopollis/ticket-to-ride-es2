@@ -22,7 +22,7 @@ func _ready():
 func setJogador(jogador: Jogador):
 	$Background/Panel/Label.text = str(jogador.nome)
 	$Background/HBoxContainer/Container_Ticket/qnt_ticket.text = str(jogador.bilhetesDestinoNaMao.size())+"x"
-	$Background/HBoxContainer/Container_Valores/ContainerTrens/qnt_trens.text = str(jogador.cartasTremNaMao.size())
+	$Background/HBoxContainer/Container_Valores/ContainerTrens/qnt_trens.text = str(jogador.getVagoesDisponiveis())
 	$Background/HBoxContainer/Container_Valores/ContainerPontos/qnt_pontos.text = str(jogador.pontos)
 	
 	var original_stylebox := $Background.get_theme_stylebox("panel") as StyleBoxFlat
