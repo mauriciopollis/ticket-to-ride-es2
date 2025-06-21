@@ -14,6 +14,8 @@ var cartasTremNaMao: Array[CartaTrem] = []
 var bilhetesDestinoNaMao: Array[BilheteDestino] = []
 var bilhetesDestinoCompletados: Array[BilheteDestino] = []
 var ordemDeJogada: int
+var cartasCompradasNesteTurno: int = 0
+var comprouLocomotivaVisivel: bool = false
 
 func _init(nome_: String, cor_: Color):
 	self.nome = nome_
@@ -159,3 +161,11 @@ func getMaiorCaminho() -> Array[Rota]:
 			maiorCaminho = resultado
 
 	return maiorCaminho
+
+func validarCompraCartaVagao(carta: CartaTrem, visivel: bool) -> bool:
+	if cartasCompradasNesteTurno >= 2 || comprouLocomotivaVisivel:
+		return false
+	
+	if carta.eh_locomotiva() and visivel and cartasCompradasNesteTurno > 0:
+		return false
+	return true
