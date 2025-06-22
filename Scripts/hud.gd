@@ -6,29 +6,29 @@ extends CanvasLayer
 @onready var oponenteUI4 = $TextureRect/AdversariosContainer/OponenteUI4
 @onready var oponenteUIs = [oponenteUI1, oponenteUI2, oponenteUI3, oponenteUI4]
 @onready var jogadorDaVezUI = $TextureRect/JogadorUI
-@onready var imagensCartasDaMesa = [
-	"res://Assets/cartas/vagao_amarelo.png",
-	"res://Assets/cartas/vagao_azul.png",
-	"res://Assets/cartas/vagao_branco.png",
-	"res://Assets/cartas/vagao_laranja.png",
-	"res://Assets/cartas/vagao_locomotiva.png",
-	"res://Assets/cartas/vagao_preto.png",
-	"res://Assets/cartas/vagao_rosa.png",
-	"res://Assets/cartas/vagao_verde.png",
-	"res://Assets/cartas/vagao_vermelho.png"
-]
-
-@onready var cartasDaMesa = [
+@onready var colorLookUP = {
+	str(Color.BLACK): "res://Assets/cartas/vagao_preto.png",
+	str(Color.BLUE): "res://Assets/cartas/vagao_azul.png",
+	str(Color.GREEN): "res://Assets/cartas/vagao_verde.png",
+	str(Color.ORANGE): "res://Assets/cartas/vagao_laranja.png",
+	str(Color.PINK): "res://Assets/cartas/vagao_rosa.png",
+	str(Color.TRANSPARENT): "res://Assets/cartas/vagao_locomotiva.png",
+	str(Color.RED): "res://Assets/cartas/vagao_vermelho.png",
+	str(Color.WHITE): "res://Assets/cartas/vagao_branco.png",
+	str(Color.YELLOW): "res://Assets/cartas/vagao_amarelo.png",
+	}
+		
+@onready var cartasDaMesaUI = [
 	$TextureRect/VBoxContainer/CartaDaMesa1,
 	$TextureRect/VBoxContainer/CartaDaMesa2,
 	$TextureRect/VBoxContainer/CartaDaMesa3,
 	$TextureRect/VBoxContainer/CartaDaMesa4,
 	$TextureRect/VBoxContainer/CartaDaMesa5
 ]
-@onready var quantiaPilhaDestino = $TextureRect/PilhaDeDestinos/HBoxContainer/qtd_cartas.text
-@onready var quantiaPilhaCartas = $TextureRect/PilhaDeCartas/HBoxContainer/qtd_cartas.text
+@onready var pilhaDest = $TextureRect/PilhaDeDestinos
+@onready var pilhaCartasAbertas = $TextureRect/PilhaDeDestinos
 @onready var maoJogadorAtual = $TextureRect/MaoJogador
-
+signal signal_carta_aberta(index)
 
 func _ready() -> void:
 	oponenteUI1.visible = false
@@ -38,9 +38,8 @@ func _ready() -> void:
 	Gamestate.connect("turno_trocado", Callable(self, "atualizar_jogador_da_vez"))
 
 
-func inicializar():
+func inicializar(cartas_em_mesa):
 	jogadorDaVezUI.setJogador(Gamestate.jogador_atual())
-
 	var idx = 0
 	for i in range(Gamestate.jogadores.size()):
 		if i == Gamestate.jogador_atual_idx:
@@ -48,11 +47,8 @@ func inicializar():
 		oponenteUIs[idx].setJogador(Gamestate.jogadores[i])
 		oponenteUIs[idx].visible = true
 		idx += 1
-	
-	for i in range(cartasDaMesa.size()):
-		var textura = load(imagensCartasDaMesa.pick_random())
-		cartasDaMesa[i].get_node("imagem").texture = textura
 
+	atualiza_cartas_abertas(cartas_em_mesa)
 
 	var mao_jogador_atual = Gamestate.jogador_atual().cartasTremNaMao
 	var qnt_cartas_em_mao = {
@@ -97,7 +93,7 @@ func inicializar():
 		if qnt_cartas_em_mao[cor] != 0:
 			carta_ui = cena_carta.instantiate()
 			carta_ui.init(cor, qnt_cartas_em_mao[cor])
-			$TextureRect/MaoJogador.add_child(carta_ui)
+			maoJogadorAtual.add_child(carta_ui)
 
 func atualizar_jogador_da_vez():
 	jogadorDaVezUI.setJogador(Gamestate.jogador_atual())
@@ -118,7 +114,7 @@ func atualiza_pilha_cartas_trem(n):
 	$TextureRect/PilhaDeCartas/HBoxContainer/qtd_cartas.text = str(n)
 
 func atualiza_mao_atual():
-	for child in $TextureRect/MaoJogador.get_children():
+	for child in maoJogadorAtual.get_children():
 		child.queue_free()
 	
 	var mao_jogador_atual = Gamestate.jogador_atual().cartasTremNaMao
@@ -164,4 +160,16 @@ func atualiza_mao_atual():
 		if qnt_cartas_em_mao[cor] != 0:
 			carta_ui = cena_carta.instantiate()
 			carta_ui.init(cor, qnt_cartas_em_mao[cor])
-			$TextureRect/MaoJogador.add_child(carta_ui)
+			maoJogadorAtual.add_child(carta_ui)
+
+func atualiza_cartas_abertas(cartas):
+	for i in range(5):
+		var textura = load(colorLookUP[str(cartas[i].cor)])
+		cartasDaMesaUI[i].get_node("imagem").texture = textura
+		var botao = cartasDaMesaUI[i].get_node("imagem/TextureButton")
+		botao.connect("pressed", Callable(self, "_on_carta_virada_selecionada").bind(i))
+		
+func _on_carta_virada_selecionada(index):
+	emit_signal("signal_carta_aberta", index)
+	#print(index)
+	

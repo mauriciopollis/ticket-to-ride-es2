@@ -5,21 +5,28 @@ class_name Tabuleiro
 var cidades: Dictionary = {}
 var rotas: Dictionary = {}
 var original_polygons: Dictionary = {}
+var cartas_em_mesa : Array[CartaTrem] = []
+var num_escolhas_realizadas = 0
 
 var TabuleiroData = preload("res://Scripts/TabuleiroData.gd")
 
 @onready var hud = $TextureRect/Hud
 var baralho
 var decisao = preload("res://Scenes/decisao.tscn")
-var opcao = preload("res://Scenes/CartaUI.tscn")
+var cartaOpcao = preload("res://Scenes/CartaUI.tscn")
+
 
 func _ready() -> void:
 	configurar_tabuleiro()
 	baralho = Baralho.new()
 	add_child(baralho)
 	Gamestate.distribuir_cartas(baralho)
-	hud.inicializar()
 	
+	baralho.iniciarCartasTremExpostas()
+	hud.inicializar(baralho.get_cartas_expostas())
+	
+	hud.connect("signal_carta_aberta", Callable(self, "_carta_aberta"))
+
 	for rota in $RotasButtons.get_children():
 		if rota is Area2D:
 			var collision = rota.get_node("CollisionPolygon2D")
@@ -123,14 +130,12 @@ func _on_rota_input_event(_viewport, event, _shape_idx, nome_rota):
 				var grayout = decisao.instantiate()
 				hud.add_child(grayout)
 				var display = grayout.get_node("mascara/displaybox")
-				var escolhas_de_carta = []
 				for each in escolhas:
-					var opt = opcao.instantiate()
+					var opt = cartaOpcao.instantiate()
 					opt.cor_da_carta = each
 					var optbutton = opt.get_node("TextureRect/TextureButton")
 					optbutton.connect("pressed", Callable(self, "_on_carta_selecionada").bind(opt, grayout, rota_alvo.custo, baralho))
 					display.add_child(opt)
-					#hud.remove_child(grayout)
 		else:
 			print("Cartas insuficientes ou rota já capturada.")
 var mouse_over_count: int = 0
@@ -170,3 +175,16 @@ func _on_carta_selecionada(opt, blackout, cost, deck):
 		
 	jogador_atual.removeNCores(cost, color_choice, deck)
 	Gamestate.proximo_turno()
+	
+func _carta_aberta(index):
+	var cartas_expostas = baralho.get_cartas_expostas()
+	num_escolhas_realizadas += 1
+	print("Carta numero " + str(index) + " selecionada ")
+	print("Cor da carta: " + str(cartas_expostas[index].cor))
+	print("Foram realizadas " + str(num_escolhas_realizadas) + " escolhas nesse turno")
+	# Verificar condições
+	# entregar carta ao jogador, remover das cartas face para cima (e repor uma nova).
+	# Lembrar de resetar: num_escolhas_realizadas
+	# Lembrar de chamar: hud.atualiza_cartas_abertas(cartas_em_mesa)
+	# Lembrar de chamar: Gamestate.proximo_turno() ao fim
+	
