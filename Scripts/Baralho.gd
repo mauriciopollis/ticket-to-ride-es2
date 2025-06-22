@@ -132,3 +132,10 @@ func darBilhetesDestinoJogador(jogador: Jogador, numBilhetesDestino: int):
 		var carta = comprarPilhaBilhetesDestino()
 		if carta:
 			jogador.inserirBilheteDestinoNaMao(carta)	
+
+func iniciarCartasTremExpostas():
+	for i in range(5):
+		cartasTremExpostas.append(self.comprarPilhaCartasTrem())
+		
+func get_cartas_expostas():
+	return cartasTremExpostas

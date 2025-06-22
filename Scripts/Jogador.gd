@@ -219,8 +219,8 @@ func get_qtd_cartas(cor_rota: Color) -> int:
 	else:
 		return dist[str(cor_rota)] + dist[str(Color.TRANSPARENT)]
 
-func get_options(n_cartas: int):
-	var escolhas = []
+func get_options(n_cartas: int) -> Array[String]:
+	var escolhas: Array[String] = []
 	var dist = {
 		str(Color.BLACK): 0,
 		str(Color.BLUE): 0,
