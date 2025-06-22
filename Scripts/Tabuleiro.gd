@@ -26,6 +26,11 @@ func _ready() -> void:
 	hud.inicializar(baralho.get_cartas_expostas())
 	
 	hud.connect("signal_carta_aberta", Callable(self, "_carta_aberta"))
+	hud.connect("signal_pilha_vagoes", Callable(self, "_compra_pilha_vagoes"))
+	hud.connect("signal_pilha_bilhetes", Callable(self, "_compra_pilha_bilhetes"))
+	hud.connect("signal_ver_objetivos", Callable(self, "_ver_objetivos"))
+	
+
 
 	for rota in $RotasButtons.get_children():
 		if rota is Area2D:
@@ -188,3 +193,14 @@ func _carta_aberta(index):
 	# Lembrar de chamar: hud.atualiza_cartas_abertas(cartas_em_mesa)
 	# Lembrar de chamar: Gamestate.proximo_turno() ao fim
 	
+func _compra_pilha_vagoes():
+	print("Comprou Vagoes")
+	pass
+	
+func _compra_pilha_bilhetes():
+	print("Comprou Bilhetes")
+	pass
+
+func _ver_objetivos():
+	print("ver objetivos")
+	pass
