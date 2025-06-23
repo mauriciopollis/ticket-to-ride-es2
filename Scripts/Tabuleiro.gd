@@ -27,7 +27,8 @@ func _ready() -> void:
 	baralho = Baralho.new()
 	add_child(baralho)
 	Gamestate.distribuir_cartas(baralho)
-	
+	Gamestate.connect("forcar_compra_bilhete", Callable(self, "_compra_pilha_bilhetes"))
+
 	baralho.iniciarCartasTremExpostas()
 	hud.inicializar(baralho.get_cartas_expostas())
 	
@@ -35,7 +36,6 @@ func _ready() -> void:
 	hud.connect("signal_pilha_vagoes", Callable(self, "_compra_pilha_vagoes"))
 	hud.connect("signal_pilha_bilhetes", Callable(self, "_compra_pilha_bilhetes"))
 	hud.connect("signal_ver_objetivos", Callable(self, "_ver_objetivos"))
-	
 
 
 	for rota in $RotasButtons.get_children():
@@ -52,7 +52,8 @@ func _ready() -> void:
 	
 	hud.atualiza_pilha_destino(baralho.pilhaBilhetesDestino.size())
 	hud.atualiza_pilha_cartas_trem(baralho.pilhaCartasTrem.size())
-
+	
+	_compra_pilha_bilhetes()
 	print("Tabuleiro rodando!")
 
 func ajustar_todos_os_poligonos():
@@ -204,22 +205,27 @@ func _compra_pilha_vagoes():
 	pass
 	
 func _compra_pilha_bilhetes():
-	var selection_mode = decisao.instantiate()
-	hud.add_child(selection_mode)
-	
-	for i in range(3):
-		bilhetes_oferecidos.append(baralho.comprarPilhaBilhetesDestino())
-		var display = selection_mode.get_node("mascara/displaybilhetes")
-		var selection_buttonUI = bilheteOpcao.instantiate()
-		selection_buttonUI.get_node("TextureRect").texture = load(bilhetes_oferecidos[i].asset_path)
-		selection_mode.get_node("mascara/displaybilhetes").add_child(selection_buttonUI)
-		var select_button = selection_buttonUI.get_node("TextureRect/TextureButton")
-		var color_effect = selection_buttonUI.get_node("TextureRect").modulate
-		select_button.connect("pressed", Callable(self, "_on_adiciona_selecao_destino").bind(i, selection_buttonUI))
-	var confirm_button = selection_mode.get_node("mascara/buttonconfirm")
-	confirm_button.visible = true
-	confirm_button.connect("pressed", Callable(self, "_on_confirmar_pressed").bind(selection_mode))
-	
+	var max_ofertas = baralho.pilhaBilhetesDestino.size()
+
+	if max_ofertas >= 3:
+		max_ofertas = 3
+
+	if max_ofertas > 0:
+		var selection_mode = decisao.instantiate()
+		hud.add_child(selection_mode)
+		for i in range(max_ofertas):
+			bilhetes_oferecidos.append(baralho.comprarPilhaBilhetesDestino())
+			var display = selection_mode.get_node("mascara/displaybilhetes")
+			var selection_buttonUI = bilheteOpcao.instantiate()
+			selection_buttonUI.get_node("TextureRect").texture = load(bilhetes_oferecidos[i].asset_path)
+			selection_mode.get_node("mascara/displaybilhetes").add_child(selection_buttonUI)
+			var select_button = selection_buttonUI.get_node("TextureRect/TextureButton")
+			var color_effect = selection_buttonUI.get_node("TextureRect").modulate
+			select_button.connect("pressed", Callable(self, "_on_adiciona_selecao_destino").bind(i, selection_buttonUI))
+		var confirm_button = selection_mode.get_node("mascara/buttonconfirm")
+		confirm_button.visible = true
+		confirm_button.connect("pressed", Callable(self, "_on_confirmar_pressed").bind(selection_mode))
+		hud.atualiza_pilha_destino(baralho.pilhaBilhetesDestino.size())
 
 
 func _ver_objetivos():
@@ -248,7 +254,10 @@ func _on_confirmar_pressed(selection_mode):
 			if destinos_selecionados_idx[i]:
 				jogador_atual.inserirBilheteDestinoNaMao(bilhetes_oferecidos[i])
 			else:
-				baralho.descartarBilheteDestino(bilhetes_oferecidos[i])
+				if baralho.pilhaBilhetesDestino.size() > 0:
+					baralho.descartarBilheteDestino(bilhetes_oferecidos[i])
+					baralho.mixDescarte()
+					hud.atualiza_pilha_destino(baralho.pilhaBilhetesDestino.size())
 		hud.remove_child(selection_mode)
 		numero_destinos_selecionados = 0
 		bilhetes_oferecidos = []

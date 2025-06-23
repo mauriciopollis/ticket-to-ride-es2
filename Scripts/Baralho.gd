@@ -140,3 +140,9 @@ func iniciarCartasTremExpostas():
 
 func get_cartas_expostas():
 	return cartasTremExpostas
+
+func mixDescarte():
+	for bilhete in descarteBilhetesDestino:
+		pilhaBilhetesDestino.append(bilhete)
+	pilhaBilhetesDestino.shuffle()
+	descarteBilhetesDestino = []

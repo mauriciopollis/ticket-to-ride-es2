@@ -20,7 +20,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_1c3tj")
-expand_mode = 2
+expand_mode = 3
 
 [node name="TextureButton" type="TextureButton" parent="TextureRect"]
 layout_mode = 1

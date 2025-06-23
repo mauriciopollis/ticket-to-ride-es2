@@ -1,10 +1,12 @@
 extends Node
 
 signal turno_trocado
+signal forcar_compra_bilhete
 
 var jogadores: Array[Jogador] = []
 var jogador_atual_idx: int = 0
-var primeiras_rodadas = false
+var primeiras_rodadas = true
+var turno = 0
 
 func jogador_atual():
 	if jogadores.size() > 0:
@@ -17,11 +19,17 @@ func jogadores_restantes():
 	return null
 
 func proximo_turno():
+	turno += 1
+	if turno == jogadores.size():
+		primeiras_rodadas = false
+
 	if jogadores.size() == 0:
 		return
 	jogador_atual_idx = (jogador_atual_idx + 1) % jogadores.size()
 	print("Agora é o turno do: ", jogador_atual().nome)
 	emit_signal("turno_trocado")
+	if turno < jogadores.size():
+		emit_signal("forcar_compra_bilhete")
 
 func inicializar_jogadores(nomes_jogadores: Array, nomes_ias: Array) -> void:
 	jogadores.clear()
