@@ -80,7 +80,6 @@ func montarPilhaBilhetesDestino():
 			var caminho_asset = "res://Assets/Destinos/" + c1.nome + "_" + c2.nome + ".png"
 			var bilhete = BilheteDestino.new(c1, c2, info[2], caminho_asset)
 			pilhaBilhetesDestino.append(bilhete)
-			print(caminho_asset)
 		else:
 			push_error("Cidade não encontrada: %s ou %s" % [info[0], info[1]])
 			assert(false)

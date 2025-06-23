@@ -8,12 +8,18 @@ var original_polygons: Dictionary = {}
 var cartas_em_mesa : Array[CartaTrem] = []
 var num_escolhas_realizadas = 0
 
+var bilhetes_oferecidos: Array[BilheteDestino] = []
+@onready var numero_destinos_selecionados = 0
+@onready var destinos_selecionados_idx = [false, false, false]
+
+
 var TabuleiroData = preload("res://Scripts/TabuleiroData.gd")
 
 @onready var hud = $TextureRect/Hud
 var baralho
 var decisao = preload("res://Scenes/decisao.tscn")
 var cartaOpcao = preload("res://Scenes/CartaUI.tscn")
+var bilheteOpcao = preload("res://Scenes/bilhete_ui.tscn")
 
 
 func _ready() -> void:
@@ -198,11 +204,56 @@ func _compra_pilha_vagoes():
 	pass
 	
 func _compra_pilha_bilhetes():
-	print("Comprou Bilhetes")
-	pass
-
-func _ver_objetivos():
-	print("ver objetivos")
 	var selection_mode = decisao.instantiate()
 	hud.add_child(selection_mode)
-	pass
+	
+	for i in range(3):
+		bilhetes_oferecidos.append(baralho.comprarPilhaBilhetesDestino())
+		var display = selection_mode.get_node("mascara/displaybilhetes")
+		var selection_buttonUI = bilheteOpcao.instantiate()
+		selection_buttonUI.get_node("TextureRect").texture = load(bilhetes_oferecidos[i].asset_path)
+		selection_mode.get_node("mascara/displaybilhetes").add_child(selection_buttonUI)
+		var select_button = selection_buttonUI.get_node("TextureRect/TextureButton")
+		var color_effect = selection_buttonUI.get_node("TextureRect").modulate
+		select_button.connect("pressed", Callable(self, "_on_adiciona_selecao_destino").bind(i, selection_buttonUI))
+	var confirm_button = selection_mode.get_node("mascara/buttonconfirm")
+	confirm_button.visible = true
+	confirm_button.connect("pressed", Callable(self, "_on_confirmar_pressed").bind(selection_mode))
+	
+
+
+func _ver_objetivos():
+	var selection_mode = decisao.instantiate()
+	hud.add_child(selection_mode)
+
+func _on_adiciona_selecao_destino(i, elem):
+	
+	if not destinos_selecionados_idx[i]:
+		elem.get_node("TextureRect").modulate = Color(1, 1, 0.5)
+		numero_destinos_selecionados += 1
+		destinos_selecionados_idx[i] = !destinos_selecionados_idx[i]
+	else:
+		numero_destinos_selecionados -= 1
+		elem.get_node("TextureRect").modulate = Color(1, 1, 1)
+		destinos_selecionados_idx[i] = !destinos_selecionados_idx[i]
+
+func _on_confirmar_pressed(selection_mode):
+	var jogador_atual = Gamestate.jogador_atual()
+	var num_min_escolhas = 1
+	if Gamestate.primeiras_rodadas:
+		num_min_escolhas = 2
+
+	if numero_destinos_selecionados >= num_min_escolhas:
+		for i in range(3):
+			if destinos_selecionados_idx[i]:
+				jogador_atual.inserirBilheteDestinoNaMao(bilhetes_oferecidos[i])
+			else:
+				baralho.descartarBilheteDestino(bilhetes_oferecidos[i])
+		hud.remove_child(selection_mode)
+		numero_destinos_selecionados = 0
+		bilhetes_oferecidos = []
+		destinos_selecionados_idx = [false, false, false]
+		Gamestate.proximo_turno()
+	else:
+		pass
+		
