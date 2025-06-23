@@ -128,7 +128,7 @@ func _on_rota_input_event(_viewport, event, _shape_idx, nome_rota):
 	var jogador_atual = Gamestate.jogador_atual()
 	var rota_alvo = rotas[nome_rota]
 	var cor_alvo = rota_alvo.cor
-	if event is InputEventMouseButton and event.button_index == 1 and event.pressed:
+	if event is InputEventMouseButton and event.button_index == 1 and event.pressed and valor_acumulado_selecoes == 0:
 		if rota_alvo.dono == null and jogador_atual.get_qtd_cartas(cor_alvo)  >= rota_alvo.custo:
 			var polygon2d = $RotasButtons.get_node(nome_rota).get_node("CollisionPolygon2D").get_node("Polygon2D")
 			var base_color = jogador_atual.cor
@@ -214,11 +214,6 @@ func _carta_aberta(index):
 	print("Carta numero " + str(index) + " selecionada ")
 	print("Cor da carta: " + str(cartas_expostas[index].cor))
 	print("Valor acumulado das seleções: " + str(valor_acumulado_selecoes))
-	# Verificar condições
-	# entregar carta ao jogador, remover das cartas face para cima (e repor uma nova).
-	# Lembrar de chamar: hud.atualiza_cartas_abertas(cartas_em_mesa)
-	# Lembrar de chamar: Gamestate.proximo_turno() ao fim
-	
 func _compra_pilha_vagoes():
 	var jogador_atual = Gamestate.jogador_atual()
 	var valor_escolha = 1
