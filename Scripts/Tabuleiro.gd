@@ -6,7 +6,8 @@ var cidades: Dictionary = {}
 var rotas: Dictionary = {}
 var original_polygons: Dictionary = {}
 var cartas_em_mesa : Array[CartaTrem] = []
-var num_escolhas_realizadas = 0
+
+var valor_acumulado_selecoes = 0
 
 var bilhetes_oferecidos: Array[BilheteDestino] = []
 @onready var numero_destinos_selecionados = 0
@@ -190,22 +191,52 @@ func _on_carta_selecionada(opt, blackout, cost, deck):
 	
 func _carta_aberta(index):
 	var cartas_expostas = baralho.get_cartas_expostas()
-	num_escolhas_realizadas += 1
+	var jogador_atual = Gamestate.jogador_atual()
+	var valor_escolha
+	if str(cartas_expostas[index].cor) == str(Color.TRANSPARENT):
+		valor_escolha = 2
+	else:
+		valor_escolha = 1
+	
+	if valor_escolha + valor_acumulado_selecoes <= 2:
+		jogador_atual.inserirCartaTrem(cartas_expostas[index])
+		valor_acumulado_selecoes += valor_escolha
+		var nova_carta = baralho.comprarPilhaCartasTrem()
+		cartas_expostas[index] = nova_carta
+		hud.atualiza_mao_atual()
+		hud.atualiza_cartas_abertas(cartas_expostas)
+		hud.atualiza_pilha_cartas_trem(baralho.pilhaCartasTrem.size())
+	
+	if valor_acumulado_selecoes == 2:
+		valor_acumulado_selecoes = 0
+		Gamestate.proximo_turno()
+	
 	print("Carta numero " + str(index) + " selecionada ")
 	print("Cor da carta: " + str(cartas_expostas[index].cor))
-	print("Foram realizadas " + str(num_escolhas_realizadas) + " escolhas nesse turno")
+	print("Valor acumulado das seleções: " + str(valor_acumulado_selecoes))
 	# Verificar condições
 	# entregar carta ao jogador, remover das cartas face para cima (e repor uma nova).
-	# Lembrar de resetar: num_escolhas_realizadas
 	# Lembrar de chamar: hud.atualiza_cartas_abertas(cartas_em_mesa)
 	# Lembrar de chamar: Gamestate.proximo_turno() ao fim
 	
 func _compra_pilha_vagoes():
-	print("Comprou Vagoes")
-	pass
+	var jogador_atual = Gamestate.jogador_atual()
+	var valor_escolha = 1
+	
+	if valor_escolha + valor_acumulado_selecoes <= 2:
+		jogador_atual.inserirCartaTrem(baralho.comprarPilhaCartasTrem())
+		valor_acumulado_selecoes += valor_escolha
+		hud.atualiza_mao_atual()
+		hud.atualiza_pilha_cartas_trem(baralho.pilhaCartasTrem.size())
+	
+	if valor_acumulado_selecoes == 2:
+		valor_acumulado_selecoes = 0
+		Gamestate.proximo_turno()
 	
 func _compra_pilha_bilhetes():
 	var max_ofertas = baralho.pilhaBilhetesDestino.size()
+	if valor_acumulado_selecoes > 0:
+		return
 
 	if max_ofertas >= 3:
 		max_ofertas = 3
