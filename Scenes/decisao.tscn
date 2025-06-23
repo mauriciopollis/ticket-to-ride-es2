@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://duc8tdg8ynwa3"]
+[gd_scene load_steps=2 format=3 uid="uid://duc8tdg8ynwa3"]
+
+[ext_resource type="Texture2D" uid="uid://bnxc4n0me8gkd" path="res://Assets/confirmar.png" id="1_ut16n"]
 
 [node name="Decisao" type="Control"]
 layout_mode = 3
@@ -32,3 +34,29 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 200
 alignment = 1
+
+[node name="displaybilhetes" type="VBoxContainer" parent="mascara"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -462.5
+offset_right = 427.0
+offset_bottom = 462.5
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="buttonconfirm" type="TextureButton" parent="mascara"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -456.0
+offset_top = -190.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("1_ut16n")
