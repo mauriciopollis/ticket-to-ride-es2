@@ -203,4 +203,6 @@ func _compra_pilha_bilhetes():
 
 func _ver_objetivos():
 	print("ver objetivos")
+	var selection_mode = decisao.instantiate()
+	hud.add_child(selection_mode)
 	pass
