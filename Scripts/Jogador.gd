@@ -48,11 +48,11 @@ func inserirBilheteDestinoNaMao(bilhete: BilheteDestino):
 	bilhetesDestinoNaMao.append(bilhete)
 # não existe inserirBilheteDestinoCompletado porque só acontece quando remove da da mãos
 
-func removeNCores(quantidade, cor, baralho):
+func removeNCores(quantidade, cor_a_remover, baralho):
 	var numeroCorSelecionada = 0
 	var numeroLocomotivas = 0
 	for carta in cartasTremNaMao:
-		if carta.cor == cor:
+		if carta.cor == cor_a_remover:
 			numeroCorSelecionada += 1
 		if carta.cor == Color.TRANSPARENT:
 			numeroLocomotivas += 1
@@ -61,17 +61,17 @@ func removeNCores(quantidade, cor, baralho):
 		return false
 	if numeroCorSelecionada >= quantidade:
 		for i in range(quantidade):
-			removeCartaPorCor(cor, baralho)
+			removeCartaPorCor(cor_a_remover, baralho)
 	else:
 		for i in range(numeroCorSelecionada):
-			removeCartaPorCor(cor, baralho)
+			removeCartaPorCor(cor_a_remover, baralho)
 		for i in range(quantidade - numeroCorSelecionada):
 			removeCartaPorCor(Color.TRANSPARENT, baralho)
 	return true
 
-func removeCartaPorCor(cor: Color, baralho: Baralho):
+func removeCartaPorCor(cor_remocao: Color, baralho: Baralho):
 	for carta in cartasTremNaMao:
-		if carta.cor == cor:
+		if carta.cor == cor_remocao:
 			baralho.descartarCartaTrem(carta)
 			cartasTremNaMao.erase(carta)
 			return true
