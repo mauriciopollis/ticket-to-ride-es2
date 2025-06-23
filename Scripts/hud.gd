@@ -133,6 +133,8 @@ func atualiza_cartas_abertas(cartas):
 		var textura = load(colorLookUP[str(cartas[i].cor)])
 		cartasDaMesaUI[i].get_node("imagem").texture = textura
 		var botao = cartasDaMesaUI[i].get_node("imagem/TextureButton")
+		for connection in botao.get_signal_connection_list("pressed"):
+			botao.disconnect("pressed", connection["callable"])
 		botao.connect("pressed", Callable(self, "_on_carta_virada_selecionada").bind(i))
 
 func _on_carta_virada_selecionada(index):

@@ -241,12 +241,12 @@ func _compra_pilha_bilhetes():
 		hud.add_child(selection_mode)
 		for i in range(max_ofertas):
 			bilhetes_oferecidos.append(baralho.comprarPilhaBilhetesDestino())
-			var display = selection_mode.get_node("mascara/displaybilhetes")
+			#var display = selection_mode.get_node("mascara/displaybilhetes")
 			var selection_buttonUI = bilheteOpcao.instantiate()
 			selection_buttonUI.get_node("TextureRect").texture = load(bilhetes_oferecidos[i].asset_path)
 			selection_mode.get_node("mascara/displaybilhetes").add_child(selection_buttonUI)
 			var select_button = selection_buttonUI.get_node("TextureRect/TextureButton")
-			var color_effect = selection_buttonUI.get_node("TextureRect").modulate
+			#var color_effect = selection_buttonUI.get_node("TextureRect").modulate
 			select_button.connect("pressed", Callable(self, "_on_adiciona_selecao_destino").bind(i, selection_buttonUI))
 		var confirm_button = selection_mode.get_node("mascara/buttonconfirm")
 		confirm_button.visible = true
