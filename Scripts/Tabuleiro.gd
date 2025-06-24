@@ -307,6 +307,6 @@ func _on_confirmar_pressed(selection_mode):
 		pass
 
 func _sair_ver_bilhetes(selection_mode):
-	get_tree().change_scene_to_packed(cena_fim)
+	#get_tree().change_scene_to_packed(cena_fim)
 	#print_tree()
 	hud.remove_child(selection_mode)
