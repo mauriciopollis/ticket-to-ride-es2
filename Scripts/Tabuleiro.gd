@@ -150,6 +150,9 @@ func _on_rota_input_event(_viewport, event, _shape_idx, nome_rota):
 					var optbutton = opt.get_node("TextureRect/TextureButton")
 					optbutton.connect("pressed", Callable(self, "_on_carta_selecionada").bind(opt, grayout, rota_alvo.custo, baralho))
 					display.add_child(opt)
+			if baralho.pilhaCartasTrem.is_empty():
+				baralho.remontarPilhaCartasTrem()
+				hud.atualiza_pilha_cartas_trem(baralho.pilhaCartasTrem.size())
 		else:
 			print("Cartas insuficientes ou rota já capturada.")
 var mouse_over_count: int = 0
@@ -188,6 +191,9 @@ func _on_carta_selecionada(opt, blackout, cost, deck):
 		print("Seleção não prevista para captura de trilha cinza!")
 		
 	jogador_atual.removeNCores(cost, color_choice, deck)
+	if baralho.pilhaCartasTrem.is_empty():
+				baralho.remontarPilhaCartasTrem()
+				hud.atualiza_pilha_cartas_trem(baralho.pilhaCartasTrem.size())
 	Gamestate.proximo_turno()
 	
 func _carta_aberta(index):
@@ -198,12 +204,24 @@ func _carta_aberta(index):
 		valor_escolha = 2
 	else:
 		valor_escolha = 1
-	
+		
+	if cartas_expostas.size() == 1 and valor_escolha == 1:
+		valor_escolha = 0
+		return
+		
 	if valor_escolha + valor_acumulado_selecoes <= 2:
 		jogador_atual.inserirCartaTrem(cartas_expostas[index])
 		valor_acumulado_selecoes += valor_escolha
 		var nova_carta = baralho.comprarPilhaCartasTrem()
-		cartas_expostas[index] = nova_carta
+		if baralho.pilhaCartasTrem.is_empty():
+			baralho.remontarPilhaCartasTrem()
+		if nova_carta != null:
+			cartas_expostas[index] = nova_carta
+		else:
+			hud.cartasDaMesaUI[index].visible = false
+			cartas_expostas.remove_at(index)
+			hud.cartasDaMesaUI.remove_at(index)
+
 		hud.atualiza_mao_atual()
 		hud.atualiza_cartas_abertas(cartas_expostas)
 		hud.atualiza_pilha_cartas_trem(baralho.pilhaCartasTrem.size())
@@ -212,15 +230,14 @@ func _carta_aberta(index):
 		valor_acumulado_selecoes = 0
 		Gamestate.proximo_turno()
 	
-	print("Carta numero " + str(index) + " selecionada ")
-	print("Cor da carta: " + str(cartas_expostas[index].cor))
-	print("Valor acumulado das seleções: " + str(valor_acumulado_selecoes))
 func _compra_pilha_vagoes():
 	var jogador_atual = Gamestate.jogador_atual()
-	var valor_escolha = 1
-	
-	if valor_escolha + valor_acumulado_selecoes <= 2:
+	var valor_escolha = 1		
+		
+	if valor_escolha + valor_acumulado_selecoes <= 2 and not baralho.pilhaCartasTrem.is_empty():
 		jogador_atual.inserirCartaTrem(baralho.comprarPilhaCartasTrem())
+		if baralho.pilhaCartasTrem.is_empty():
+			baralho.remontarPilhaCartasTrem()
 		valor_acumulado_selecoes += valor_escolha
 		hud.atualiza_mao_atual()
 		hud.atualiza_pilha_cartas_trem(baralho.pilhaCartasTrem.size())
@@ -251,7 +268,6 @@ func _compra_pilha_bilhetes():
 		confirm_button.visible = true
 		confirm_button.connect("pressed", Callable(self, "_on_confirmar_pressed").bind(selection_mode))
 		hud.atualiza_pilha_destino(baralho.pilhaBilhetesDestino.size())
-
 
 func _ver_objetivos():
 	var jogador_atual = Gamestate.jogador_atual()
