@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxvd5k8b0mqr8"]
+
+[ext_resource type="Script" uid="uid://de4p1jd3pnikj" path="res://Scripts/jogador_stats.gd" id="1_7horp"]
+[ext_resource type="FontFile" uid="uid://ynhx2nfcu8c8" path="res://Assets/Fonts/Caveat-Medium.ttf" id="1_vi4qu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhs62"]
+bg_color = Color(0.27451, 0.658824, 0.745098, 0.380392)
+
+[node name="JogadorStats" type="Control"]
+custom_minimum_size = Vector2(350, 400)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 350.0
+offset_bottom = 400.0
+script = ExtResource("1_7horp")
+
+[node name="Background" type="Panel" parent="."]
+custom_minimum_size = Vector2(330, 200)
+layout_mode = 1
+offset_right = 350.0
+offset_bottom = 400.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mhs62")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Posicao" type="Label" parent="Background/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_vi4qu")
+theme_override_font_sizes/font_size = 33
+text = "1o lugar"
+horizontal_alignment = 1
+
+[node name="Divisor1" type="Label" parent="Background/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_vi4qu")
+theme_override_font_sizes/font_size = 33
+text = "-------------------"
+horizontal_alignment = 1
+
+[node name="Nome" type="Label" parent="Background/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_vi4qu")
+theme_override_font_sizes/font_size = 33
+text = "Nome: Player 1"
+horizontal_alignment = 1
+
+[node name="PontoTrilho" type="Label" parent="Background/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_vi4qu")
+theme_override_font_sizes/font_size = 33
+text = "Trilhos Construídos: 999"
+horizontal_alignment = 1
+
+[node name="PontoBilhete" type="Label" parent="Background/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_vi4qu")
+theme_override_font_sizes/font_size = 33
+text = "Cartas de Destino: 888"
+horizontal_alignment = 1
+
+[node name="PontoBonus" type="Label" parent="Background/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_vi4qu")
+theme_override_font_sizes/font_size = 33
+text = "Bonus de maior rota: 777"
+horizontal_alignment = 1
+
+[node name="Divisor2" type="Label" parent="Background/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_vi4qu")
+theme_override_font_sizes/font_size = 33
+text = "-----------------"
+horizontal_alignment = 1
+
+[node name="PontoTotal" type="Label" parent="Background/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_vi4qu")
+theme_override_font_sizes/font_size = 33
+text = "Total de pontos: 1234"
+horizontal_alignment = 1
