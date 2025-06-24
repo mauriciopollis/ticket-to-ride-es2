@@ -263,3 +263,6 @@ func get_bilhetesDestinoNaMao():
 
 func get_bilhetesDestinoCompletados():
 	return bilhetesDestinoCompletados
+
+func verifica_bilhete(objetivo):
+	return buscarCaminho(objetivo.cidade1, objetivo.cidade2)

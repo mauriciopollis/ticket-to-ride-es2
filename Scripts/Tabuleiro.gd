@@ -1,6 +1,7 @@
 extends Node
 
 class_name Tabuleiro
+var cena_fim = preload("res://Scenes/fim.tscn")
 
 var cidades: Dictionary = {}
 var rotas: Dictionary = {}
@@ -241,12 +242,10 @@ func _compra_pilha_bilhetes():
 		hud.add_child(selection_mode)
 		for i in range(max_ofertas):
 			bilhetes_oferecidos.append(baralho.comprarPilhaBilhetesDestino())
-			#var display = selection_mode.get_node("mascara/displaybilhetes")
 			var selection_buttonUI = bilheteOpcao.instantiate()
 			selection_buttonUI.get_node("TextureRect").texture = load(bilhetes_oferecidos[i].asset_path)
 			selection_mode.get_node("mascara/displaybilhetes").add_child(selection_buttonUI)
 			var select_button = selection_buttonUI.get_node("TextureRect/TextureButton")
-			#var color_effect = selection_buttonUI.get_node("TextureRect").modulate
 			select_button.connect("pressed", Callable(self, "_on_adiciona_selecao_destino").bind(i, selection_buttonUI))
 		var confirm_button = selection_mode.get_node("mascara/buttonconfirm")
 		confirm_button.visible = true
@@ -257,22 +256,24 @@ func _compra_pilha_bilhetes():
 func _ver_objetivos():
 	var jogador_atual = Gamestate.jogador_atual()
 	var selection_mode = decisao.instantiate()
+	
 	hud.add_child(selection_mode)
 	for bilhete in jogador_atual.get_bilhetesDestinoNaMao():
 		var bilheteUI = bilheteOpcao.instantiate()
 		bilheteUI.get_node("TextureRect").texture = load(bilhete.asset_path)
 		selection_mode.get_node("mascara/displaybilhetes").add_child(bilheteUI)
-	for bilhete in jogador_atual.get_bilhetesDestinoCompletados():
-		var bilheteUI = bilheteOpcao.instantiate()
-		bilheteUI.get_node("TextureRect").texture = load(bilhete.asset_path)
-		bilheteUI.get_node("TextureRect").modulate = Color(0.5, 1, 1)
-		selection_mode.get_node("mascara/displaybilhetes").add_child(bilheteUI)
+		if jogador_atual.verifica_bilhete(bilhete):
+			bilheteUI.get_node("TextureRect").modulate = Color(0.3, 1, 1)
+	#for bilhete in jogador_atual.get_bilhetesDestinoCompletados():
+		#var bilheteUI = bilheteOpcao.instantiate()
+		#bilheteUI.get_node("TextureRect").texture = load(bilhete.asset_path)
+		#bilheteUI.get_node("TextureRect").modulate = Color(0.5, 1, 1)
+		#selection_mode.get_node("mascara/displaybilhetes").add_child(bilheteUI)
 	var confirm_button = selection_mode.get_node("mascara/buttonconfirm")
 	confirm_button.visible = true
 	confirm_button.connect("pressed", Callable(self, "_sair_ver_bilhetes").bind(selection_mode))
 	
 func _on_adiciona_selecao_destino(i, elem):
-	
 	if not destinos_selecionados_idx[i]:
 		elem.get_node("TextureRect").modulate = Color(1, 1, 0.5)
 		numero_destinos_selecionados += 1
@@ -306,4 +307,6 @@ func _on_confirmar_pressed(selection_mode):
 		pass
 
 func _sair_ver_bilhetes(selection_mode):
+	#get_tree().change_scene_to_packed(cena_fim)
+	#print_tree()
 	hud.remove_child(selection_mode)

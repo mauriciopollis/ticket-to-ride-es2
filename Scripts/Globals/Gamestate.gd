@@ -3,9 +3,18 @@ extends Node
 signal turno_trocado
 signal forcar_compra_bilhete
 
+var cena_fim = preload("res://Scenes/fim.tscn")
+
+var qtd_players = 0
+var qtd_ia = 0
+var isModoSolo = false
+
 var jogadores: Array[Jogador] = []
 var jogador_atual_idx: int = 0
 var primeiras_rodadas = true
+var inicio_do_fim = false
+var fim = false
+var ultimo_a_jogar: int = -1
 var turno = 0
 
 func jogador_atual():
@@ -23,6 +32,15 @@ func proximo_turno():
 	if turno == jogadores.size():
 		primeiras_rodadas = false
 
+	if inicio_do_fim and ultimo_a_jogar == jogador_atual_idx:
+		fim = true
+		#get_tree().root.add_child(cena_fim)
+		get_tree().change_scene_to_packed(cena_fim)
+
+	if jogadores[jogador_atual_idx].vagoesDisponiveis <= 2:
+		inicio_do_fim = true
+		ultimo_a_jogar = jogador_atual_idx
+	
 	if jogadores.size() == 0:
 		return
 	jogador_atual_idx = (jogador_atual_idx + 1) % jogadores.size()
