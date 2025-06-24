@@ -255,9 +255,22 @@ func _compra_pilha_bilhetes():
 
 
 func _ver_objetivos():
+	var jogador_atual = Gamestate.jogador_atual()
 	var selection_mode = decisao.instantiate()
 	hud.add_child(selection_mode)
-
+	for bilhete in jogador_atual.get_bilhetesDestinoNaMao():
+		var bilheteUI = bilheteOpcao.instantiate()
+		bilheteUI.get_node("TextureRect").texture = load(bilhete.asset_path)
+		selection_mode.get_node("mascara/displaybilhetes").add_child(bilheteUI)
+	for bilhete in jogador_atual.get_bilhetesDestinoCompletados():
+		var bilheteUI = bilheteOpcao.instantiate()
+		bilheteUI.get_node("TextureRect").texture = load(bilhete.asset_path)
+		bilheteUI.get_node("TextureRect").modulate = Color(0.5, 1, 1)
+		selection_mode.get_node("mascara/displaybilhetes").add_child(bilheteUI)
+	var confirm_button = selection_mode.get_node("mascara/buttonconfirm")
+	confirm_button.visible = true
+	confirm_button.connect("pressed", Callable(self, "_sair_ver_bilhetes").bind(selection_mode))
+	
 func _on_adiciona_selecao_destino(i, elem):
 	
 	if not destinos_selecionados_idx[i]:
@@ -291,4 +304,6 @@ func _on_confirmar_pressed(selection_mode):
 		Gamestate.proximo_turno()
 	else:
 		pass
-		
+
+func _sair_ver_bilhetes(selection_mode):
+	hud.remove_child(selection_mode)

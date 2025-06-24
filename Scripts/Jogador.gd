@@ -257,3 +257,9 @@ func get_options(n_cartas: int) -> Array[String]:
 				else:
 					print("Erro ao gerar escolhas para conquista de cinza!")
 	return escolhas
+
+func get_bilhetesDestinoNaMao():
+	return bilhetesDestinoNaMao
+
+func get_bilhetesDestinoCompletados():
+	return bilhetesDestinoCompletados
