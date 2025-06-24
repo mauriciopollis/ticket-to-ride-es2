@@ -25,6 +25,7 @@ extends CanvasLayer
 	$TextureRect/VBoxContainer/CartaDaMesa4,
 	$TextureRect/VBoxContainer/CartaDaMesa5
 ]
+
 @onready var pilhaDest = $TextureRect/PilhaDeDestinos
 @onready var botaoPilhaBilhete = $TextureRect/PilhaDeDestinos.get_node("HBoxContainer/imagem/TexButton")
 @onready var pilhaCartasVagao = $TextureRect/PilhaDeCartas
@@ -32,6 +33,7 @@ extends CanvasLayer
 @onready var maoJogadorAtual = $TextureRect/MaoJogador
 @onready var elementoJogadorUI = $TextureRect/JogadorUI
 @onready var botaoObjetivosJogador = elementoJogadorUI.get_node("Background/HBoxContainer/Container_Ticket/TicketImage/TextureButton")
+
 
 signal signal_carta_aberta(index)
 signal signal_pilha_vagoes
@@ -129,7 +131,7 @@ func atualiza_mao_atual():
 			maoJogadorAtual.add_child(carta_ui)
 
 func atualiza_cartas_abertas(cartas):
-	for i in range(5):
+	for i in range(cartas.size()):
 		var textura = load(colorLookUP[str(cartas[i].cor)])
 		cartasDaMesaUI[i].get_node("imagem").texture = textura
 		var botao = cartasDaMesaUI[i].get_node("imagem/TextureButton")
