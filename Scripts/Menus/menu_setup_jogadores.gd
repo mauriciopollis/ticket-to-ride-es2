@@ -7,7 +7,8 @@ func _init() -> void:
 	tabuleiro_scene = preload("res://Scenes/tabuleiro.tscn").instantiate()
 	
 func _ready() -> void:
-	pass
+	isModoSolo = Gamestate.isModoSolo
+	inicializar(Gamestate.qtd_players, Gamestate.qtd_ia)
 	
 func inicializar(qtdJogadores: int, qtdIAs: int) -> void:
 	for i in range(qtdJogadores):
@@ -41,13 +42,14 @@ func setup_jogadores() -> void:
 
 func _on_botao_jogar_modo_setup_jogadores_pressed() -> void:
 	setup_jogadores()
-	get_tree().root.add_child(tabuleiro_scene)
+	#get_tree().root.add_child(tabuleiro_scene)
+	get_tree().change_scene_to_file("res://Scenes/tabuleiro.tscn")
 
 
 func _on_botao_voltar_pressed() -> void:
 	if isModoSolo:
-		queue_free()
+		#queue_free()
 		get_tree().change_scene_to_file("res://Scenes/menu_dificuldade.tscn")
 	else:
-		queue_free()
+		#queue_free()
 		get_tree().change_scene_to_file("res://Scenes/menu_customizar.tscn")

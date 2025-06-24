@@ -263,3 +263,33 @@ func get_bilhetesDestinoNaMao():
 
 func get_bilhetesDestinoCompletados():
 	return bilhetesDestinoCompletados
+
+func verifica_bilhete(objetivo):
+	return buscarCaminho(objetivo.cidade1, objetivo.cidade2)
+
+func retorna_pontos_de_bilhete():
+	var resultado = 0
+	for bilhete in bilhetesDestinoNaMao:
+		if buscarCaminho(bilhete.cidade1, bilhete.cidade2):
+			resultado += bilhete.pontos
+			completarBilheteDestino(bilhete)
+		else:
+			resultado -= bilhete.pontos
+	return resultado
+
+func retorna_tamanho_do_maior_caminho():
+	if grafo.is_empty():
+		return 0
+
+	var maiorCaminho: Array[Rota] = []
+
+	for cidade in grafo.keys():
+		var caminho: Array[Rota]
+		var resultado: Array[Rota] = buscaProfundidade(cidade, caminho)
+
+		if resultado.size() > maiorCaminho.size():
+			maiorCaminho = resultado
+	var total = 0
+	for rota in maiorCaminho:
+		total += rota.custo
+	return total
