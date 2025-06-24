@@ -3,16 +3,17 @@
 [ext_resource type="Texture2D" uid="uid://50vq2dj5ic0m" path="res://Assets/Destinos/Bilhete_Placeholder.png" id="1_1c3tj"]
 
 [node name="BilheteUI" type="Control"]
+clip_contents = true
 custom_minimum_size = Vector2(292, 187)
 layout_mode = 3
-anchors_preset = 0
-offset_right = 100.0
-offset_bottom = 100.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(200, 100)
+custom_minimum_size = Vector2(292, 187)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_1c3tj")
 expand_mode = 3
+stretch_mode = 4
 
 [node name="TextureButton" type="TextureButton" parent="TextureRect"]
 layout_mode = 1
