@@ -9,3 +9,6 @@ func _init(cor_:Color) -> void:
 
 func get_color() -> Color:
 	return self.cor
+
+func eh_locomotiva() -> bool:
+	return cor == Color.TRANSPARENT
