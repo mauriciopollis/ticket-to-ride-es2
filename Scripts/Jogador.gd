@@ -14,6 +14,10 @@ var cartasTremNaMao: Array[CartaTrem] = []
 var bilhetesDestinoNaMao: Array[BilheteDestino] = []
 var bilhetesDestinoCompletados: Array[BilheteDestino] = []
 var ordemDeJogada: int
+var cartasCompradasNesteTurno: int = 0
+var comprouLocomotivaVisivel: bool = false
+var fezAcaoPrincipal: bool = false
+var is_ia: bool = false 
 
 func _init(nome_: String, cor_: Color):
 	self.nome = nome_

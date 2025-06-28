@@ -34,7 +34,6 @@ extends CanvasLayer
 @onready var elementoJogadorUI = $TextureRect/JogadorUI
 @onready var botaoObjetivosJogador = elementoJogadorUI.get_node("Background/HBoxContainer/Container_Ticket/TicketImage/TextureButton")
 
-
 signal signal_carta_aberta(index)
 signal signal_pilha_vagoes
 signal signal_pilha_bilhetes
@@ -45,34 +44,33 @@ func _ready() -> void:
 	oponenteUI2.visible = false
 	oponenteUI3.visible = false
 	oponenteUI4.visible = false
-	Gamestate.connect("turno_trocado", Callable(self, "atualizar_jogador_da_vez"))
+	
 	botaoPilhaVagao.connect("pressed", Callable(self, "_on_pilha_vagoes"))
 	botaoPilhaBilhete.connect("pressed", Callable(self, "_on_pilha_bilhetes"))
 	botaoObjetivosJogador.connect("pressed", Callable(self, "_on_ver_bilhetes"))
 
 func inicializar(cartas_em_mesa):
-	jogadorDaVezUI.setJogador(Gamestate.jogador_atual())
-	var idx = 0
-	for i in range(Gamestate.jogadores.size()):
-		if i == Gamestate.jogador_atual_idx:
-			continue
-		oponenteUIs[idx].setJogador(Gamestate.jogadores[i])
-		oponenteUIs[idx].visible = true
-		idx += 1
-
+	atualizar_jogador_da_vez()
+	
 	atualiza_cartas_abertas(cartas_em_mesa)
 	atualiza_mao_atual()
 	
-
 func atualizar_jogador_da_vez():
+	for oponente_ui_node in oponenteUIs:
+		oponente_ui_node.visible = false
+
 	jogadorDaVezUI.setJogador(Gamestate.jogador_atual())
 	
 	var idx = 0
-	for oponente in Gamestate.jogadores_restantes():
-		oponenteUIs[idx].setJogador(oponente)
-		oponenteUIs[idx].visible = true
-		idx += 1
-
+	for jogador in Gamestate.jogadores:
+		if jogador != Gamestate.jogador_atual():
+			if idx < oponenteUIs.size():
+				oponenteUIs[idx].setJogador(jogador)
+				oponenteUIs[idx].visible = true
+				idx += 1
+			else:
+				print("Há mais oponentes do que UIs de oponentes.")
+	
 	atualiza_mao_atual()
 
 func atualiza_pilha_destino(n):
@@ -99,45 +97,46 @@ func atualiza_mao_atual():
 	}
 	
 	for carta in mao_jogador_atual:
-		match carta.cor:
-			Color.BLACK:
+		match Utils.nomeCor(carta.cor):
+			"Preto":
 				qnt_cartas_em_mao["preto"] += 1
-			Color.BLUE:
+			"Azul":
 				qnt_cartas_em_mao["azul"] += 1
-			Color.GREEN:
+			"Verde":
 				qnt_cartas_em_mao["verde"] += 1
-			Color.ORANGE:
+			"Laranja":
 				qnt_cartas_em_mao["laranja"] += 1
-			Color.PINK:
+			"Rosa":
 				qnt_cartas_em_mao["rosa"] += 1
-			Color.RED:
+			"Vermelho":
 				qnt_cartas_em_mao["vermelho"] += 1
-			Color.TRANSPARENT:
+			"Curinga (transparente)":
 				qnt_cartas_em_mao["locomotiva"] += 1
-			Color.WHITE:
+			"Branco":
 				qnt_cartas_em_mao["branco"] += 1
-			Color.YELLOW:
+			"Amarelo":
 				qnt_cartas_em_mao["amarelo"] += 1
 	
-	# Carrega a cena.
-	var carta_ui
 	var cena_carta = preload("res://Scenes/CartaUI.tscn")
 
-	# Adiciona cartas presentes em mão a UI.
-	for cor in qnt_cartas_em_mao:
-		if qnt_cartas_em_mao[cor] != 0:
-			carta_ui = cena_carta.instantiate()
-			carta_ui.init(cor, qnt_cartas_em_mao[cor])
+	for cor_nome in qnt_cartas_em_mao:
+		if qnt_cartas_em_mao[cor_nome] != 0:
+			var carta_ui = cena_carta.instantiate()
+			carta_ui.init(cor_nome, qnt_cartas_em_mao[cor_nome])
 			maoJogadorAtual.add_child(carta_ui)
 
 func atualiza_cartas_abertas(cartas):
-	for i in range(cartas.size()):
-		var textura = load(colorLookUP[str(cartas[i].cor)])
-		cartasDaMesaUI[i].get_node("imagem").texture = textura
-		var botao = cartasDaMesaUI[i].get_node("imagem/TextureButton")
-		for connection in botao.get_signal_connection_list("pressed"):
-			botao.disconnect("pressed", connection["callable"])
-		botao.connect("pressed", Callable(self, "_on_carta_virada_selecionada").bind(i))
+	for i in range(cartasDaMesaUI.size()):
+		if i < cartas.size() and cartas[i] != null:
+			var textura = load(colorLookUP[str(cartas[i].cor)])
+			cartasDaMesaUI[i].get_node("imagem").texture = textura
+			cartasDaMesaUI[i].get_node("imagem").visible = true
+			var botao = cartasDaMesaUI[i].get_node("imagem/TextureButton")
+			for connection in botao.get_signal_connection_list("pressed"):
+				botao.disconnect("pressed", connection["callable"])
+			botao.connect("pressed", Callable(self, "_on_carta_virada_selecionada").bind(i))
+		else:
+			cartasDaMesaUI[i].get_node("imagem").visible = false
 
 func _on_carta_virada_selecionada(index):
 	emit_signal("signal_carta_aberta", index)
