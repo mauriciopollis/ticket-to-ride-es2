@@ -50,6 +50,8 @@ func _ready() -> void:
 	hud.connect("signal_pilha_bilhetes", Callable(self, "_on_pilha_bilhetes_hud"))
 	hud.connect("signal_ver_objetivos", Callable(self, "_on_ver_objetivos_pressionado"))
 
+	Gamestate.connect("forcar_compra_bilhete", Callable(self, "_on_pilha_bilhetes_hud"))
+
 	Gamestate.connect("turno_trocado", Callable(hud, "atualizar_jogador_da_vez"))
 	Gamestate.connect("turno_trocado", Callable(hud, "atualiza_mao_atual"))
 	Gamestate.connect("turno_trocado", Callable(hud, "atualiza_cartas_abertas").bind(baralho.get_cartas_expostas()))
