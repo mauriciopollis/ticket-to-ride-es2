@@ -34,3 +34,20 @@ func nomeCor(cor: Color) -> String:
 		return "Curinga (transparente)"
 	else:
 		return "Desconhecida (%s)" % cor.to_html()
+
+static func getCorPorNome(nome_cor_string: String) -> Color:
+	match nome_cor_string.to_lower():
+		"preto": return Color.BLACK
+		"azul": return Color.BLUE
+		"verde": return Color.GREEN
+		"laranja": return Color.ORANGE
+		"rosa": return Color.PINK
+		"vermelho": return Color.RED
+		"branco": return Color.WHITE
+		"amarelo": return Color.YELLOW
+		"cinza": return Color.GRAY
+		"locomotiva": return Color.TRANSPARENT
+		"curinga": return Color.TRANSPARENT
+		_:
+			push_warning("Cor '%s' não reconhecida em getCorPorNome. Retornando Color.TRANSPARENT (Curinga)." % nome_cor_string)
+			return Color.TRANSPARENT
