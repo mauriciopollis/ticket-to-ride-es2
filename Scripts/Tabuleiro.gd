@@ -106,8 +106,8 @@ func configurar_rotas():
 		var c1 = get_cidade(rotaData[0])
 		var c2 = get_cidade(rotaData[1])
 		var nome_rota = gerar_nome_rota(c1, c2)
-		#var rota = Rota.new(nome_rota, c1, c2, rotaData[2], rotaData[3])
-		var rota = Rota.new(nome_rota, c1, c2, TabuleiroData.COR_DICT[rotaData[2]], rotaData[3])
+		var rota = Rota.new(nome_rota, c1, c2, rotaData[2], rotaData[3])
+		#var rota = Rota.new(nome_rota, c1, c2, TabuleiroData.COR_DICT[rotaData[2]], rotaData[3])
 		rotas[nome_rota] = rota
 	# print(rotas)
 
