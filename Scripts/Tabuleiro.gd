@@ -34,7 +34,6 @@ func _ready() -> void:
 	baralho = Baralho.new()
 	add_child(baralho)
 
-
 	for jogador in Gamestate.jogadores:
 		if jogador.is_ia:
 			var nova_ia = IA.new(jogador, self, Gamestate)
@@ -288,8 +287,12 @@ func _on_pilha_vagoes_hud():
 		return
 
 	if baralho.pilhaCartasTrem.is_empty():
-		print("Pilha de cartas de trem vazia.")
-		return
+		if not baralho.descarteCartasTrem.is_empty():
+			baralho.remontarPilhaCartasTrem()
+			hud.atualiza_pilha_cartas_trem(baralho.pilhaCartasTrem.size())
+		else:
+			print("Pilha de cartas de trem e descarte vazias.")
+			return
 		
 	var carta_comprada = baralho.comprarPilhaCartasTrem()
 	if carta_comprada:
