@@ -138,6 +138,10 @@ func conquistar_rota(rota: Rota, jogador: Jogador) -> bool:
 		print(jogador.nome + " já realizou uma ação principal neste turno.")
 		return false
 	
+	if jogador.cartasCompradasNesteTurno > 0:
+		print(jogador.nome + " não pode conquistar rota após comprar cartas neste turno.")
+		return false
+	
 	if rota.dono != null:
 		push_warning("Rota %s já reclamada por %s" % [rota.nome, rota.dono.nome])
 		return false

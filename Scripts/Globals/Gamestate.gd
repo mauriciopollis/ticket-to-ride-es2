@@ -2,23 +2,24 @@ extends Node
 
 signal turno_trocado
 signal forcar_compra_bilhete
+signal ultima_rodada_iniciada
 
 var cena_fim = preload("res://Scenes/fim.tscn")
 
-var qtd_players = 0 
-var qtd_ia = 0      
+var qtd_players = 0
+var qtd_ia = 0
 var isModoSolo = false
 
 var jogadores: Array[Jogador] = []
 var jogador_atual_idx: int = 0
 
-var ias_no_jogo: Dictionary = {} 
+var ias_no_jogo: Dictionary = {}
 
 var primeiras_rodadas = true
 var inicio_do_fim = false
 var fim = false
 var ultimo_a_jogar: int = -1
-var turno = 0                 
+var turno = 0
 
 func jogador_atual() -> Jogador:
 	if jogadores.size() > 0:
@@ -54,6 +55,8 @@ func proximo_turno():
 	if jogadores.size() > 0 and jogador_atual().vagoesDisponiveis <= 2 and not inicio_do_fim:
 		inicio_do_fim = true
 		ultimo_a_jogar = jogador_atual_idx
+		print("INICIANDO ÚLTIMA RODADA! Jogador: ", jogador_atual().nome, " com ", jogador_atual().vagoesDisponiveis, " vagões")
+		emit_signal("ultima_rodada_iniciada")
 	
 	if jogadores.size() == 0:
 		push_warning("Nenhum jogador para avançar o turno.")
@@ -69,7 +72,7 @@ func proximo_turno():
 		var ia_controller = ias_no_jogo[jogador_atual()]
 		ia_controller.tomar_decisao()
 	else:
-		if primeiras_rodadas: 
+		if primeiras_rodadas:
 			emit_signal("forcar_compra_bilhete")
 
 func inicializar_jogadores(nomes_jogadores: Array, nomes_ias: Array) -> void:

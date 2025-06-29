@@ -21,8 +21,6 @@ func tomar_decisao():
 
 	# Prioridade 1: Comprar bilhetes de destino se não tiver nenhum
 	if jogador.bilhetesDestinoNaMao.is_empty():
-		_atualizar_texto_tela("Comprando bilhetes de destino pois não há nenhum.")
-		await _gamestate.get_tree().create_timer(1.5).timeout
 		_comprar_bilhetes_destino()
 		return # Termina o turno após comprar bilhetes
 

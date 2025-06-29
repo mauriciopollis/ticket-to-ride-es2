@@ -39,6 +39,8 @@ signal signal_pilha_vagoes
 signal signal_pilha_bilhetes
 signal signal_ver_objetivos
 
+var _label_ultima_rodada: Label = null
+
 func _ready() -> void:
 	oponenteUI1.visible = false
 	oponenteUI2.visible = false
@@ -48,6 +50,20 @@ func _ready() -> void:
 	botaoPilhaVagao.connect("pressed", Callable(self, "_on_pilha_vagoes"))
 	botaoPilhaBilhete.connect("pressed", Callable(self, "_on_pilha_bilhetes"))
 	botaoObjetivosJogador.connect("pressed", Callable(self, "_on_ver_bilhetes"))
+
+	_label_ultima_rodada = Label.new()
+	_label_ultima_rodada.text = "ÚLTIMA RODADA!"
+	_label_ultima_rodada.add_theme_font_size_override("font_size", 50)
+	_label_ultima_rodada.add_theme_color_override("font_color", Color.RED)
+	_label_ultima_rodada.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_label_ultima_rodada.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	_label_ultima_rodada.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
+	_label_ultima_rodada.set_offset(SIDE_TOP, 50)
+	_label_ultima_rodada.z_index = 100
+	_label_ultima_rodada.visible = false
+	add_child(_label_ultima_rodada)
+
+	Gamestate.connect("ultima_rodada_iniciada", Callable(self, "_on_ultima_rodada_iniciada"))
 
 func inicializar(cartas_em_mesa):
 	atualizar_jogador_da_vez()
@@ -149,3 +165,6 @@ func _on_pilha_bilhetes():
 
 func _on_ver_bilhetes():
 	emit_signal("signal_ver_objetivos")
+
+func _on_ultima_rodada_iniciada():
+	_label_ultima_rodada.visible = true
