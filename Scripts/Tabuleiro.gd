@@ -34,6 +34,7 @@ func _ready() -> void:
 	baralho = Baralho.new()
 	add_child(baralho)
 
+
 	for jogador in Gamestate.jogadores:
 		if jogador.is_ia:
 			var nova_ia = IA.new(jogador, self, Gamestate)
@@ -44,6 +45,7 @@ func _ready() -> void:
 	
 	baralho.iniciarCartasTremExpostas()
 	hud.inicializar(baralho.get_cartas_expostas())
+	hud.atualiza_pilha_cartas_trem(baralho.pilhaCartasTrem.size())
 
 	hud.connect("signal_carta_aberta", Callable(self, "_on_carta_aberta_hud"))
 	hud.connect("signal_pilha_vagoes", Callable(self, "_on_pilha_vagoes_hud"))
@@ -55,8 +57,8 @@ func _ready() -> void:
 	Gamestate.connect("turno_trocado", Callable(hud, "atualizar_jogador_da_vez"))
 	Gamestate.connect("turno_trocado", Callable(hud, "atualiza_mao_atual"))
 	Gamestate.connect("turno_trocado", Callable(hud, "atualiza_cartas_abertas").bind(baralho.get_cartas_expostas()))
-	Gamestate.connect("turno_trocado", Callable(hud, "atualiza_pilha_destino").bind(baralho.pilhaBilhetesDestino.size()))
-	Gamestate.connect("turno_trocado", Callable(hud, "atualiza_pilha_cartas_trem").bind(baralho.pilhaCartasTrem.size()))
+	# Gamestate.connect("turno_trocado", Callable(hud, "atualiza_pilha_destino").bind(baralho.pilhaBilhetesDestino.size()))
+	# Gamestate.connect("turno_trocado", Callable(hud, "atualiza_pilha_cartas_trem").bind(baralho.pilhaCartasTrem.size()))
 
 	for rota in $RotasButtons.get_children():
 		if rota is Area2D:
@@ -247,7 +249,9 @@ func _on_carta_aberta_hud(index: int):
 	jogador_atual.inserirCartaTrem(carta_comprada)
 	baralho.cartasTremExpostas[index] = baralho.comprarPilhaCartasTrem()
 	jogador_atual.cartasCompradasNesteTurno += 1
-	
+	hud.atualiza_mao_atual()
+	hud.atualiza_cartas_abertas(baralho.cartasTremExpostas)
+	hud.atualiza_pilha_cartas_trem(baralho.pilhaCartasTrem.size())
 	if jogador_atual.cartasCompradasNesteTurno >= 2 or jogador_atual.comprouLocomotivaVisivel:
 		Gamestate.proximo_turno()
 
@@ -272,6 +276,8 @@ func _on_pilha_vagoes_hud():
 	if carta_comprada:
 		jogador_atual.inserirCartaTrem(carta_comprada)
 		jogador_atual.cartasCompradasNesteTurno += 1
+		hud.atualiza_mao_atual()
+		hud.atualiza_pilha_cartas_trem(baralho.pilhaCartasTrem.size())
 	else:
 		print("Não há mais cartas para comprar na pilha.")
 		return
@@ -309,6 +315,7 @@ func _on_pilha_bilhetes_hud():
 		var confirm_button = selection_mode.get_node("mascara/buttonconfirm")
 		confirm_button.visible = true
 		confirm_button.connect("pressed", Callable(self, "_on_confirmar_pressed").bind(selection_mode))
+		hud.atualiza_pilha_destino(baralho.pilhaBilhetesDestino.size())
 		
 	else:
 		print("Não há bilhetes de destino disponíveis para compra.")
