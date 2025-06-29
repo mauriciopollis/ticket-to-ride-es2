@@ -142,6 +142,21 @@ func conquistar_rota(rota: Rota, jogador: Jogador) -> bool:
 		push_warning("Rota %s já reclamada por %s" % [rota.nome, rota.dono.nome])
 		return false
 
+	# Lógica para impedir conquista de rotas paralelas
+	var rota_base_nome = rota.nome.replace("-1", "").replace("-2", "")
+	if rotas.has(rota_base_nome + "-1") and rotas.has(rota_base_nome + "-2"):
+		var rota_paralela_nome = ""
+		if rota.nome.ends_with("-1"):
+			rota_paralela_nome = rota_base_nome + "-2"
+		elif rota.nome.ends_with("-2"):
+			rota_paralela_nome = rota_base_nome + "-1"
+		
+		if rota_paralela_nome != "":
+			var rota_paralela = rotas[rota_paralela_nome]
+			if rota_paralela.dono == jogador:
+				print("Você já possui a rota paralela %s." % rota_paralela.nome)
+				return false
+
 	if jogador.getVagoesDisponiveis() < rota.custo:
 		print(jogador.nome + " não tem vagões suficientes para a rota %s." % rota.nome)
 		return false

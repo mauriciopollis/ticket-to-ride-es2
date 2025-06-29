@@ -23,36 +23,37 @@ func tomar_decisao():
 	rotas_disponiveis.shuffle()
 	rotas_disponiveis.sort_custom(func(a, b): return a.custo < b.custo)
 
+	_atualizar_texto_tela("Analisando rotas disponíveis...")
+	await _gamestate.get_tree().create_timer(1.5).timeout
 	for rota_candidata in rotas_disponiveis:
 		if rota_candidata.dono == null:
 			if jogador.getVagoesDisponiveis() >= rota_candidata.custo:
 				var cartas_para_usar = jogador.getCartasSuficientesIA(rota_candidata.cor, rota_candidata.custo)
 				if cartas_para_usar.size() == rota_candidata.custo:
 					# Mostrar que está analisando a rota
-					_atualizar_texto_tela("Analisando rotas disponíveis...")
-					await _gamestate.get_tree().create_timer(1.5).timeout
-					
-					# Mostrar que decidiu construir a rota
-					_atualizar_texto_tela("Construindo rota: " + rota_candidata.nome + "\nCusto: " + str(rota_candidata.custo) + " - Cor: " + Utils.nomeCor(rota_candidata.cor))
-					
-					# Adicionar seta na rota
-					_mostrar_seta_rota(rota_candidata.nome)
-					await _gamestate.get_tree().create_timer(2.5).timeout
-
-					_tabuleiro.conquistar_rota(rota_candidata, jogador)
-					jogador.adicionarVagoesDisponiveis(-rota_candidata.custo)
-
-					for carta_usada in cartas_para_usar:
-						jogador.removerCartaTrem(carta_usada)
-						_tabuleiro.baralho.descartarCartaTrem(carta_usada)
-					
-					# Remover seta da rota e delay depois da ação
-					_remover_seta_rota()
-					await _gamestate.get_tree().create_timer(2.5).timeout
-					
-					_remover_tela_bloqueio()
-					_gamestate.proximo_turno()
-					return
+					var rota_conquistada = _tabuleiro.conquistar_rota(rota_candidata, jogador)
+					if rota_conquistada:
+						# Mostrar que decidiu construir a rota
+						_atualizar_texto_tela("Construindo rota: " + rota_candidata.nome + "\nCusto: " + str(rota_candidata.custo) + " - Cor: " + Utils.nomeCor(rota_candidata.cor))
+						
+						# Adicionar seta na rota
+						_mostrar_seta_rota(rota_candidata.nome)
+						await _gamestate.get_tree().create_timer(2.5).timeout
+						for carta_usada in cartas_para_usar:
+							jogador.removerCartaTrem(carta_usada)
+							_tabuleiro.baralho.descartarCartaTrem(carta_usada)
+						
+						# Remover seta da rota e delay depois da ação
+						_remover_seta_rota()
+						await _gamestate.get_tree().create_timer(0.5).timeout
+						
+						_remover_tela_bloqueio()
+						_gamestate.proximo_turno()
+						return
+					else:
+						# Se não conseguiu conquistar a rota, remove a seta e continua tentando outras rotas
+						_remover_seta_rota()
+						continue
 
 	# Mostrar que está procurando cartas
 	_atualizar_texto_tela("Procurando cartas para comprar...")
