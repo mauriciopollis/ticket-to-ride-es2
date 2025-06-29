@@ -21,11 +21,11 @@ func fill_stats():
 		print(i)
 		var stats_jogador_i = all_player_stats[i].get_node("Background").get_node("VBoxContainer")
 		stats_jogador_i.get_node("Posicao").text = str(i+1) + "º lugar"
-		stats_jogador_i.get_node("Nome").text = str(all_player_stats[i].nome)
-		stats_jogador_i.get_node("PontoTrilho").text = str(all_player_stats[i].pontuacao_trilhos_contruidos)
-		stats_jogador_i.get_node("PontoBilhete").text = str(all_player_stats[i].pontuacao_cartas_destino)
-		stats_jogador_i.get_node("PontoBonus").text = str(all_player_stats[i].bonus_maior_rota)
-		stats_jogador_i.get_node("PontoTotal").text = str(all_player_stats[i].pontuacao_total)
+		stats_jogador_i.get_node("Nome").text = "Nome: " + str(all_player_stats[i].nome)
+		stats_jogador_i.get_node("PontoTrilho").text = "Trilhos: " + str(all_player_stats[i].pontuacao_trilhos_contruidos)
+		stats_jogador_i.get_node("PontoBilhete").text = "Objetivos: " + str(all_player_stats[i].pontuacao_cartas_destino)
+		stats_jogador_i.get_node("PontoBonus").text = "Bonus: " + str(all_player_stats[i].bonus_maior_rota)
+		stats_jogador_i.get_node("PontoTotal").text = "Total: " + str(all_player_stats[i].pontuacao_total)
 		
 
 func rankeia_jogadores():
