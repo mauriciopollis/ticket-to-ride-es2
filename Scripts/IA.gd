@@ -84,22 +84,23 @@ func tomar_decisao():
 			else:
 				nao_locomotivas_visiveis.append({"carta": cartas_visiveis[i], "indice": i})
 
-	# Prioriza cartas não locomotivas
-	if not nao_locomotivas_visiveis.is_empty():
-		var escolha = nao_locomotivas_visiveis[randi() % nao_locomotivas_visiveis.size()]
-		carta_escolhida = escolha.carta
-		indice_escolhido = escolha.indice
-	elif not locomotivas_visiveis.is_empty():
-		# Se não houver cartas não locomotivas, escolhe uma locomotiva
+	# Prioriza locomotivas visíveis na primeira compra
+	if not locomotivas_visiveis.is_empty():
 		var escolha = locomotivas_visiveis[randi() % locomotivas_visiveis.size()]
 		carta_escolhida = escolha.carta
 		indice_escolhido = escolha.indice
 		comprou_locomotiva_visivel_neste_turno = true
+	elif not nao_locomotivas_visiveis.is_empty():
+		# Se não houver locomotivas visíveis, escolhe uma carta não locomotiva
+		var escolha = nao_locomotivas_visiveis[randi() % nao_locomotivas_visiveis.size()]
+		carta_escolhida = escolha.carta
+		indice_escolhido = escolha.indice
 	
 	if carta_escolhida != null and indice_escolhido != -1:
 		var cor_carta = Utils.nomeCor(carta_escolhida.cor) if not carta_escolhida.eh_locomotiva() else "Locomotiva"
 		_atualizar_texto_tela("Comprando carta visível: " + cor_carta)
-		await _gamestate.get_tree().create_timer(1.0).timeout
+		await _gamestate.get_tree().create_timer(1).timeout
+		
 		jogador.inserirCartaTrem(carta_escolhida)
 		_tabuleiro.baralho.cartasTremExpostas[indice_escolhido] = _tabuleiro.baralho.comprarPilhaCartasTrem()
 		jogador.cartasCompradasNesteTurno += 1
@@ -122,21 +123,18 @@ func tomar_decisao():
 					else:
 						nao_locomotivas_visiveis.append({"carta": cartas_visiveis[i], "indice": i})
 
-			# Prioriza cartas não locomotivas para a segunda compra
+			# Prioriza cartas não locomotivas para a segunda compra (nunca locomotiva)
 			if not nao_locomotivas_visiveis.is_empty():
 				var escolha = nao_locomotivas_visiveis[randi() % nao_locomotivas_visiveis.size()]
 				segunda_carta_escolhida = escolha.carta
 				segundo_indice_escolhido = escolha.indice
-			elif not locomotivas_visiveis.is_empty():
-				# Se não houver cartas não locomotivas, escolhe uma locomotiva
-				var escolha = locomotivas_visiveis[randi() % locomotivas_visiveis.size()]
-				segunda_carta_escolhida = escolha.carta
-				segundo_indice_escolhido = escolha.indice
-
+			# Não adicionamos um 'elif' para locomotivas aqui, pois a IA não deve comprar uma locomotiva na segunda compra
+			
 			if segunda_carta_escolhida != null and segundo_indice_escolhido != -1:
-				var cor_segunda_carta = Utils.nomeCor(segunda_carta_escolhida.cor) if not segunda_carta_escolhida.eh_locomotiva() else "Locomotiva"
+				var cor_segunda_carta = Utils.nomeCor(segunda_carta_escolhida.cor)
 				_atualizar_texto_tela("Comprando segunda carta visível: " + cor_segunda_carta)
-				await _gamestate.get_tree().create_timer(1.0).timeout
+				await _gamestate.get_tree().create_timer(1).timeout
+				
 				jogador.inserirCartaTrem(segunda_carta_escolhida)
 				_tabuleiro.baralho.cartasTremExpostas[segundo_indice_escolhido] = _tabuleiro.baralho.comprarPilhaCartasTrem()
 				jogador.cartasCompradasNesteTurno += 1
@@ -146,7 +144,7 @@ func tomar_decisao():
 			else:
 				if not _tabuleiro.baralho.pilhaCartasTrem.is_empty():
 					_atualizar_texto_tela("Comprando carta da pilha fechada")
-					await _gamestate.get_tree().create_timer(1.0).timeout
+					await _gamestate.get_tree().create_timer(1).timeout
 					var carta_oculta = _tabuleiro.baralho.comprarPilhaCartasTrem()
 					if carta_oculta:
 						jogador.inserirCartaTrem(carta_oculta)
