@@ -6,6 +6,7 @@ var _tabuleiro: Tabuleiro
 var _gamestate: Gamestate
 var _tela_bloqueio = null
 var _label_ia = null
+var _mascara_ia: ColorRect = null
 
 func _init(p_jogador: Jogador, tabuleiro: Tabuleiro, gamestate: Gamestate):
 	self.jogador = p_jogador
@@ -29,6 +30,7 @@ func tomar_decisao():
 	rotas_disponiveis.sort_custom(func(a, b): return a.custo < b.custo)
 
 	_atualizar_texto_tela("Analisando rotas disponíveis...")
+
 	await _gamestate.get_tree().create_timer(1.5).timeout
 	for rota_candidata in rotas_disponiveis:
 		if rota_candidata.dono == null:
@@ -39,6 +41,7 @@ func tomar_decisao():
 					var rota_conquistada = _tabuleiro.conquistar_rota(rota_candidata, jogador)
 					if rota_conquistada:
 						# Mostrar que decidiu construir a rota
+						_set_mascara_alpha(0.3)
 						_atualizar_texto_tela("Construindo rota: " + rota_candidata.nome + "\nCusto: " + str(rota_candidata.custo) + " - Cor: " + Utils.nomeCor(rota_candidata.cor))
 						
 						# Adicionar seta na rota
@@ -51,7 +54,7 @@ func tomar_decisao():
 						# Remover seta da rota e delay depois da ação
 						_remover_seta_rota()
 						await _gamestate.get_tree().create_timer(0.5).timeout
-						
+						_set_mascara_alpha(0.0)
 						_remover_tela_bloqueio()
 						_gamestate.proximo_turno()
 						return
@@ -60,6 +63,7 @@ func tomar_decisao():
 						_remover_seta_rota()
 						continue
 
+	_set_mascara_alpha(0.0)
 	# Mostrar que está procurando cartas
 	_atualizar_texto_tela("Procurando cartas para comprar...")
 	await _gamestate.get_tree().create_timer(2.0).timeout
@@ -134,6 +138,7 @@ func tomar_decisao():
 		
 		await _gamestate.get_tree().create_timer(2.0).timeout
 		
+		_set_mascara_alpha(0.0)
 		_remover_tela_bloqueio()
 		_gamestate.proximo_turno()
 		return
@@ -159,6 +164,7 @@ func tomar_decisao():
 		if cartas_compradas_neste_turno > 0:
 			await _gamestate.get_tree().create_timer(2.0).timeout
 			
+			_set_mascara_alpha(0.0)
 			_remover_tela_bloqueio()
 			_gamestate.proximo_turno()
 			return
@@ -167,6 +173,7 @@ func tomar_decisao():
 	if jogador.cartasCompradasNesteTurno > 0:
 		_atualizar_texto_tela("Não pode comprar bilhetes após comprar cartas no mesmo turno.")
 		await _gamestate.get_tree().create_timer(1.0).timeout
+		_set_mascara_alpha(0.0)
 		_remover_tela_bloqueio()
 		_gamestate.proximo_turno()
 		return
@@ -208,6 +215,7 @@ func _comprar_bilhetes_destino():
 		# Delay depois da ação de comprar bilhetes
 		await _gamestate.get_tree().create_timer(2.0).timeout
 	
+	_set_mascara_alpha(0.0)
 	_remover_tela_bloqueio()
 	_gamestate.proximo_turno()
 	return
@@ -246,15 +254,16 @@ func _mostrar_tela_bloqueio():
 		var ia_bloqueio_scene = preload("res://Scenes/ia_bloqueio.tscn")
 		_tela_bloqueio = ia_bloqueio_scene.instantiate()
 		
-		# Obter referência ao label
+		# Obter referência ao label e mascara
 		_label_ia = _tela_bloqueio.get_node("mascara/PainelInfo/LabelIA")
-		_label_ia.text = "Turno da IA - " + jogador.nome
-		
+		_mascara_ia = _tela_bloqueio.get_node("mascara")
 		_tabuleiro.hud.add_child(_tela_bloqueio)
+		_set_mascara_alpha(0.0) # Garante que inicie transparente
 
-func _atualizar_texto_tela(novo_texto: String):
-	if _label_ia != null:
-		_label_ia.text = "Turno da IA - " + jogador.nome + "\n\n" + novo_texto
+func _set_mascara_alpha(alpha: float):
+	if _mascara_ia:
+		var current_color = _mascara_ia.color
+		_mascara_ia.color = Color(current_color.r, current_color.g, current_color.b, alpha)
 
 func _remover_tela_bloqueio():
 	if _tela_bloqueio != null:
@@ -262,3 +271,7 @@ func _remover_tela_bloqueio():
 		_tela_bloqueio.queue_free()
 		_tela_bloqueio = null
 		_label_ia = null
+
+func _atualizar_texto_tela(texto: String):
+	if _label_ia:
+		_label_ia.text = "Turno da IA - " + jogador.nome + "\n\n" + texto
