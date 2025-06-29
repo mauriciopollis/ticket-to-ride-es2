@@ -6,7 +6,7 @@ var cena_fim = preload("res://Scenes/fim.tscn")
 var cidades: Dictionary = {}
 var rotas: Dictionary = {}
 var original_polygons: Dictionary = {}
-var cartas_em_mesa : Array[CartaTrem] = []
+var cartas_em_mesa: Array[CartaTrem] = []
 
 var valor_acumulado_selecoes = 0
 
@@ -370,3 +370,19 @@ func _on_confirmar_pressed(selection_mode):
 
 func _sair_ver_bilhetes(selection_mode):
 	hud.remove_child(selection_mode)
+
+func get_rota_visual_center(rota_name: String) -> Vector2:
+	var rota_node = $RotasButtons.get_node(rota_name)
+	if rota_node:
+		var collision = rota_node.get_node("CollisionPolygon2D")
+		var polygon2d = collision.get_node("Polygon2D")
+		
+		var polygon_points = polygon2d.polygon
+		var centroid = Vector2.ZERO
+		if not polygon_points.is_empty():
+			for p in polygon_points:
+				centroid += p
+			centroid /= polygon_points.size()
+
+		return polygon2d.to_global(centroid)
+	return Vector2.ZERO

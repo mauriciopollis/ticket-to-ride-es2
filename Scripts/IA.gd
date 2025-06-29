@@ -35,6 +35,8 @@ func tomar_decisao():
 					# Mostrar que decidiu construir a rota
 					_atualizar_texto_tela("Construindo rota: " + rota_candidata.nome + "\nCusto: " + str(rota_candidata.custo) + " - Cor: " + Utils.nomeCor(rota_candidata.cor))
 					
+					# Adicionar seta na rota
+					_mostrar_seta_rota(rota_candidata.nome)
 					await _gamestate.get_tree().create_timer(2.5).timeout
 
 					_tabuleiro.conquistar_rota(rota_candidata, jogador)
@@ -44,8 +46,9 @@ func tomar_decisao():
 						jogador.removerCartaTrem(carta_usada)
 						_tabuleiro.baralho.descartarCartaTrem(carta_usada)
 					
-					# Delay depois da ação
-					await _gamestate.get_tree().create_timer(2).timeout
+					# Remover seta da rota e delay depois da ação
+					_remover_seta_rota()
+					await _gamestate.get_tree().create_timer(2.5).timeout
 					
 					_remover_tela_bloqueio()
 					_gamestate.proximo_turno()
@@ -61,42 +64,28 @@ func tomar_decisao():
 	var comprou_locomotiva_visivel_neste_turno = false
 	var cartas_compradas_neste_turno = 0
 
-	# Primeiro verifica se há locomotivas disponíveis
-	var locomotivas_disponiveis = []
 	for i in range(cartas_visiveis.size()):
 		if cartas_visiveis[i] and cartas_visiveis[i].eh_locomotiva():
-			locomotivas_disponiveis.append(i)
+			carta_escolhida = cartas_visiveis[i]
+			indice_escolhido = i
+			comprou_locomotiva_visivel_neste_turno = true
+			break
 	
-	if locomotivas_disponiveis.size() > 0:
-		# Escolhe uma locomotiva aleatória a
-		var indice_aleatorio = locomotivas_disponiveis[randi() % locomotivas_disponiveis.size()]
-		carta_escolhida = cartas_visiveis[indice_aleatorio]
-		indice_escolhido = indice_aleatorio
-		comprou_locomotiva_visivel_neste_turno = true
-	else:
-		# Se não há locomotivas, escolhe uma carta normal aleatória
-		var cartas_normais_disponiveis = []
+	if carta_escolhida == null:
 		for i in range(cartas_visiveis.size()):
 			if cartas_visiveis[i] and not cartas_visiveis[i].eh_locomotiva():
-				cartas_normais_disponiveis.append(i)
-		
-		if cartas_normais_disponiveis.size() > 0:
-			var indice_aleatorio = cartas_normais_disponiveis[randi() % cartas_normais_disponiveis.size()]
-			carta_escolhida = cartas_visiveis[indice_aleatorio]
-			indice_escolhido = indice_aleatorio
+				carta_escolhida = cartas_visiveis[i]
+				indice_escolhido = i
+				break
 
 	if carta_escolhida != null and indice_escolhido != -1:
 		var cor_carta = Utils.nomeCor(carta_escolhida.cor) if not carta_escolhida.eh_locomotiva() else "Locomotiva"
 		_atualizar_texto_tela("Comprando carta visível: " + cor_carta)
-		await _gamestate.get_tree().create_timer(2).timeout
 		
 		jogador.inserirCartaTrem(carta_escolhida)
 		_tabuleiro.baralho.cartasTremExpostas[indice_escolhido] = _tabuleiro.baralho.comprarPilhaCartasTrem()
 		cartas_compradas_neste_turno += 1
-		
-		# Atualizar HUD após primeira compra
-		_tabuleiro.hud.atualiza_cartas_abertas(_tabuleiro.baralho.get_cartas_expostas())
-		_tabuleiro.hud.atualiza_pilha_cartas_trem(_tabuleiro.baralho.pilhaCartasTrem.size())
+		await _gamestate.get_tree().create_timer(1.0).timeout # Delay após a primeira compra
 
 		if not comprou_locomotiva_visivel_neste_turno:
 			cartas_visiveis = _tabuleiro.baralho.get_cartas_expostas()
@@ -104,34 +93,35 @@ func tomar_decisao():
 			var segundo_indice_escolhido: int = -1
 
 			for i in range(cartas_visiveis.size()):
-				if cartas_visiveis[i] and not cartas_visiveis[i].eh_locomotiva():
+				if cartas_visiveis[i] and cartas_visiveis[i].eh_locomotiva():
 					segunda_carta_escolhida = cartas_visiveis[i]
 					segundo_indice_escolhido = i
 					break
+			
+			if segunda_carta_escolhida == null:
+				for i in range(cartas_visiveis.size()):
+					if cartas_visiveis[i] and not cartas_visiveis[i].eh_locomotiva():
+						segunda_carta_escolhida = cartas_visiveis[i]
+						segundo_indice_escolhido = i
+						break
 
 			if segunda_carta_escolhida != null and segundo_indice_escolhido != -1:
 				var cor_segunda_carta = Utils.nomeCor(segunda_carta_escolhida.cor) if not segunda_carta_escolhida.eh_locomotiva() else "Locomotiva"
 				_atualizar_texto_tela("Comprando segunda carta visível: " + cor_segunda_carta)
-				await _gamestate.get_tree().create_timer(1.0).timeout
 				
 				jogador.inserirCartaTrem(segunda_carta_escolhida)
 				_tabuleiro.baralho.cartasTremExpostas[segundo_indice_escolhido] = _tabuleiro.baralho.comprarPilhaCartasTrem()
 				cartas_compradas_neste_turno += 1
-				
-				# Atualizar HUD após segunda compra
-				_tabuleiro.hud.atualiza_cartas_abertas(_tabuleiro.baralho.get_cartas_expostas())
-				_tabuleiro.hud.atualiza_pilha_cartas_trem(_tabuleiro.baralho.pilhaCartasTrem.size())
+				await _gamestate.get_tree().create_timer(1.0).timeout # Delay após a segunda compra
 			else:
 				if not _tabuleiro.baralho.pilhaCartasTrem.is_empty():
 					_atualizar_texto_tela("Comprando carta da pilha fechada")
-					await _gamestate.get_tree().create_timer(1.0).timeout
+					
 					var carta_oculta = _tabuleiro.baralho.comprarPilhaCartasTrem()
 					if carta_oculta:
 						jogador.inserirCartaTrem(carta_oculta)
 						cartas_compradas_neste_turno += 1
-						
-						# Atualizar HUD após compra da pilha fechada
-						_tabuleiro.hud.atualiza_pilha_cartas_trem(_tabuleiro.baralho.pilhaCartasTrem.size())
+						await _gamestate.get_tree().create_timer(1.0).timeout # Delay após a compra da carta oculta
 		
 		await _gamestate.get_tree().create_timer(2.0).timeout
 		
@@ -150,14 +140,13 @@ func tomar_decisao():
 					# Pequeno delay entre cartas da pilha
 					if i == 0:
 						_atualizar_texto_tela("Comprando segunda carta da pilha fechada")
-						await _gamestate.get_tree().create_timer(2.0).timeout
+						await _gamestate.get_tree().create_timer(1.0).timeout # Delay após a primeira compra da pilha
 				else:
 					break
 			else:
 				break
 		
 		if cartas_compradas_neste_turno > 0:
-			# Delay depois da ação de comprar cartas da pilha
 			await _gamestate.get_tree().create_timer(2.0).timeout
 			
 			_remover_tela_bloqueio()
@@ -206,6 +195,35 @@ func tomar_decisao():
 	await _gamestate.get_tree().create_timer(1.0).timeout
 	_remover_tela_bloqueio()
 	_gamestate.proximo_turno()
+
+var _seta_rota: Control = null
+
+func _mostrar_seta_rota(rota_name: String):
+	if _seta_rota == null:
+		_seta_rota = Control.new()
+		print("Criado _seta_rota como: " + str(_seta_rota.get_class())) # DEBUG
+		_seta_rota.size = Vector2(80, 80) # Tamanho da área de desenho
+		# Conecta o sinal "draw" do Control ao nosso método de desenho
+		_seta_rota.connect("draw", Callable(self, "_on_seta_rota_draw"))
+		_tabuleiro.hud.add_child(_seta_rota)
+
+	var rota_center_pos = _tabuleiro.get_rota_visual_center(rota_name)
+	_seta_rota.global_position = rota_center_pos - (_seta_rota.size / 2) # Centraliza o Control na rota
+	_seta_rota.visible = true
+	_seta_rota.queue_redraw() # Força o Control a redesenhar (chama _on_seta_rota_draw)
+
+func _on_seta_rota_draw():
+	print("_on_seta_rota_draw chamado!") # DEBUG
+	# Desenha um círculo preenchido no centro do _seta_rota
+	var center = _seta_rota.size / 2
+	var radius = _seta_rota.size.x / 4 # Raio menor para um círculo menor
+	_seta_rota.draw_circle(center, radius, jogador.cor) # Círculo com a cor do jogador
+
+func _remover_seta_rota():
+	if _seta_rota != null:
+		_seta_rota.visible = false
+		_seta_rota.queue_free()
+		_seta_rota = null
 
 func _mostrar_tela_bloqueio():
 	if _tela_bloqueio == null:
