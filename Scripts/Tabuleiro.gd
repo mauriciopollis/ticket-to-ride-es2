@@ -307,6 +307,10 @@ func _on_pilha_bilhetes_hud():
 		print("Já fez uma ação principal no turno.")
 		return
 	
+	if jogador_atual.cartasCompradasNesteTurno > 0:
+		print("Não pode comprar bilhetes após comprar cartas no mesmo turno.")
+		return
+	
 	jogador_atual.fezAcaoPrincipal = true
 
 	var max_ofertas = baralho.pilhaBilhetesDestino.size()

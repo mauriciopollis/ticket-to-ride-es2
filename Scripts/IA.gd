@@ -19,6 +19,13 @@ func tomar_decisao():
 	
 	await _gamestate.get_tree().create_timer(1.0).timeout
 
+	# Prioridade 1: Comprar bilhetes de destino se não tiver nenhum
+	if jogador.bilhetesDestinoNaMao.is_empty():
+		_atualizar_texto_tela("Comprando bilhetes de destino pois não há nenhum.")
+		await _gamestate.get_tree().create_timer(1.5).timeout
+		_comprar_bilhetes_destino()
+		return # Termina o turno após comprar bilhetes
+
 	var rotas_disponiveis = _tabuleiro.rotas.values()
 	rotas_disponiveis.shuffle()
 	rotas_disponiveis.sort_custom(func(a, b): return a.custo < b.custo)
@@ -85,6 +92,7 @@ func tomar_decisao():
 		
 		jogador.inserirCartaTrem(carta_escolhida)
 		_tabuleiro.baralho.cartasTremExpostas[indice_escolhido] = _tabuleiro.baralho.comprarPilhaCartasTrem()
+		jogador.cartasCompradasNesteTurno += 1
 		cartas_compradas_neste_turno += 1
 		await _gamestate.get_tree().create_timer(1.0).timeout # Delay após a primeira compra
 
@@ -112,6 +120,7 @@ func tomar_decisao():
 				
 				jogador.inserirCartaTrem(segunda_carta_escolhida)
 				_tabuleiro.baralho.cartasTremExpostas[segundo_indice_escolhido] = _tabuleiro.baralho.comprarPilhaCartasTrem()
+				jogador.cartasCompradasNesteTurno += 1
 				cartas_compradas_neste_turno += 1
 				await _gamestate.get_tree().create_timer(1.0).timeout # Delay após a segunda compra
 			else:
@@ -121,6 +130,7 @@ func tomar_decisao():
 					var carta_oculta = _tabuleiro.baralho.comprarPilhaCartasTrem()
 					if carta_oculta:
 						jogador.inserirCartaTrem(carta_oculta)
+						jogador.cartasCompradasNesteTurno += 1
 						cartas_compradas_neste_turno += 1
 						await _gamestate.get_tree().create_timer(1.0).timeout # Delay após a compra da carta oculta
 		
@@ -137,6 +147,7 @@ func tomar_decisao():
 				var carta_oculta = _tabuleiro.baralho.comprarPilhaCartasTrem()
 				if carta_oculta:
 					jogador.inserirCartaTrem(carta_oculta)
+					jogador.cartasCompradasNesteTurno += 1
 					cartas_compradas_neste_turno += 1
 					# Pequeno delay entre cartas da pilha
 					if i == 0:
@@ -154,7 +165,18 @@ func tomar_decisao():
 			_gamestate.proximo_turno()
 			return
 
+	# Verificar se já comprou cartas neste turno antes de comprar bilhetes
+	if jogador.cartasCompradasNesteTurno > 0:
+		_atualizar_texto_tela("Não pode comprar bilhetes após comprar cartas no mesmo turno.")
+		await _gamestate.get_tree().create_timer(1.0).timeout
+		_remover_tela_bloqueio()
+		_gamestate.proximo_turno()
+		return
+	
 	# Mostrar que vai comprar bilhetes
+	_comprar_bilhetes_destino()
+
+func _comprar_bilhetes_destino():
 	_atualizar_texto_tela("Comprando bilhetes de destino...")
 	await _gamestate.get_tree().create_timer(2.0).timeout
 	
@@ -187,15 +209,10 @@ func tomar_decisao():
 		
 		# Delay depois da ação de comprar bilhetes
 		await _gamestate.get_tree().create_timer(2.0).timeout
-		
-		_remover_tela_bloqueio()
-		_gamestate.proximo_turno()
-		return
-
-	_atualizar_texto_tela("Finalizando turno...")
-	await _gamestate.get_tree().create_timer(1.0).timeout
+	
 	_remover_tela_bloqueio()
 	_gamestate.proximo_turno()
+	return
 
 var _seta_rota: Control = null
 
