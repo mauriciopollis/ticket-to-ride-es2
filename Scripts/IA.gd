@@ -74,69 +74,88 @@ func tomar_decisao():
 	var comprou_locomotiva_visivel_neste_turno = false
 	var cartas_compradas_neste_turno = 0
 
+	# Separa as cartas visíveis em locomotivas e não locomotivas
+	var locomotivas_visiveis = []
+	var nao_locomotivas_visiveis = []
 	for i in range(cartas_visiveis.size()):
-		if cartas_visiveis[i] and cartas_visiveis[i].eh_locomotiva():
-			carta_escolhida = cartas_visiveis[i]
-			indice_escolhido = i
-			comprou_locomotiva_visivel_neste_turno = true
-			break
-	
-	if carta_escolhida == null:
-		for i in range(cartas_visiveis.size()):
-			if cartas_visiveis[i] and not cartas_visiveis[i].eh_locomotiva():
-				carta_escolhida = cartas_visiveis[i]
-				indice_escolhido = i
-				break
+		if cartas_visiveis[i]:
+			if cartas_visiveis[i].eh_locomotiva():
+				locomotivas_visiveis.append({"carta": cartas_visiveis[i], "indice": i})
+			else:
+				nao_locomotivas_visiveis.append({"carta": cartas_visiveis[i], "indice": i})
 
+	# Prioriza cartas não locomotivas
+	if not nao_locomotivas_visiveis.is_empty():
+		var escolha = nao_locomotivas_visiveis[randi() % nao_locomotivas_visiveis.size()]
+		carta_escolhida = escolha.carta
+		indice_escolhido = escolha.indice
+	elif not locomotivas_visiveis.is_empty():
+		# Se não houver cartas não locomotivas, escolhe uma locomotiva
+		var escolha = locomotivas_visiveis[randi() % locomotivas_visiveis.size()]
+		carta_escolhida = escolha.carta
+		indice_escolhido = escolha.indice
+		comprou_locomotiva_visivel_neste_turno = true
+	
 	if carta_escolhida != null and indice_escolhido != -1:
 		var cor_carta = Utils.nomeCor(carta_escolhida.cor) if not carta_escolhida.eh_locomotiva() else "Locomotiva"
 		_atualizar_texto_tela("Comprando carta visível: " + cor_carta)
-		
+		await _gamestate.get_tree().create_timer(1.0).timeout
 		jogador.inserirCartaTrem(carta_escolhida)
 		_tabuleiro.baralho.cartasTremExpostas[indice_escolhido] = _tabuleiro.baralho.comprarPilhaCartasTrem()
 		jogador.cartasCompradasNesteTurno += 1
 		cartas_compradas_neste_turno += 1
-		await _gamestate.get_tree().create_timer(1.0).timeout # Delay após a primeira compra
+		_tabuleiro.hud.atualiza_cartas_abertas(_tabuleiro.baralho.get_cartas_expostas()) # Atualiza o HUD
+		await _gamestate.get_tree().create_timer(0.5).timeout # Delay após a primeira compra
 
 		if not comprou_locomotiva_visivel_neste_turno:
 			cartas_visiveis = _tabuleiro.baralho.get_cartas_expostas()
 			var segunda_carta_escolhida: CartaTrem = null
 			var segundo_indice_escolhido: int = -1
 
+			# Separa as cartas visíveis novamente para a segunda compra
+			locomotivas_visiveis.clear()
+			nao_locomotivas_visiveis.clear()
 			for i in range(cartas_visiveis.size()):
-				if cartas_visiveis[i] and cartas_visiveis[i].eh_locomotiva():
-					segunda_carta_escolhida = cartas_visiveis[i]
-					segundo_indice_escolhido = i
-					break
-			
-			if segunda_carta_escolhida == null:
-				for i in range(cartas_visiveis.size()):
-					if cartas_visiveis[i] and not cartas_visiveis[i].eh_locomotiva():
-						segunda_carta_escolhida = cartas_visiveis[i]
-						segundo_indice_escolhido = i
-						break
+				if cartas_visiveis[i]:
+					if cartas_visiveis[i].eh_locomotiva():
+						locomotivas_visiveis.append({"carta": cartas_visiveis[i], "indice": i})
+					else:
+						nao_locomotivas_visiveis.append({"carta": cartas_visiveis[i], "indice": i})
+
+			# Prioriza cartas não locomotivas para a segunda compra
+			if not nao_locomotivas_visiveis.is_empty():
+				var escolha = nao_locomotivas_visiveis[randi() % nao_locomotivas_visiveis.size()]
+				segunda_carta_escolhida = escolha.carta
+				segundo_indice_escolhido = escolha.indice
+			elif not locomotivas_visiveis.is_empty():
+				# Se não houver cartas não locomotivas, escolhe uma locomotiva
+				var escolha = locomotivas_visiveis[randi() % locomotivas_visiveis.size()]
+				segunda_carta_escolhida = escolha.carta
+				segundo_indice_escolhido = escolha.indice
 
 			if segunda_carta_escolhida != null and segundo_indice_escolhido != -1:
 				var cor_segunda_carta = Utils.nomeCor(segunda_carta_escolhida.cor) if not segunda_carta_escolhida.eh_locomotiva() else "Locomotiva"
 				_atualizar_texto_tela("Comprando segunda carta visível: " + cor_segunda_carta)
-				
+				await _gamestate.get_tree().create_timer(1.0).timeout
 				jogador.inserirCartaTrem(segunda_carta_escolhida)
 				_tabuleiro.baralho.cartasTremExpostas[segundo_indice_escolhido] = _tabuleiro.baralho.comprarPilhaCartasTrem()
 				jogador.cartasCompradasNesteTurno += 1
 				cartas_compradas_neste_turno += 1
-				await _gamestate.get_tree().create_timer(1.0).timeout # Delay após a segunda compra
+				_tabuleiro.hud.atualiza_cartas_abertas(_tabuleiro.baralho.get_cartas_expostas()) # Atualiza o HUD
+				await _gamestate.get_tree().create_timer(0.5).timeout # Delay após a segunda compra
 			else:
 				if not _tabuleiro.baralho.pilhaCartasTrem.is_empty():
 					_atualizar_texto_tela("Comprando carta da pilha fechada")
-					
+					await _gamestate.get_tree().create_timer(1.0).timeout
 					var carta_oculta = _tabuleiro.baralho.comprarPilhaCartasTrem()
 					if carta_oculta:
 						jogador.inserirCartaTrem(carta_oculta)
 						jogador.cartasCompradasNesteTurno += 1
 						cartas_compradas_neste_turno += 1
-						await _gamestate.get_tree().create_timer(1.0).timeout # Delay após a compra da carta oculta
+						_tabuleiro.hud.atualiza_pilha_cartas_trem(_tabuleiro.baralho.pilhaCartasTrem.size()) # Atualiza o HUD da pilha
+						await _gamestate.get_tree().create_timer(0.5).timeout # Delay após a compra da carta oculta
 		
-		await _gamestate.get_tree().create_timer(2.0).timeout
+		await _gamestate.get_tree().create_timer(1.0).timeout
 		
 		_set_mascara_alpha(0.0)
 		_remover_tela_bloqueio()
@@ -152,6 +171,7 @@ func tomar_decisao():
 					jogador.inserirCartaTrem(carta_oculta)
 					jogador.cartasCompradasNesteTurno += 1
 					cartas_compradas_neste_turno += 1
+					_tabuleiro.hud.atualiza_pilha_cartas_trem(_tabuleiro.baralho.pilhaCartasTrem.size()) # Atualiza o HUD da pilha
 					# Pequeno delay entre cartas da pilha
 					if i == 0:
 						_atualizar_texto_tela("Comprando segunda carta da pilha fechada")
